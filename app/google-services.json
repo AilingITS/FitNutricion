@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "172077019023",
+    "project_id": "fitnutricion-f60a3",
+    "storage_bucket": "fitnutricion-f60a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:172077019023:android:07d480395df46b2fb8e5fa",
+        "android_client_info": {
+          "package_name": "com.example.fitnutricion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "172077019023-k22c7j3bsdfd2kjud161bftsjop51jqr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fitnutricion",
+            "certificate_hash": "141e00402c43c8c375aa1e4bbe837db11c3a03df"
+          }
+        },
+        {
+          "client_id": "172077019023-cercqjvdn7rhu9cuu491qslv8dt53erf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3D9KN0z1LQsclQw-3prOC-cKVjAbP7Ho"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "172077019023-cercqjvdn7rhu9cuu491qslv8dt53erf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
