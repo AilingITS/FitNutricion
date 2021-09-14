@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">FitNutricion</string>
+
+    <string name="home_text">Inicio</string>
+    <string name="challenge_text">Desafíos</string>
+    <string name="profile_text">Perfil</string>
+    <string name="setting_text">Configuración</string>
+
+    <string name="correo_text">Correo electronico</string>
+    <string name="password_text">Contraseña</string>
+    <string name="confPassword_text">Confirmar contraseña</string>
+    <string name="cuentaNueva">Crear cuenta</string>
+    <string name="iniciarSesion">Iniciar sesión</string>
+    <string name="cerrarSesion">Cerrar sesión</string>
+
+    <string name="usuario_text">Nombre de usuario</string>
+    <string name="uneteABiblio_text">¡Unete a Biblioloft!</string>
+    <string name="confirmar_text">Confirmar</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
