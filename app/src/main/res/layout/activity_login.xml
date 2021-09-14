@@ -65,7 +65,7 @@
         android:layout_marginTop="8dp"
 
         android:layout_marginEnd="32dp"
-        android:backgroundTint="@color/card_2"
+        android:backgroundTint="@color/verdeLigero"
         android:onClick="onClick"
         android:text="@string/iniciarSesion"
         android:textColor="@color/black"
@@ -80,7 +80,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
-        android:backgroundTint="@color/card_1"
+        android:backgroundTint="@color/verdeBtn"
         android:onClick="onClick"
         android:text="@string/cuentaNueva"
         android:textColor="@color/black"

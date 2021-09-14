@@ -16,6 +16,8 @@
     <color name="card_4">#D2C3D8</color>
     <color name="amarilloOscuro">#ffaf3b</color>
     <color name="rojoPastel">#db5856</color>
+    <color name="verdeBtn">#9BC399</color>
+    <color name="verdeLigero">#6EA96B</color>
     <!--                                       -->
 
 </resources>
