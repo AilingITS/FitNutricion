@@ -12,10 +12,12 @@ import com.example.fitnutricion.fragments.HomeFragment;
 import com.example.fitnutricion.fragments.ProfileFragment;
 import com.example.fitnutricion.fragments.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView navigationView;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

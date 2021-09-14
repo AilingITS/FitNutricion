@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
-    //Button btniniciarSesion, btnRegistrarse;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
