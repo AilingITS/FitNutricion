@@ -1,6 +1,8 @@
 package com.example.fitnutricion;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -13,11 +15,12 @@ import com.example.fitnutricion.fragments.ProfileFragment;
 import com.example.fitnutricion.fragments.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView navigationView;
-    private FirebaseAuth mAuth;
+    //private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         //getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        //mAuth = FirebaseAuth.getInstance();
 
         BottomNavigationView bottomNav =(BottomNavigationView)findViewById(R.id.bottom_navigation);
 
