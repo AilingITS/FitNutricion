@@ -81,6 +81,9 @@ public class RegisterActivity extends AppCompatActivity {
         } else if(!password.equals(confpassword)){
             txtConfPassword.setError("Las contraseñas no coinciden");
             txtPassword.requestFocus();
+        } else if (password.length() <= 5) {
+            txtPassword.setError("La contraseña debe tener mas de 6 caracteres");
+            txtPassword.requestFocus();
         } else {
             mAuth.createUserWithEmailAndPassword(mail, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
