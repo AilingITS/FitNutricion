@@ -18,6 +18,12 @@
     <string name="uneteAFitN_text">¡Unete a FitNutricion!</string>
     <string name="confirmar_text">Confirmar</string>
 
+    <string name="nombre_text">Nombre de usuario</string>
+    <string name="nombrecompleto_text">Nombre completo</string>
+    <string name="mail_text">Correo electronico</string>
+    <string name="Edad_text">Edad</string>
+    <string name="Celular_text">Celular</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
