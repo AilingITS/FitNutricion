@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.fitnutricion.fragments.ChallengeFragment;
 import com.example.fitnutricion.fragments.HomeFragment;
+import com.example.fitnutricion.fragments.PacientesFragment;
 import com.example.fitnutricion.fragments.ProfileFragment;
 import com.example.fitnutricion.fragments.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -50,6 +51,10 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new ChallengeFragment();
                         break;
 
+                    case R.id.nav_pacientes:
+                        fragment = new PacientesFragment();
+                        break;
+
                     case R.id.nav_profile:
                         fragment = new ProfileFragment();
                         break;
@@ -63,6 +68,5 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
     }
 }

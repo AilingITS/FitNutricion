@@ -5,6 +5,7 @@
     <string name="challenge_text">Desafíos</string>
     <string name="profile_text">Perfil</string>
     <string name="setting_text">Configuración</string>
+    <string name="pacientes_text">Pacientes</string>
 
     <string name="correo_text">Correo electronico</string>
     <string name="password_text">Contraseña</string>

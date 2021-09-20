@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/card_3"
-    tools:context=".fragments.ProfileFragment">
+    android:background="@color/white"
+    tools:context=".fragments.PacientesFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:text="@string/profile_text"
+        android:text="@string/pacientes_text"
         android:textSize="30sp"
         android:textColor="@color/black"
         android:textStyle="bold"
