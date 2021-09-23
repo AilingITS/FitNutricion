@@ -1,22 +1,18 @@
 package com.example.fitnutricion;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.fitnutricion.fragments.ChallengeFragment;
+import com.example.fitnutricion.fragments.RecetasFragment;
 import com.example.fitnutricion.fragments.HomeFragment;
 import com.example.fitnutricion.fragments.PacientesFragment;
 import com.example.fitnutricion.fragments.ProfileFragment;
 import com.example.fitnutricion.fragments.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.nav_challenge:
-                        fragment = new ChallengeFragment();
+                        fragment = new RecetasFragment();
                         break;
 
                     case R.id.nav_pacientes:
