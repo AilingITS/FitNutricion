@@ -6,8 +6,8 @@
         android:icon="@drawable/ic_home"/>
 
     <item android:id="@+id/nav_challenge"
-        android:title="@string/challenge_text"
-        android:icon="@drawable/ic_challenge"/>
+        android:title="@string/recetas_text"
+        android:icon="@drawable/ic_recetas"/>
 
     <item android:id="@+id/nav_pacientes"
         android:title="Pacientes"

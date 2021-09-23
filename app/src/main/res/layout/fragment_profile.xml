@@ -33,8 +33,10 @@
                 android:src="@drawable/ic_perfil_usuario" />
 
             <TextView
+                android:id="@+id/perfil_usuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:layout_gravity="center"
                 android:text="@string/nombre_text"
                 android:textAlignment="center"
@@ -43,8 +45,10 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/perfil_nombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:layout_gravity="center"
                 android:text="@string/nombrecompleto_text"
                 android:textColor="@color/black"
@@ -52,8 +56,10 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/perfil_mail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:layout_gravity="center"
                 android:text="@string/mail_text"
                 android:textColor="@color/black"
@@ -61,8 +67,10 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/perfil_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:layout_gravity="center"
                 android:text="@string/password_text"
                 android:textColor="@color/black"
@@ -70,8 +78,10 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/perfil_edad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:layout_gravity="center"
                 android:text="@string/Edad_text"
                 android:textColor="@color/black"
@@ -79,13 +89,40 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/perfil_celular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:layout_gravity="center"
                 android:text="@string/Celular_text"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
+
+            <Button
+                android:id="@+id/perfil_actualizar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:backgroundTint="@color/verdeBtn"
+                android:onClick="onClick"
+                android:text="@string/actualizar_text"
+                android:textColor="@color/black"
+                />
+
+            <Button
+                android:id="@+id/perfil_actualizarpass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="32dp"
+                android:backgroundTint="@color/verdeBtn"
+                android:onClick="onClick"
+                android:text="@string/actualizarpass_text"
+                android:textColor="@color/black"
+                />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

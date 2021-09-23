@@ -2,7 +2,7 @@
     <string name="app_name">FitNutricion</string>
 
     <string name="home_text">Inicio</string>
-    <string name="challenge_text">Desafíos</string>
+    <string name="recetas_text">Recetas</string>
     <string name="profile_text">Perfil</string>
     <string name="setting_text">Configuración</string>
     <string name="pacientes_text">Pacientes</string>
@@ -23,7 +23,8 @@
     <string name="mail_text">Correo electronico</string>
     <string name="Edad_text">Edad</string>
     <string name="Celular_text">Celular</string>
-
+    <string name="actualizar_text">Actualizar datos</string>
+    <string name="actualizarpass_text">Actualizar contraseña</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

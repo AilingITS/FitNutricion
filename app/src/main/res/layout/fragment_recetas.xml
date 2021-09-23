@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:text="@string/challenge_text"
+        android:text="@string/recetas_text"
         android:textSize="30sp"
         android:textColor="@color/black"
         android:textStyle="bold"
