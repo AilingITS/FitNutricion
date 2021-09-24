@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.example.fitnutricion.LoginActivity;
 import com.example.fitnutricion.MainActivity;
 import com.example.fitnutricion.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +31,8 @@ public class ProfileFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private View vista;
+    private FirebaseAuth mAuth;
+    private String userID;
 
     private TextView perfil_usuario, perfil_nombre, perfil_mail, perfil_password, perfil_edad, perfil_celular;
     private Button perfil_actualizar;
@@ -65,12 +68,26 @@ public class ProfileFragment extends Fragment {
         vista = inflater.inflate(R.layout.fragment_profile, container, false);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         dbRef = firebaseDatabase.getReference();
+        perfil_usuario = vista.findViewById(R.id.perfil_usuario);
+        perfil_nombre = vista.findViewById(R.id.perfil_nombre);
+        perfil_mail = vista.findViewById(R.id.perfil_mail);
+        perfil_password = vista.findViewById(R.id.perfil_password);
+        perfil_edad = vista.findViewById(R.id.perfil_edad);
+        perfil_celular = vista.findViewById(R.id.perfil_celular);
+
+
 
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
+                    userID = mAuth.getCurrentUser().getUid();
+                    String usuario = snapshot.child("users").child(userID).child("Nombre").getValue().toString();
+                    String mail = snapshot.child("users").child(userID).child("Correo").getValue().toString();
+                    perfil_usuario.setText(usuario);
+                    perfil_mail.setText(mail);
 
                 }
             }
