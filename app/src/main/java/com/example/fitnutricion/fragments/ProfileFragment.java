@@ -1,26 +1,39 @@
 package com.example.fitnutricion.fragments;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.fitnutricion.LoginActivity;
 import com.example.fitnutricion.MainActivity;
 import com.example.fitnutricion.R;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -31,16 +44,24 @@ public class ProfileFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final int RESULT_OK = -1;
     private String mParam1;
     private String mParam2;
     private View vista;
     private FirebaseAuth mAuth;
     private String userID;
 
-    private TextView perfil_usuario, perfil_nombre, perfil_mail, perfil_password, perfil_edad, perfil_celular;
+    private ImageView fotoperfil;
+    private static final int GalleryPick = 1;
+    private Uri ImageUri;
+    private String RandomKey, downloadImageUrl;
+
+    private TextView perfil_nombre, perfil_password, perfil_edad, perfil_celular;
+    private EditText perfil_usuario, perfil_mail;
     private Button perfil_actualizar;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference dbRef;
+    private StorageReference ImagesRef;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -73,8 +94,11 @@ public class ProfileFragment extends Fragment {
         firebaseDatabase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
         dbRef = firebaseDatabase.getReference();
+        ImagesRef = FirebaseStorage.getInstance().getReference().child("Images");
+
         perfil_usuario = vista.findViewById(R.id.perfil_usuario);
         //perfil_nombre = vista.findViewById(R.id.perfil_nombre);
+        fotoperfil = vista.findViewById(R.id.fotoperfil);
         perfil_mail = vista.findViewById(R.id.perfil_mail);
         //perfil_password = vista.findViewById(R.id.perfil_password);
         //perfil_edad = vista.findViewById(R.id.perfil_edad);
@@ -103,13 +127,126 @@ public class ProfileFragment extends Fragment {
         perfil_actualizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Map<String, Object> usuarioMap = new HashMap<>();
-                //usuarioMap.put("Nombre", );
+                ValidateProductData();
+            }
+        });
+
+        fotoperfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenGallery();
             }
         });
 
 
 
         return vista;
+    }
+
+    private void ValidateProductData() {
+        String usuario = perfil_usuario.getText().toString();
+        String mail = perfil_mail.getText().toString();
+
+        if(ImageUri == null){
+            SaveInfoToDatabasewithoutImage();
+        } else if (TextUtils.isEmpty(usuario)){
+            Toast.makeText(getActivity(), "Ingrese un usuario", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(mail)){
+            Toast.makeText(getActivity(), "Ingrese un correo", Toast.LENGTH_SHORT).show();
+        } else {
+            StorageReference filePath = ImagesRef.child(ImageUri.getLastPathSegment() + RandomKey + ".jpg");
+            final UploadTask uploadTask = filePath.putFile(ImageUri);
+
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull @NotNull Exception e) {
+                    String message = e.toString();
+
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                        @Override
+                        public Task<Uri> then(@NonNull @NotNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                            if (!task.isSuccessful()){
+                                throw task.getException();
+                            }
+                            downloadImageUrl = filePath.getDownloadUrl().toString();
+                            return filePath.getDownloadUrl();
+                        }
+                    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull @NotNull Task<Uri> task) {
+                            if(task.isSuccessful()){
+                                downloadImageUrl = task.getResult().toString();
+
+                                SaveInfoToDatabase();
+                            }
+                        }
+                    });
+                }
+            });
+        }
+    }
+
+    private void SaveInfoToDatabasewithoutImage() {
+        HashMap<String, Object> infoMap = new HashMap<>();
+        String usuario = perfil_usuario.getText().toString();
+        String mail = perfil_mail.getText().toString();
+        infoMap.put("Nombre", usuario);
+        infoMap.put("Correo", mail);
+
+        userID = mAuth.getCurrentUser().getUid();
+        dbRef.child("users").child(userID).updateChildren(infoMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull @NotNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(getActivity(), "Datos actualizados correctamente", Toast.LENGTH_SHORT).show();
+                } else {
+                    String message = task.getException().toString();
+                    Toast.makeText(getActivity(), "Error: " + message, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void SaveInfoToDatabase() {
+        HashMap<String, Object> infoMap = new HashMap<>();
+        String usuario = perfil_usuario.getText().toString();
+        String mail = perfil_mail.getText().toString();
+        infoMap.put("Nombre", usuario);
+        infoMap.put("Correo", mail);
+        infoMap.put("image", downloadImageUrl);
+
+        userID = mAuth.getCurrentUser().getUid();
+        dbRef.child("users").child(userID).updateChildren(infoMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull @NotNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(getActivity(), "Datos actualizados correctamente", Toast.LENGTH_SHORT).show();
+                } else {
+                    String message = task.getException().toString();
+                    Toast.makeText(getActivity(), "Error: " + message, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void OpenGallery() {
+        Intent galleryIntent = new Intent();
+        galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+        galleryIntent.setType("image/*");
+        startActivityForResult(galleryIntent, GalleryPick);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode==GalleryPick && resultCode==RESULT_OK && data!=null){
+            ImageUri = data.getData();
+            fotoperfil.setImageURI(ImageUri);
+        }
     }
 }
