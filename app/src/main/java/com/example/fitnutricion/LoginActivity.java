@@ -73,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                     if(task.isSuccessful()){
                         Toast.makeText(LoginActivity.this, "Bienvenid@ a FitNutricion", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        finish();
                     } else {
                         Log.w("TAG", "Error:", task.getException());
                     }

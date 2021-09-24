@@ -16,6 +16,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.fitnutricion.LoginActivity;
 import com.example.fitnutricion.MainActivity;
@@ -34,6 +36,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -94,7 +97,7 @@ public class ProfileFragment extends Fragment {
         firebaseDatabase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
         dbRef = firebaseDatabase.getReference();
-        ImagesRef = FirebaseStorage.getInstance().getReference().child("Images");
+        ImagesRef = FirebaseStorage.getInstance().getReference().child("images");
 
         perfil_usuario = vista.findViewById(R.id.perfil_usuario);
         //perfil_nombre = vista.findViewById(R.id.perfil_nombre);
@@ -109,19 +112,24 @@ public class ProfileFragment extends Fragment {
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     userID = mAuth.getCurrentUser().getUid();
+
+                    if(snapshot.child("users").child(userID).child("image").exists()){
+                        String image = snapshot.child("users").child(userID).child("image").getValue().toString();
+                        Picasso.get().load(image).into(fotoperfil);
+                    }
+
                     String usuario = snapshot.child("users").child(userID).child("Nombre").getValue().toString();
                     String mail = snapshot.child("users").child(userID).child("Correo").getValue().toString();
                     perfil_usuario.setText(usuario);
                     perfil_mail.setText(mail);
-
                 }
             }
-
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
             }
         });
+
+
 
         perfil_actualizar = (Button) vista.findViewById(R.id.perfil_actualizar);
         perfil_actualizar.setOnClickListener(new View.OnClickListener() {
@@ -143,6 +151,13 @@ public class ProfileFragment extends Fragment {
         return vista;
     }
 
+    private void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.body_container,fragment);
+        fragmentTransaction.commit();
+    }
+
     private void ValidateProductData() {
         String usuario = perfil_usuario.getText().toString();
         String mail = perfil_mail.getText().toString();
@@ -154,14 +169,16 @@ public class ProfileFragment extends Fragment {
         } else if (TextUtils.isEmpty(mail)){
             Toast.makeText(getActivity(), "Ingrese un correo", Toast.LENGTH_SHORT).show();
         } else {
-            StorageReference filePath = ImagesRef.child(ImageUri.getLastPathSegment() + RandomKey + ".jpg");
-            final UploadTask uploadTask = filePath.putFile(ImageUri);
+            userID = mAuth.getCurrentUser().getUid();
+
+            StorageReference fileRef = ImagesRef.child(userID + ".jpg");
+            final UploadTask uploadTask = fileRef.putFile(ImageUri);
 
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull @NotNull Exception e) {
                     String message = e.toString();
-
+                    Toast.makeText(getActivity(), "Error: " + message, Toast.LENGTH_SHORT).show();
                 }
             }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -172,8 +189,8 @@ public class ProfileFragment extends Fragment {
                             if (!task.isSuccessful()){
                                 throw task.getException();
                             }
-                            downloadImageUrl = filePath.getDownloadUrl().toString();
-                            return filePath.getDownloadUrl();
+                            downloadImageUrl = fileRef.getDownloadUrl().toString();
+                            return fileRef.getDownloadUrl();
                         }
                     }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                         @Override
@@ -190,6 +207,7 @@ public class ProfileFragment extends Fragment {
         }
     }
 
+    // Actualiza los datos menos la foto de perfil
     private void SaveInfoToDatabasewithoutImage() {
         HashMap<String, Object> infoMap = new HashMap<>();
         String usuario = perfil_usuario.getText().toString();
@@ -203,6 +221,7 @@ public class ProfileFragment extends Fragment {
             public void onComplete(@NonNull @NotNull Task<Void> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(getActivity(), "Datos actualizados correctamente", Toast.LENGTH_SHORT).show();
+                    replaceFragment(new SettingsFragment());
                 } else {
                     String message = task.getException().toString();
                     Toast.makeText(getActivity(), "Error: " + message, Toast.LENGTH_SHORT).show();
@@ -211,6 +230,7 @@ public class ProfileFragment extends Fragment {
         });
     }
 
+    //Guardar información de perfil con imagen de perfil
     private void SaveInfoToDatabase() {
         HashMap<String, Object> infoMap = new HashMap<>();
         String usuario = perfil_usuario.getText().toString();
@@ -225,6 +245,7 @@ public class ProfileFragment extends Fragment {
             public void onComplete(@NonNull @NotNull Task<Void> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(getActivity(), "Datos actualizados correctamente", Toast.LENGTH_SHORT).show();
+                    replaceFragment(new SettingsFragment());
                 } else {
                     String message = task.getException().toString();
                     Toast.makeText(getActivity(), "Error: " + message, Toast.LENGTH_SHORT).show();
