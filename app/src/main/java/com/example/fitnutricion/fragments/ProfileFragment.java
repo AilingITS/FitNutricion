@@ -71,11 +71,11 @@ public class ProfileFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         dbRef = firebaseDatabase.getReference();
         perfil_usuario = vista.findViewById(R.id.perfil_usuario);
-        perfil_nombre = vista.findViewById(R.id.perfil_nombre);
+        //perfil_nombre = vista.findViewById(R.id.perfil_nombre);
         perfil_mail = vista.findViewById(R.id.perfil_mail);
-        perfil_password = vista.findViewById(R.id.perfil_password);
-        perfil_edad = vista.findViewById(R.id.perfil_edad);
-        perfil_celular = vista.findViewById(R.id.perfil_celular);
+        //perfil_password = vista.findViewById(R.id.perfil_password);
+        //perfil_edad = vista.findViewById(R.id.perfil_edad);
+        //perfil_celular = vista.findViewById(R.id.perfil_celular);
 
 
 
