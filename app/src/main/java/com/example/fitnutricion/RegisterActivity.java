@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -28,7 +30,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private String userID;
-    private FirebaseFirestore db;
+    //private FirebaseFirestore db;
+    private FirebaseDatabase db;
 
     private EditText txtUser, txtMail, txtPassword, txtConfPassword;
 
@@ -40,7 +43,8 @@ public class RegisterActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mAuth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
+        //db = FirebaseFirestore.getInstance();
+        db = FirebaseDatabase.getInstance();
 
         txtUser = findViewById(R.id.usuario_etxt);
         txtMail = findViewById(R.id.correo_etxt);
@@ -90,14 +94,14 @@ public class RegisterActivity extends AppCompatActivity {
                 public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
                         userID = mAuth.getCurrentUser().getUid();
-                        DocumentReference documentReference = db.collection("users").document(userID);
+                        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("users").child(userID);
 
                         Map<String, Object> user = new HashMap<>();
                         user.put("Nombre", name);
                         user.put("Correo", mail);
                         user.put("Contraseña", password);
 
-                        documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        dbRef.setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
                                 Log.d("TAG", "onSuccess: Datos registrados " + userID);
