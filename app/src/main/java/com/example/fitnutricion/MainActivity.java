@@ -51,9 +51,9 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new PacientesFragment();
                         break;
 
-                    case R.id.nav_profile:
-                        fragment = new ProfileFragment();
-                        break;
+                    //case R.id.nav_profile:
+                      //  fragment = new ProfileFragment();
+                        //break;
 
                     case R.id.nav_settings:
                         fragment = new SettingsFragment();

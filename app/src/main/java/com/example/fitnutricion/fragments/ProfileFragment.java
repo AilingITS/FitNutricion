@@ -24,6 +24,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ProfileFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
@@ -77,8 +80,6 @@ public class ProfileFragment extends Fragment {
         //perfil_edad = vista.findViewById(R.id.perfil_edad);
         //perfil_celular = vista.findViewById(R.id.perfil_celular);
 
-
-
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
@@ -102,9 +103,11 @@ public class ProfileFragment extends Fragment {
         perfil_actualizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Map<String, Object> usuarioMap = new HashMap<>();
+                //usuarioMap.put("Nombre", );
             }
         });
+
 
 
         return vista;

@@ -13,7 +13,7 @@
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="10dp">
 
@@ -38,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="50dp"
                 android:text="@string/nombre_text"
                 android:textAlignment="center"
                 android:textColor="@color/black"
@@ -57,14 +57,29 @@
                 android:textStyle="bold" />-->
 
             <TextView
+                android:id="@+id/perfil_mail_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/mail_text"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/perfil_mail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="200dp"
+                android:layout_marginBottom="250dp"
                 android:text="@string/mail_text"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <!--
@@ -124,6 +139,7 @@
                 android:text="@string/actualizarpass_text"
                 android:textColor="@color/black"
                 />-->
+
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

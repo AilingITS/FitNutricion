@@ -25,7 +25,7 @@
     <string name="Celular_text">Celular</string>
     <string name="actualizar_text">Actualizar datos</string>
     <string name="actualizarpass_text">Actualizar contraseña</string>
+    <string name="modificardatos_text">Modificar perfil</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

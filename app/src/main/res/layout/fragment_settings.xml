@@ -10,33 +10,49 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:paddingTop="30dp"
+        android:padding="30dp"
         android:text="@string/setting_text"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btncerrarSesion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="@color/rojoPastel"
-        android:text="@string/cerrarSesion"
-        android:textColor="@color/black"
-        android:visibility="visible"
-        tools:visibility="visible" />
+        <Button
+            android:id="@+id/btn_modificar_datos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="360dp"
+            android:text="@string/modificardatos_text"
+            android:background="@drawable/config_modificar_perfil_btn"
+            android:textColor="@color/black"
+            android:visibility="visible"
+            tools:visibility="visible"
+            android:drawableEnd="@drawable/ic_next"
+            />
+
+        <Button
+            android:id="@+id/btncerrarSesion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="32dp"
+            android:backgroundTint="@color/rojoPastel"
+            android:text="@string/cerrarSesion"
+            android:textColor="@color/black"
+            android:visibility="visible"
+            tools:visibility="visible" />
 
     </LinearLayout>
 

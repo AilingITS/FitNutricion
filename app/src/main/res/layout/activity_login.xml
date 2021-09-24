@@ -28,7 +28,6 @@
         android:hint="@string/correo_text"
         android:inputType="text"
         android:padding="15dp"
-
         android:textColor="@color/black"
         android:textColorHint="@color/light_white"
         android:textSize="17sp"
