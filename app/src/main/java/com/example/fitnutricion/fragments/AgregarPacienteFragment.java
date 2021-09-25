@@ -117,7 +117,7 @@ public class AgregarPacienteFragment extends Fragment {
             paciente_correo.setError("Ingrese un correo");
             paciente_correo.requestFocus();
         } else if(TextUtils.isEmpty(age)){
-            paciente_edad.setError("Ingrese una contraseña");
+            paciente_edad.setError("Ingrese una edad");
             paciente_edad.requestFocus();
         } else {
             //Map para registrar a un usuario con sus datos
