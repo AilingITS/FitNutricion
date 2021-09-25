@@ -2,17 +2,17 @@ package com.example.fitnutricion.firebase;
 
 public class Pacientes {
 
-    String Nombre, Correo, Contraseña;
+    String p_Nombre, p_Correo, p_Edad;
 
-    public String getNombre() {
-        return Nombre;
+    public String getP_Nombre() {
+        return p_Nombre;
     }
 
-    public String getCorreo() {
-        return Correo;
+    public String getP_Correo() {
+        return p_Correo;
     }
 
-    public String getContraseña() {
-        return Contraseña;
+    public String getP_Edad() {
+        return p_Edad;
     }
 }
