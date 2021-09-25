@@ -17,7 +17,6 @@
     <string name="home_text">Inicio</string>
     <string name="recetas_text">Recetas</string>
     <string name="setting_text">Configuración</string>
-    <string name="pacientes_text">Pacientes</string>
 
     <!-- SETTINGS -->
     <string name="cerrarSesion">Cerrar sesión</string>
@@ -32,6 +31,10 @@
     <string name="actualizar_text">Actualizar datos</string>
     <string name="actualizarpass_text">Actualizar contraseña</string>
     <string name="modificardatos_text">Modificar perfil</string>
+
+    <!-- PROFILE -->
+    <string name="pacientes_text">Pacientes</string>
+    <string name="agregarPaciente">Agregar paciente</string>
 
 
 </resources>

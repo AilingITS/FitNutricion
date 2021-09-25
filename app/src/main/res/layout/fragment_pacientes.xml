@@ -22,15 +22,28 @@
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/btn_agregarPacientes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/agregarPaciente"
+            android:textColor="@color/black"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_pacientes"
+            android:layout_marginTop="16dp"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/pacienteList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_pacientes"
+            app:layout_constraintTop_toBottomOf="@+id/btn_agregarPacientes"
             tools:layout_editor_absoluteX="0dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
