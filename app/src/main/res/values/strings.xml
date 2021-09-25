@@ -16,7 +16,6 @@
     <!-- MENU -->
     <string name="home_text">Inicio</string>
     <string name="recetas_text">Recetas</string>
-    <string name="profile_text">Perfil</string>
     <string name="setting_text">Configuración</string>
     <string name="pacientes_text">Pacientes</string>
 
@@ -24,6 +23,7 @@
     <string name="cerrarSesion">Cerrar sesión</string>
 
     <!-- PROFILE -->
+    <string name="profile_text">Datos personales</string>
     <string name="nombre_text">Nombre de usuario</string>
     <string name="nombrecompleto_text">Nombre completo</string>
     <string name="mail_text">Correo electronico</string>

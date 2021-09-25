@@ -2,13 +2,28 @@ package com.example.fitnutricion.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.fitnutricion.R;
+import com.example.fitnutricion.firebase.pacientesAdapter;
+import com.example.fitnutricion.firebase.Pacientes;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 
 public class PacientesFragment extends Fragment {
 
@@ -17,6 +32,13 @@ public class PacientesFragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
+
+    private View vista;
+
+    RecyclerView recyclerView;
+    DatabaseReference dbRef;
+    pacientesAdapter myAdapter;
+    ArrayList<Pacientes> list;
 
     public PacientesFragment() {
         // Required empty public constructor
@@ -44,6 +66,31 @@ public class PacientesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pacientes, container, false);
+        vista = inflater.inflate(R.layout.fragment_pacientes, container, false);
+
+        recyclerView = vista.findViewById(R.id.pacienteList);
+        dbRef = FirebaseDatabase.getInstance().getReference("users");
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        list = new ArrayList<>();
+        myAdapter = new pacientesAdapter(getContext(),list);
+        recyclerView.setAdapter(myAdapter);
+
+        dbRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    Pacientes pacientes = dataSnapshot.getValue(Pacientes.class);
+                    list.add(pacientes);
+                }
+                myAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) { }
+        });
+        return vista;
     }
 }
