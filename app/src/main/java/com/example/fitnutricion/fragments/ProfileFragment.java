@@ -57,9 +57,8 @@ public class ProfileFragment extends Fragment {
     private ImageView fotoperfil;
     private static final int GalleryPick = 1;
     private Uri ImageUri;
-    private String RandomKey, downloadImageUrl;
+    private String downloadImageUrl;
 
-    private TextView perfil_nombre, perfil_password, perfil_edad, perfil_celular;
     private EditText perfil_usuario, perfil_mail;
     private Button perfil_actualizar;
     private FirebaseDatabase firebaseDatabase;
@@ -91,7 +90,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Declaramos la vista del fragment para retornarlo al final
         vista = inflater.inflate(R.layout.fragment_profile, container, false);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -100,13 +99,10 @@ public class ProfileFragment extends Fragment {
         ImagesRef = FirebaseStorage.getInstance().getReference().child("images");
 
         perfil_usuario = vista.findViewById(R.id.perfil_usuario);
-        //perfil_nombre = vista.findViewById(R.id.perfil_nombre);
         fotoperfil = vista.findViewById(R.id.fotoperfil);
         perfil_mail = vista.findViewById(R.id.perfil_mail);
-        //perfil_password = vista.findViewById(R.id.perfil_password);
-        //perfil_edad = vista.findViewById(R.id.perfil_edad);
-        //perfil_celular = vista.findViewById(R.id.perfil_celular);
 
+        //Al momento de cargar el fragment perfil verifica si ya existen datos del usuario para cargarlos
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
@@ -129,8 +125,6 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-
-
         perfil_actualizar = (Button) vista.findViewById(R.id.perfil_actualizar);
         perfil_actualizar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,11 +140,10 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-
-
         return vista;
     }
 
+    //Función que sirve para cambiar de fragmento en fragmento
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -158,19 +151,19 @@ public class ProfileFragment extends Fragment {
         fragmentTransaction.commit();
     }
 
+    //Función cuando el usuario da clic en el boton actualizar datos
     private void ValidateProductData() {
         String usuario = perfil_usuario.getText().toString();
         String mail = perfil_mail.getText().toString();
 
-        if(ImageUri == null){
+        if(ImageUri == null){ //En caso que el usuario modifico datos pero no su imagen se llama a la sig función solo para actualizar datos
             SaveInfoToDatabasewithoutImage();
         } else if (TextUtils.isEmpty(usuario)){
             Toast.makeText(getActivity(), "Ingrese un usuario", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(mail)){
             Toast.makeText(getActivity(), "Ingrese un correo", Toast.LENGTH_SHORT).show();
-        } else {
+        } else { //Si el usuario si agrego una imagen de perfil entra en este else
             userID = mAuth.getCurrentUser().getUid();
-
             StorageReference fileRef = ImagesRef.child(userID + ".jpg");
             final UploadTask uploadTask = fileRef.putFile(ImageUri);
 
@@ -197,8 +190,7 @@ public class ProfileFragment extends Fragment {
                         public void onComplete(@NonNull @NotNull Task<Uri> task) {
                             if(task.isSuccessful()){
                                 downloadImageUrl = task.getResult().toString();
-
-                                SaveInfoToDatabase();
+                                SaveInfoToDatabase(); //Función para actualizar datos e imagen de perfil
                             }
                         }
                     });
@@ -254,6 +246,7 @@ public class ProfileFragment extends Fragment {
         });
     }
 
+    //Función para abrir la galeria cuando da clic en la imagen
     private void OpenGallery() {
         Intent galleryIntent = new Intent();
         galleryIntent.setAction(Intent.ACTION_GET_CONTENT);

@@ -26,7 +26,6 @@ public class SettingsFragment extends Fragment {
     View vista;
     Button btncerrarSesion, btn_modificar_datos;
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -83,6 +82,7 @@ public class SettingsFragment extends Fragment {
         return vista;
     }
 
+    // Cambiar de fragment
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

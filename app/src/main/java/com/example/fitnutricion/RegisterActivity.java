@@ -30,7 +30,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private String userID;
-    //private FirebaseFirestore db;
     private FirebaseDatabase db;
 
     private EditText txtUser, txtMail, txtPassword, txtConfPassword;
@@ -43,33 +42,31 @@ public class RegisterActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mAuth = FirebaseAuth.getInstance();
-        //db = FirebaseFirestore.getInstance();
         db = FirebaseDatabase.getInstance();
 
         txtUser = findViewById(R.id.usuario_etxt);
         txtMail = findViewById(R.id.correo_etxt);
         txtPassword = findViewById(R.id.password_etxt);
         txtConfPassword = findViewById(R.id.confPassword_etxt);
-
     }
 
     public void onClick(View v){
         switch (v.getId()){
             case R.id.btnConfirmar:
-                //Intent intent = new Intent (RegisterActivity.this, com.example.fitnutricion.LoginActivity.class);
-                //startActivity(intent);
-                //Toast.makeText(this , "Cuenta creada correctamente.", Toast.LENGTH_SHORT).show();
                 createuser();
                 break;
         }
     }
 
+
     public void createuser(){
+        //Obtenemos los datos que ingreso el usuario
         String name = txtUser.getText().toString();
         String mail = txtMail.getText().toString();
         String password = txtPassword.getText().toString();
         String confpassword = txtConfPassword.getText().toString();
 
+        //Condiciones para verificar que los datos esten correctos
         if(TextUtils.isEmpty(name)){
             txtUser.setError("Ingrese un nombre de usuario");
             txtUser.requestFocus();
@@ -95,7 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
                     if(task.isSuccessful()){
                         userID = mAuth.getCurrentUser().getUid();
                         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("users").child(userID);
-
+                        //Map para registrar a un usuario con sus datos
                         Map<String, Object> user = new HashMap<>();
                         user.put("Nombre", name);
                         user.put("Correo", mail);

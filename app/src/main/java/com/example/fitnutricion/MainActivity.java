@@ -24,15 +24,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        //mAuth = FirebaseAuth.getInstance();
-
         BottomNavigationView bottomNav =(BottomNavigationView)findViewById(R.id.bottom_navigation);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.body_container, new HomeFragment()).commit();
         bottomNav.setSelectedItemId(R.id.nav_home);
 
+        // Switch para navegar entre fragments estos navs_nombre se encuentran en menu/item_menu
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull @org.jetbrains.annotations.NotNull MenuItem item) {

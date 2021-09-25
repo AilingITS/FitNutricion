@@ -1,23 +1,29 @@
 <resources>
     <string name="app_name">FitNutricion</string>
 
+    <!-- LOGIN -->
+    <string name="correo_text">Correo electronico</string>
+    <string name="password_text">Contraseña</string>
+    <string name="iniciarSesion">Iniciar sesión</string>
+    <string name="cuentaNueva">Crear cuenta</string>
+
+    <!-- REGISTER -->
+    <string name="uneteAFitN_text">¡Unete a FitNutricion!</string>
+    <string name="usuario_text">Nombre de usuario</string>
+    <string name="confPassword_text">Confirmar contraseña</string>
+    <string name="confirmar_text">Confirmar</string>
+
+    <!-- MENU -->
     <string name="home_text">Inicio</string>
     <string name="recetas_text">Recetas</string>
     <string name="profile_text">Perfil</string>
     <string name="setting_text">Configuración</string>
     <string name="pacientes_text">Pacientes</string>
 
-    <string name="correo_text">Correo electronico</string>
-    <string name="password_text">Contraseña</string>
-    <string name="confPassword_text">Confirmar contraseña</string>
-    <string name="cuentaNueva">Crear cuenta</string>
-    <string name="iniciarSesion">Iniciar sesión</string>
+    <!-- SETTINGS -->
     <string name="cerrarSesion">Cerrar sesión</string>
 
-    <string name="usuario_text">Nombre de usuario</string>
-    <string name="uneteAFitN_text">¡Unete a FitNutricion!</string>
-    <string name="confirmar_text">Confirmar</string>
-
+    <!-- PROFILE -->
     <string name="nombre_text">Nombre de usuario</string>
     <string name="nombrecompleto_text">Nombre completo</string>
     <string name="mail_text">Correo electronico</string>

@@ -24,7 +24,6 @@ import org.jetbrains.annotations.NotNull;
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-
     private EditText txtMail, txtPassword;
 
     @Override
@@ -55,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    //Función que verifica si los datos de iniciar sesión estan correctos.
     public void userLogin(){
         String mail = txtMail.getText().toString();
         String password = txtPassword.getText().toString();
@@ -66,7 +66,6 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Ingrese una contraseña", Toast.LENGTH_SHORT).show();
             txtPassword.requestFocus();
         } else {
-
             mAuth.signInWithEmailAndPassword(mail, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
@@ -75,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         finish();
                     } else {
+                        Toast.makeText(LoginActivity.this, "Datos incorrectos, Verifique bien el correo o contraseña", Toast.LENGTH_SHORT).show();
                         Log.w("TAG", "Error:", task.getException());
                     }
                 }

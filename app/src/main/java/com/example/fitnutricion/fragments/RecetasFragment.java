@@ -20,7 +20,6 @@ public class RecetasFragment extends Fragment {
         // Required empty public constructor
     }
 
-    // TODO: Rename and change types and number of parameters
     public static RecetasFragment newInstance(String param1, String param2) {
         RecetasFragment fragment = new RecetasFragment();
         Bundle args = new Bundle();
