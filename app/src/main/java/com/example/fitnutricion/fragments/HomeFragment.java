@@ -132,16 +132,16 @@ public class HomeFragment extends Fragment {
         OutputStream outputStream = new FileOutputStream(file);
 
         PdfDocument document = new PdfDocument();
-        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(100, 100, 1).create();
+        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(1200, 2010, 1).create();
         PdfDocument.Page page = document.startPage(pageInfo);
 
-        /*Canvas canvas = page.getCanvas();
+        Canvas canvas = page.getCanvas();
         Paint titlePaint = new Paint();
 
         titlePaint.setTextAlign(Paint.Align.CENTER);
         titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
         titlePaint.setTextSize(70);
-        canvas.drawText("Datos", pageWidth/2, 500, titlePaint);*/
+        canvas.drawText("Datos", pageWidth/2, 500, titlePaint);
 
         document.finishPage(page);
 
