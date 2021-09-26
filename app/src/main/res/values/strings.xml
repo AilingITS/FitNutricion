@@ -32,7 +32,7 @@
     <string name="actualizarpass_text">Actualizar contraseña</string>
     <string name="modificardatos_text">Modificar perfil</string>
 
-    <!-- PROFILE -->
+    <!-- PACIENTE -->
     <string name="pacientes_text">Pacientes</string>
     <string name="agregarPaciente">Agregar paciente</string>
     <string name="añadirPaciente">Añadir paciente</string>
@@ -43,5 +43,13 @@
     <string name="ag_datosPaciente">Ingrese los datos del paciente</string>
     <string name="ag_edadPaciente">Edad</string>
 
+    <!-- RECETAS -->
+    <string name="agregarComida">Agregar comida</string>
+
+    <!-- AGREGAR PACIENTE -->
+    <string name="ag_datosComidas">Información de comida</string>
+    <string name="agregar_comida_tipo">Tipo de comida</string>
+    <string name="agregar_comida_nombre">Nombre de la comida</string>
+    <string name="agregar_comida_ingrediente">Ingredientes</string>
 
 </resources>

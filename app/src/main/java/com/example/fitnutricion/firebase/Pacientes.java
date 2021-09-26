@@ -1,6 +1,6 @@
 package com.example.fitnutricion.firebase;
 
-public class Pacientes {
+public class Pacientes{
 
     String p_Nombre, p_Correo, p_Edad;
 
