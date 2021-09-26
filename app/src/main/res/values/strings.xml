@@ -59,4 +59,9 @@
     <string name="agregar_comida_nombre">Nombre de la comida</string>
     <string name="agregar_comida_ingrediente">Ingredientes</string>
 
+    <!-- INICIO SPINNER -->
+    <string name="spinner_Desayuno">Desayuno</string>
+    <string name="spinner_Comida">Comida</string>
+    <string name="spinner_Cena">Cena</string>
+
 </resources>

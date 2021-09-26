@@ -34,13 +34,6 @@
                     android:paddingTop="30dp"
                     />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/desayunoList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    tools:layout_editor_absoluteX="0dp" />
-
                 <Button
                     android:id="@+id/btn_agregarComida"
                     android:layout_width="match_parent"
@@ -51,6 +44,13 @@
                     android:text="@string/agregarComida"
                     android:textColor="@color/black"
                     />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/desayunoList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    tools:layout_editor_absoluteX="0dp" />
 
             </LinearLayout>
 

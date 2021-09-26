@@ -20,4 +20,8 @@
     <color name="verdeLigero">#6EA96B</color>
     <!--                                       -->
 
+
+    <!--            item_list               -->
+    <color name="blancoVerde">#C0E0C0</color>
+
 </resources>
