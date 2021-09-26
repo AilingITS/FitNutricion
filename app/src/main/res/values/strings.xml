@@ -63,5 +63,6 @@
     <string name="spinner_Desayuno">Desayuno</string>
     <string name="spinner_Comida">Comida</string>
     <string name="spinner_Cena">Cena</string>
+    <string name="home_generar_pdf">Generar PDF</string>
 
 </resources>

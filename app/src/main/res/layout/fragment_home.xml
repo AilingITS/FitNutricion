@@ -50,6 +50,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             />
 
+        <Button
+            android:id="@+id/btn_crear_pdf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="32dp"
+            android:text="@string/home_generar_pdf"
+            android:textColor="@color/black"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerPacientes"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

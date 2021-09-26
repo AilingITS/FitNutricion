@@ -1,17 +1,32 @@
 package com.example.fitnutricion.fragments;
 
+import android.Manifest;
+import android.content.ContextWrapper;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
+import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.fitnutricion.R;
 import com.example.fitnutricion.firebase.Pacientes;
+import com.example.fitnutricion.firebase.SpinnerPaciente;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,6 +35,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +53,9 @@ public class HomeFragment extends Fragment {
 
     private View vista;
     private Spinner spinnerComidas, spinnerPacientes;
+    Button btn_crear_pdf;
+    Bitmap bmp, scaledbmp;
+    int pageWidth = 1200;
 
     DatabaseReference mDatabase;
 
@@ -67,6 +90,10 @@ public class HomeFragment extends Fragment {
         spinnerComidas = vista.findViewById(R.id.spinnerComidas);
         spinnerPacientes = vista.findViewById(R.id.spinnerPacientes);
 
+        btn_crear_pdf = (Button) vista.findViewById(R.id.btn_crear_pdf);
+        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.logo);
+        scaledbmp = Bitmap.createScaledBitmap(bmp, 1200, 518, false);
+
         String [] opciones = {"Desayuno", "Comida", "Cena"};
 
         ArrayAdapter <String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, opciones);
@@ -74,6 +101,18 @@ public class HomeFragment extends Fragment {
 
         String seleccion = spinnerComidas.getSelectedItem().toString();
         loadNamePacientes();
+
+        btn_crear_pdf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    createPDF();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
 
         //Poner esto cuando se cree el pdf para saber el tipo de comida
         /*if(seleccion.equals("Desayuno")){
@@ -87,18 +126,43 @@ public class HomeFragment extends Fragment {
         return vista;
     }
 
+    private void createPDF() throws IOException {
+        String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
+        File file = new File(pdfPath, "FitNutricion.pdf");
+        OutputStream outputStream = new FileOutputStream(file);
+
+        PdfDocument document = new PdfDocument();
+        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(100, 100, 1).create();
+        PdfDocument.Page page = document.startPage(pageInfo);
+
+        /*Canvas canvas = page.getCanvas();
+        Paint titlePaint = new Paint();
+
+        titlePaint.setTextAlign(Paint.Align.CENTER);
+        titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
+        titlePaint.setTextSize(70);
+        canvas.drawText("Datos", pageWidth/2, 500, titlePaint);*/
+
+        document.finishPage(page);
+
+        document.writeTo(outputStream);
+        document.close();
+        Toast.makeText(getActivity(), "PDF generado correctamente", Toast.LENGTH_SHORT).show();
+
+    }
+
     public void loadNamePacientes(){
-        List<Pacientes> pacientesList = new ArrayList<>();
+        List<SpinnerPaciente> pacientesList = new ArrayList<>();
         mDatabase.child("pacientes").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     for(DataSnapshot ds: snapshot.getChildren()){
                         String p_Nombre = ds.child("p_Nombre").getValue().toString();
-                        pacientesList.add(new Pacientes(p_Nombre));
+                        pacientesList.add(new SpinnerPaciente(p_Nombre));
                     }
 
-                    ArrayAdapter<Pacientes> arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, pacientesList);
+                    ArrayAdapter<SpinnerPaciente> arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, pacientesList);
                     spinnerPacientes.setAdapter(arrayAdapter);
                 }
             }
@@ -109,4 +173,10 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
+    /*private String getFilePath(){
+        ContextWrapper contextWrapper = new ContextWrapper(getContext());
+        File file = new File(Environment.getExternalStorageDirectory(), "/FitNutricion.pdf");
+        return file.getPath();
+    }*/
 }
