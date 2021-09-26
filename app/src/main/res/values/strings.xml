@@ -52,9 +52,10 @@
     <!-- DESAYUNO -->
     <string name="desayuno_text">Desayunos</string>
 
-    <!-- AGREGAR PACIENTE -->
+    <!-- AGREGAR COMIDA -->
     <string name="ag_datosComidas">Información de comida</string>
-    <string name="agregar_comida_tipo">Tipo de comida</string>
+    <string name="desa_text">Desayuno</string>
+    <string name="agregar_comida_tipo">Tipo de comida:</string>
     <string name="agregar_comida_nombre">Nombre de la comida</string>
     <string name="agregar_comida_ingrediente">Ingredientes</string>
 

@@ -74,7 +74,7 @@ public class AgregarDesayunoFragment extends Fragment {
 
         dbRef = FirebaseDatabase.getInstance().getReference().child("desayunos");
 
-        comida_tipocomida = vista.findViewById(R.id.comida_tipocomida);
+        //comida_tipocomida = vista.findViewById(R.id.comida_tipocomida);
         comida_nombreComida = vista.findViewById(R.id.comida_nombreComida);
         comida_ingredientes = vista.findViewById(R.id.comida_ingredientes);
 
@@ -98,15 +98,15 @@ public class AgregarDesayunoFragment extends Fragment {
 
     public void createComida(){
         //Obtenemos los datos que ingreso el usuario
-        String tipo = comida_tipocomida.getText().toString();
+        //String tipo = comida_tipocomida.getText().toString();
         String nombre = comida_nombreComida.getText().toString();
         String ingredientes = comida_ingredientes.getText().toString();
 
         //Condiciones para verificar que los datos esten correctos
-        if(TextUtils.isEmpty(tipo)){
+        /*if(TextUtils.isEmpty(tipo)){
             comida_tipocomida.setError("Ingrese el tipo de comida");
             comida_tipocomida.requestFocus();
-        } else if (TextUtils.isEmpty(nombre)){
+        } else */if (TextUtils.isEmpty(nombre)){
             comida_nombreComida.setError("Ingrese el nombre de la comida");
             comida_nombreComida.requestFocus();
         } else if(TextUtils.isEmpty(ingredientes)){
@@ -115,7 +115,7 @@ public class AgregarDesayunoFragment extends Fragment {
         } else {
             //Map para registrar a un usuario con sus datos
             Map<String, Object> comida = new HashMap<>();
-            comida.put("f_tipo", tipo);
+            comida.put("f_tipo", "Desayuno");
             comida.put("f_nombrecomida", nombre);
             comida.put("f_ingredientes", ingredientes);
 
