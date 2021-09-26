@@ -1,6 +1,6 @@
 package com.example.fitnutricion.firebase;
 
-public class Foods{
+public class Desayuno {
     String f_tipo, f_nombrecomida, f_ingredientes;
 
     public String getF_tipo() {

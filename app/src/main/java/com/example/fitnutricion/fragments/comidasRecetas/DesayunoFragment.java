@@ -1,10 +1,6 @@
-package com.example.fitnutricion.fragments;
+package com.example.fitnutricion.fragments.comidasRecetas;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -13,10 +9,15 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+
 import com.example.fitnutricion.R;
 import com.example.fitnutricion.firebase.Desayuno;
 import com.example.fitnutricion.firebase.desayunoAdapter;
-import com.example.fitnutricion.fragments.comidasRecetas.DesayunoFragment;
+import com.example.fitnutricion.fragments.AgregarDesayunoFragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,7 +28,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class RecetasFragment extends Fragment {
+public class DesayunoFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -37,14 +38,19 @@ public class RecetasFragment extends Fragment {
 
     private View vista;
 
-    Button comidaDesayuno;
+    RecyclerView recyclerView;
+    DatabaseReference dbRef;
+    desayunoAdapter myAdapter;
+    ArrayList<Desayuno> list;
 
-    public RecetasFragment() {
+    Button btn_agregarComida;
+
+    public DesayunoFragment() {
         // Required empty public constructor
     }
 
-    public static RecetasFragment newInstance(String param1, String param2) {
-        RecetasFragment fragment = new RecetasFragment();
+    public static DesayunoFragment newInstance(String param1, String param2) {
+        DesayunoFragment fragment = new DesayunoFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -65,15 +71,39 @@ public class RecetasFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        vista = inflater.inflate(R.layout.fragment_recetas, container, false);
+        vista = inflater.inflate(R.layout.fragment_desayuno, container, false);
 
-        comidaDesayuno = (Button) vista.findViewById(R.id.comidaDesayuno);
+        btn_agregarComida = (Button) vista.findViewById(R.id.btn_agregarComida);
 
-        comidaDesayuno.setOnClickListener(new View.OnClickListener() {
+        recyclerView = vista.findViewById(R.id.desayunoList);
+        dbRef = FirebaseDatabase.getInstance().getReference("desayunos");
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        list = new ArrayList<>();
+        myAdapter = new desayunoAdapter(getContext(),list);
+        recyclerView.setAdapter(myAdapter);
+
+        btn_agregarComida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                replaceFragment(new DesayunoFragment());
+                replaceFragment(new AgregarDesayunoFragment());
             }
+        });
+
+        dbRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    Desayuno foods = dataSnapshot.getValue(Desayuno.class);
+                    list.add(foods);
+                }
+                myAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) { }
         });
 
         return vista;

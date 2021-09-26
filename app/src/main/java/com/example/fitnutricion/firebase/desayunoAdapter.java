@@ -15,13 +15,13 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class foodsAdapter  extends RecyclerView.Adapter<foodsAdapter.foodsHolder> {
+public class desayunoAdapter extends RecyclerView.Adapter<desayunoAdapter.foodsHolder> {
 
     Context context;
 
-    ArrayList<Foods> list;
+    ArrayList<Desayuno> list;
 
-    public foodsAdapter(Context context, ArrayList<Foods> list) {
+    public desayunoAdapter(Context context, ArrayList<Desayuno> list) {
         this.context = context;
         this.list = list;
     }
@@ -29,15 +29,15 @@ public class foodsAdapter  extends RecyclerView.Adapter<foodsAdapter.foodsHolder
     @NonNull
     @NotNull
     @Override
-    public foodsAdapter.foodsHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+    public desayunoAdapter.foodsHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.item_list_comidas,parent,false);
-        return new foodsAdapter.foodsHolder(v);
+        return new desayunoAdapter.foodsHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull foodsAdapter.foodsHolder holder, int position) {
+    public void onBindViewHolder(@NonNull @NotNull desayunoAdapter.foodsHolder holder, int position) {
 
-        Foods foods = list.get(position);
+        Desayuno foods = list.get(position);
         holder.f_tipo.setText(foods.getF_tipo());
         holder.f_nombrecomida.setText(foods.getF_nombrecomida());
         holder.f_ingredientes.setText(foods.getF_ingredientes());

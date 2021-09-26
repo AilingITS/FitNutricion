@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.fitnutricion.R;
+import com.example.fitnutricion.fragments.comidasRecetas.DesayunoFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
@@ -28,7 +29,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AgregarComidaFragment extends Fragment {
+public class AgregarDesayunoFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -43,12 +44,12 @@ public class AgregarComidaFragment extends Fragment {
     private String comidaID, saveCurrentDate, saveCurrentTime;
     private DatabaseReference dbRef;
 
-    public AgregarComidaFragment() {
+    public AgregarDesayunoFragment() {
         // Required empty public constructor
     }
 
-    public static AgregarComidaFragment newInstance(String param1, String param2) {
-        AgregarComidaFragment fragment = new AgregarComidaFragment();
+    public static AgregarDesayunoFragment newInstance(String param1, String param2) {
+        AgregarDesayunoFragment fragment = new AgregarDesayunoFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -69,9 +70,9 @@ public class AgregarComidaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        vista = inflater.inflate(R.layout.fragment_agregar_comida, container, false);
+        vista = inflater.inflate(R.layout.fragment_agregar_desayuno, container, false);
 
-        dbRef = FirebaseDatabase.getInstance().getReference().child("comidas");
+        dbRef = FirebaseDatabase.getInstance().getReference().child("desayunos");
 
         comida_tipocomida = vista.findViewById(R.id.comida_tipocomida);
         comida_nombreComida = vista.findViewById(R.id.comida_nombreComida);
@@ -134,7 +135,7 @@ public class AgregarComidaFragment extends Fragment {
                 public void onComplete(@NonNull @NotNull Task<Void> task) {
                     if(task.isSuccessful()){
                         Toast.makeText(getActivity(), "Comida agregada correctamente", Toast.LENGTH_SHORT).show();
-                        replaceFragment(new RecetasFragment());
+                        replaceFragment(new DesayunoFragment());
                     } else {
                         String message = task.getException().toString();
                         Toast.makeText(getActivity(), "Error: " + message, Toast.LENGTH_SHORT).show();

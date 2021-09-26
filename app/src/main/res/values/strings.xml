@@ -45,6 +45,12 @@
 
     <!-- RECETAS -->
     <string name="agregarComida">Agregar comida</string>
+    <string name="comidaDesayuno">Desayuno</string>
+    <string name="comidaComida">Comida</string>
+    <string name="comidaCena">Cena</string>
+
+    <!-- DESAYUNO -->
+    <string name="desayuno_text">Desayunos</string>
 
     <!-- AGREGAR PACIENTE -->
     <string name="ag_datosComidas">Información de comida</string>

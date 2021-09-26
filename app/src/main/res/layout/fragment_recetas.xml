@@ -11,51 +11,58 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="80dp">
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             tools:ignore="MissingConstraints">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/recetas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_gravity="center"
+                android:text="@string/recetas_text"
+                android:textSize="30sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:paddingTop="30dp"
+                />
 
-                <TextView
-                    android:id="@+id/recetas"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:text="@string/recetas_text"
-                    android:textSize="30sp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textAlignment="center"
-                    android:paddingTop="30dp"
-                    />
+            <Button
+                android:id="@+id/comidaDesayuno"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:text="@string/comidaDesayuno"
+                android:textColor="@color/black"
+                />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/comidasList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    tools:layout_editor_absoluteX="0dp" />
+            <Button
+                android:id="@+id/comidaComida"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:text="@string/comidaComida"
+                android:textColor="@color/black"
+                />
 
-                <Button
-                    android:id="@+id/btn_agregarComida"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="32dp"
-                    android:text="@string/agregarComida"
-                    android:textColor="@color/black"
-                    />
+            <Button
+                android:id="@+id/comidaCena"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:text="@string/comidaCena"
+                android:textColor="@color/black"
+                />
 
-            </LinearLayout>
-
-        </ScrollView>
-
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </FrameLayout>
