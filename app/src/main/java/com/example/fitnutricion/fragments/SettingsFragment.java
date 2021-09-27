@@ -6,8 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -25,6 +28,7 @@ public class SettingsFragment extends Fragment {
 
     View vista;
     Button btncerrarSesion, btn_modificar_datos;
+    Switch settings_theme_night;
 
     private String mParam1;
     private String mParam2;
@@ -44,6 +48,13 @@ public class SettingsFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        // checar condicion night mode en settings
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+            getActivity().setTheme(R.style.ThemeDark_FitNutricion);
+        } else {
+            getActivity().setTheme(R.style.ThemeLight_FitNutricion);
+        }
+
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -60,6 +71,18 @@ public class SettingsFragment extends Fragment {
 
         btncerrarSesion = (Button) vista.findViewById(R.id.btncerrarSesion);
         btn_modificar_datos = (Button) vista.findViewById(R.id.btn_modificar_datos);
+        settings_theme_night = (Switch) vista.findViewById(R.id.settings_theme_night);
+
+        settings_theme_night.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                }
+            }
+        });
 
         btncerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override

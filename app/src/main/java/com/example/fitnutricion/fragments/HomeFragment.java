@@ -21,6 +21,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
@@ -74,6 +75,13 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        // checar condicion night mode en settings
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+            getActivity().setTheme(R.style.ThemeDark_FitNutricion);
+        } else {
+            getActivity().setTheme(R.style.ThemeLight_FitNutricion);
+        }
+
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -162,8 +170,10 @@ public class HomeFragment extends Fragment {
                         pacientesList.add(new SpinnerPaciente(p_Nombre));
                     }
 
-                    ArrayAdapter<SpinnerPaciente> arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, pacientesList);
-                    spinnerPacientes.setAdapter(arrayAdapter);
+                    if (getActivity() != null) {
+                        ArrayAdapter<SpinnerPaciente> arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, pacientesList);
+                        spinnerPacientes.setAdapter(arrayAdapter);
+                    }
                 }
             }
 

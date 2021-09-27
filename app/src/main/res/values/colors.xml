@@ -24,4 +24,7 @@
     <!--            item_list               -->
     <color name="blancoVerde">#C0E0C0</color>
 
+    <!--           night_themes             -->
+    <color name="night_green">#647868</color>
+
 </resources>

@@ -1,6 +1,7 @@
 package com.example.fitnutricion;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +15,13 @@ public class IndexActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // checar condicion night mode en settings
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+            setTheme(R.style.ThemeDark_FitNutricion);
+        } else {
+            setTheme(R.style.ThemeLight_FitNutricion);
+        }
+
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
     }
