@@ -2,6 +2,7 @@
     <string name="app_name">FitNutricion</string>
 
     <!-- LOGIN -->
+    <string name="titulo1_text">FITNUTRICION</string>
     <string name="correo_text">Correo electronico</string>
     <string name="password_text">Contraseña</string>
     <string name="iniciarSesion">Iniciar sesión</string>

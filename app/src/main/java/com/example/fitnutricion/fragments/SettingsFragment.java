@@ -1,6 +1,8 @@
 package com.example.fitnutricion.fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -18,6 +21,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.fitnutricion.LoginActivity;
 import com.example.fitnutricion.R;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.sql.Struct;
 
 public class SettingsFragment extends Fragment {
 
@@ -28,7 +33,7 @@ public class SettingsFragment extends Fragment {
 
     View vista;
     Button btncerrarSesion, btn_modificar_datos;
-    Switch settings_theme_night;
+    SwitchCompat settings_theme_night;
 
     private String mParam1;
     private String mParam2;
@@ -71,15 +76,21 @@ public class SettingsFragment extends Fragment {
 
         btncerrarSesion = (Button) vista.findViewById(R.id.btncerrarSesion);
         btn_modificar_datos = (Button) vista.findViewById(R.id.btn_modificar_datos);
-        settings_theme_night = (Switch) vista.findViewById(R.id.settings_theme_night);
+        settings_theme_night = (SwitchCompat) vista.findViewById(R.id.settings_theme_night);
+
+        if(loadState() == true){
+            settings_theme_night.setChecked(true);
+        }
 
         settings_theme_night.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    saveState(true);
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    saveState(false);
                 }
             }
         });
@@ -111,5 +122,18 @@ public class SettingsFragment extends Fragment {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.body_container,fragment);
         fragmentTransaction.commit();
+    }
+
+    private void saveState(Boolean state){
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("ABHOPositive", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("NightMode", state);
+        editor.apply();
+    }
+
+    private Boolean loadState(){
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("ABHOPositive", Context.MODE_PRIVATE);
+        Boolean state = sharedPreferences.getBoolean("NightMode", false);
+        return state;
     }
 }

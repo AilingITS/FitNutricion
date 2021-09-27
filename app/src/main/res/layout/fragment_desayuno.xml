@@ -28,7 +28,7 @@
                     android:layout_gravity="center"
                     android:text="@string/desayuno_text"
                     android:textSize="30sp"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/text_color"
                     android:textStyle="bold"
                     android:textAlignment="center"
                     android:paddingTop="30dp"
@@ -42,7 +42,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="32dp"
                     android:text="@string/agregarComida"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/text_color"
                     />
 
                 <androidx.recyclerview.widget.RecyclerView

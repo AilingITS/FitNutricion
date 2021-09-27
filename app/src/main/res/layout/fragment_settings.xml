@@ -67,14 +67,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_modificar_datos" />
 
-        <Switch
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/settings_theme_night"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="300dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="8dp"
             android:textColor="?attr/text_color"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.438"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_modificar_datos" />
 
@@ -87,7 +88,7 @@
             android:layout_marginBottom="100dp"
             android:backgroundTint="@color/rojoPastel"
             android:text="@string/cerrarSesion"
-            android:textColor="@color/black"
+            android:textColor="?attr/text_color"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

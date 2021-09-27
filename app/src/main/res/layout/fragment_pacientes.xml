@@ -29,7 +29,7 @@
                     android:layout_marginTop="32dp"
                     android:text="@string/pacientes_text"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/text_color"
                     android:textSize="30sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +45,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="32dp"
                     android:text="@string/agregarPaciente"
-                    android:textColor="@color/black" />
+                    android:textColor="?attr/text_color" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/pacienteList"
