@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,22 +8,22 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="302dp"
-        android:layout_height="342dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/correo_etxt"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="80dp"
         app:srcCompat="@drawable/logo" />
 
     <EditText
         android:id="@+id/correo_etxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/password_etxt"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/input_design"
         android:hint="@string/correo_text"
         android:inputType="text"
@@ -31,60 +31,53 @@
         android:textColor="@color/black"
         android:textColorHint="@color/light_white"
         android:textSize="17sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/password_etxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/btniniciarSesion"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
+
         android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/input_design"
         android:hint="@string/password_text"
+
         android:inputType="textPassword"
         android:padding="15dp"
-
         android:textColor="@color/black"
         android:textColorHint="@color/light_white"
         android:textSize="17sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/correo_etxt" />
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btniniciarSesion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/btnRegistrarse"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginBottom="143dp"
         android:backgroundTint="@color/verdeLigero"
         android:onClick="onClick"
         android:text="@string/iniciarSesion"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_etxt" />
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/btnRegistrarse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="41dp"
         android:backgroundTint="@color/verdeBtn"
         android:onClick="onClick"
         android:text="@string/cuentaNueva"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textColor="@color/black" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
