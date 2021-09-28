@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <layer-list>
+            <item>
+                <shape>
+                    <solid android:color="@color/verdeBtn" />
+
+                    <stroke android:width="3dp" android:color="@color/night_green" />
+
+                    <padding android:bottom="5dp" android:left="1dp" android:right="5dp" android:top="5dp" />
+
+                    <corners android:radius="50dp" />
+                </shape>
+            </item>
+            <item>
+
+                <bitmap android:gravity="bottom|right"
+                    android:src="@drawable/ic_spinner">
+                </bitmap>
+
+            </item>
+        </layer-list>
+    </item>
+</selector>
