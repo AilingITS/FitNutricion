@@ -46,6 +46,8 @@ public class AgregarPacienteFragment extends Fragment {
     private String mParam2;
 
     private View vista;
+    private String userID;
+    private FirebaseAuth mAuth;
     Button btn_añadirPacientes;
     private EditText paciente_nombreCompleto, paciente_correo, paciente_edad;
 
@@ -86,8 +88,11 @@ public class AgregarPacienteFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_agregar_paciente, container, false);
-
-        dbRef = FirebaseDatabase.getInstance().getReference().child("pacientes");
+        //dbRef = FirebaseDatabase.getInstance().getReference().child("pacientes");
+        mAuth = FirebaseAuth.getInstance();
+        userID = mAuth.getCurrentUser().getUid();
+        //dbRef = FirebaseDatabase.getInstance().getReference("pacientes");
+        dbRef = FirebaseDatabase.getInstance().getReference("users").child(userID).child("pacientes");
 
         paciente_nombreCompleto = vista.findViewById(R.id.paciente_nombreCompleto);
         paciente_correo = vista.findViewById(R.id.paciente_correo);

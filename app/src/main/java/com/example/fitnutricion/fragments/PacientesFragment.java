@@ -41,6 +41,8 @@ public class PacientesFragment extends Fragment {
     private String mParam2;
 
     private View vista;
+    private String userID;
+    private FirebaseAuth mAuth;
 
     RecyclerView recyclerView;
     DatabaseReference dbRef;
@@ -84,10 +86,14 @@ public class PacientesFragment extends Fragment {
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_pacientes, container, false);
 
+        mAuth = FirebaseAuth.getInstance();
         btn_agregarPacientes = (Button) vista.findViewById(R.id.btn_agregarPacientes);
 
         recyclerView = vista.findViewById(R.id.pacienteList);
-        dbRef = FirebaseDatabase.getInstance().getReference("pacientes");
+
+        userID = mAuth.getCurrentUser().getUid();
+        //dbRef = FirebaseDatabase.getInstance().getReference("pacientes");
+        dbRef = FirebaseDatabase.getInstance().getReference("users").child(userID).child("pacientes");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 

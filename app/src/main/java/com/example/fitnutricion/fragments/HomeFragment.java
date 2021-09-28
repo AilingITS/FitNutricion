@@ -28,6 +28,7 @@ import androidx.fragment.app.Fragment;
 import com.example.fitnutricion.R;
 import com.example.fitnutricion.firebase.Pacientes;
 import com.example.fitnutricion.firebase.SpinnerPaciente;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -53,12 +54,15 @@ public class HomeFragment extends Fragment {
     private String mParam2;
 
     private View vista;
+    private String userID;
+    private FirebaseAuth mAuth;
+
     private Spinner spinnerComidas, spinnerPacientes;
     Button btn_crear_pdf;
     Bitmap bmp, scaledbmp;
     int pageWidth = 1200;
 
-    DatabaseReference mDatabase;
+    DatabaseReference dbRef;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -94,7 +98,10 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         vista = inflater.inflate(R.layout.fragment_home, container, false);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
+        userID = mAuth.getCurrentUser().getUid();
+        //dbRef = FirebaseDatabase.getInstance().getReference();
+        dbRef = FirebaseDatabase.getInstance().getReference("users").child(userID);
         spinnerComidas = vista.findViewById(R.id.spinnerComidas);
         spinnerPacientes = vista.findViewById(R.id.spinnerPacientes);
 
@@ -161,7 +168,7 @@ public class HomeFragment extends Fragment {
 
     public void loadNamePacientes(){
         List<SpinnerPaciente> pacientesList = new ArrayList<>();
-        mDatabase.child("pacientes").addListenerForSingleValueEvent(new ValueEventListener() {
+        dbRef.child("pacientes").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
