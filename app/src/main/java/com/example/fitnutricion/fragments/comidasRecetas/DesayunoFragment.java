@@ -19,6 +19,7 @@ import com.example.fitnutricion.R;
 import com.example.fitnutricion.firebase.Desayuno;
 import com.example.fitnutricion.firebase.desayunoAdapter;
 import com.example.fitnutricion.fragments.AgregarDesayunoFragment;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,6 +39,8 @@ public class DesayunoFragment extends Fragment {
     private String mParam2;
 
     private View vista;
+    private String userID;
+    private FirebaseAuth mAuth;
 
     RecyclerView recyclerView;
     DatabaseReference dbRef;
@@ -82,9 +85,11 @@ public class DesayunoFragment extends Fragment {
         vista = inflater.inflate(R.layout.fragment_desayuno, container, false);
 
         btn_agregarComida = (Button) vista.findViewById(R.id.btn_agregarComida);
-
         recyclerView = vista.findViewById(R.id.desayunoList);
-        dbRef = FirebaseDatabase.getInstance().getReference("desayunos");
+
+        mAuth = FirebaseAuth.getInstance();
+        userID = mAuth.getCurrentUser().getUid();
+        dbRef = FirebaseDatabase.getInstance().getReference().child("users").child(userID).child("desayunos");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 

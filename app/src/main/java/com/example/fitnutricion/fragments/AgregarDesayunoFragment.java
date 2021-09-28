@@ -20,6 +20,7 @@ import com.example.fitnutricion.R;
 import com.example.fitnutricion.fragments.comidasRecetas.DesayunoFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -39,6 +40,8 @@ public class AgregarDesayunoFragment extends Fragment {
     private String mParam2;
 
     private View vista;
+    private String userID;
+    private FirebaseAuth mAuth;
     Button btn_añadirComida;
     private EditText comida_tipocomida, comida_nombreComida, comida_ingredientes;
 
@@ -80,7 +83,9 @@ public class AgregarDesayunoFragment extends Fragment {
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_agregar_desayuno, container, false);
 
-        dbRef = FirebaseDatabase.getInstance().getReference().child("desayunos");
+        mAuth = FirebaseAuth.getInstance();
+        userID = mAuth.getCurrentUser().getUid();
+        dbRef = FirebaseDatabase.getInstance().getReference().child("users").child(userID).child("desayunos");
 
         //comida_tipocomida = vista.findViewById(R.id.comida_tipocomida);
         comida_nombreComida = vista.findViewById(R.id.comida_nombreComida);
