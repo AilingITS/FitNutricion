@@ -107,7 +107,7 @@ public class HomeFragment extends Fragment {
 
         btn_crear_pdf = (Button) vista.findViewById(R.id.btn_crear_pdf);
         bmp = BitmapFactory.decodeResource(getResources(), R.drawable.logo);
-        scaledbmp = Bitmap.createScaledBitmap(bmp, 1200, 518, false);
+        scaledbmp = Bitmap.createScaledBitmap(bmp, 350, 180, false);
 
         String [] opciones = {"Desayuno", "Comida", "Cena"};
 
@@ -151,7 +151,14 @@ public class HomeFragment extends Fragment {
         PdfDocument.Page page = document.startPage(pageInfo);
 
         Canvas canvas = page.getCanvas();
+        Paint myPaint = new Paint();
         Paint titlePaint = new Paint();
+        canvas.drawBitmap(scaledbmp, 0, 0, myPaint);
+
+        titlePaint.setTextAlign(Paint.Align.CENTER);
+        titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        titlePaint.setTextSize(70);
+        canvas.drawText("RECETA", pageWidth/2, 270, titlePaint);
 
         titlePaint.setTextAlign(Paint.Align.CENTER);
         titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
