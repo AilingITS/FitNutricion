@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.fitnutricion.R;
+import com.example.fitnutricion.fragments.comidasRecetas.ComidaFragment;
 import com.example.fitnutricion.fragments.comidasRecetas.DesayunoFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,7 +32,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AgregarDesayunoFragment extends Fragment {
+public class AgregarComidaFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -42,17 +43,17 @@ public class AgregarDesayunoFragment extends Fragment {
     private View vista;
     private String userID;
     private FirebaseAuth mAuth;
-    Button btn_añadirDesayuno;
+    Button btn_añadirComida;
     private EditText comida_nombreComida, comida_ingredientes;
     private String comidaID, saveCurrentDate, saveCurrentTime;
     private DatabaseReference dbRef;
 
-    public AgregarDesayunoFragment() {
+    public AgregarComidaFragment() {
         // Required empty public constructor
     }
 
-    public static AgregarDesayunoFragment newInstance(String param1, String param2) {
-        AgregarDesayunoFragment fragment = new AgregarDesayunoFragment();
+    public static AgregarComidaFragment newInstance(String param1, String param2) {
+        AgregarComidaFragment fragment = new AgregarComidaFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -80,18 +81,17 @@ public class AgregarDesayunoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        vista = inflater.inflate(R.layout.fragment_agregar_desayuno, container, false);
+        vista = inflater.inflate(R.layout.fragment_agregar_comida, container, false);
 
         mAuth = FirebaseAuth.getInstance();
         userID = mAuth.getCurrentUser().getUid();
-        dbRef = FirebaseDatabase.getInstance().getReference().child("users").child(userID).child("desayunos");
+        dbRef = FirebaseDatabase.getInstance().getReference().child("users").child(userID).child("comidas");
 
-        //comida_tipocomida = vista.findViewById(R.id.comida_tipocomida);
         comida_nombreComida = vista.findViewById(R.id.comida_nombreComida);
         comida_ingredientes = vista.findViewById(R.id.comida_ingredientes);
 
-        btn_añadirDesayuno = (Button) vista.findViewById(R.id.btn_añadirComida);
-        btn_añadirDesayuno.setOnClickListener(new View.OnClickListener() {
+        btn_añadirComida = (Button) vista.findViewById(R.id.btn_añadirComida);
+        btn_añadirComida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 createComida();
@@ -110,15 +110,11 @@ public class AgregarDesayunoFragment extends Fragment {
 
     public void createComida(){
         //Obtenemos los datos que ingreso el usuario
-        //String tipo = comida_tipocomida.getText().toString();
         String nombre = comida_nombreComida.getText().toString();
         String ingredientes = comida_ingredientes.getText().toString();
 
         //Condiciones para verificar que los datos esten correctos
-        /*if(TextUtils.isEmpty(tipo)){
-            comida_tipocomida.setError("Ingrese el tipo de comida");
-            comida_tipocomida.requestFocus();
-        } else */if (TextUtils.isEmpty(nombre)){
+        if (TextUtils.isEmpty(nombre)){
             comida_nombreComida.setError("Ingrese el nombre de la comida");
             comida_nombreComida.requestFocus();
         } else if(TextUtils.isEmpty(ingredientes)){
@@ -127,7 +123,7 @@ public class AgregarDesayunoFragment extends Fragment {
         } else {
             //Map para registrar a un usuario con sus datos
             Map<String, Object> comida = new HashMap<>();
-            comida.put("f_tipo", "Desayuno");
+            comida.put("f_tipo", "Comida");
             comida.put("f_nombrecomida", nombre);
             comida.put("f_ingredientes", ingredientes);
 
@@ -147,7 +143,7 @@ public class AgregarDesayunoFragment extends Fragment {
                 public void onComplete(@NonNull @NotNull Task<Void> task) {
                     if(task.isSuccessful()){
                         Toast.makeText(getActivity(), "Comida agregada correctamente", Toast.LENGTH_SHORT).show();
-                        replaceFragment(new DesayunoFragment());
+                        replaceFragment(new ComidaFragment());
                     } else {
                         String message = task.getException().toString();
                         Toast.makeText(getActivity(), "Error: " + message, Toast.LENGTH_SHORT).show();

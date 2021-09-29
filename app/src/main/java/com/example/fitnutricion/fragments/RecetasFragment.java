@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fitnutricion.R;
 import com.example.fitnutricion.firebase.Desayuno;
 import com.example.fitnutricion.firebase.desayunoAdapter;
+import com.example.fitnutricion.fragments.comidasRecetas.ComidaFragment;
 import com.example.fitnutricion.fragments.comidasRecetas.DesayunoFragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,7 +39,8 @@ public class RecetasFragment extends Fragment {
 
     private View vista;
 
-    Button comidaDesayuno;
+    Button comidaDesayuno, comidaComida;
+
 
     public RecetasFragment() {
         // Required empty public constructor
@@ -76,11 +78,19 @@ public class RecetasFragment extends Fragment {
         vista = inflater.inflate(R.layout.fragment_recetas, container, false);
 
         comidaDesayuno = (Button) vista.findViewById(R.id.comidaDesayuno);
+        comidaComida = (Button) vista.findViewById(R.id.comidaComida);
 
         comidaDesayuno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 replaceFragment(new DesayunoFragment());
+            }
+        });
+
+        comidaComida.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                replaceFragment(new ComidaFragment());
             }
         });
 

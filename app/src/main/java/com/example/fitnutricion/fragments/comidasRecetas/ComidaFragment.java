@@ -17,7 +17,9 @@ import android.widget.Button;
 
 import com.example.fitnutricion.R;
 import com.example.fitnutricion.firebase.Desayuno;
+import com.example.fitnutricion.firebase.comidaAdapter;
 import com.example.fitnutricion.firebase.desayunoAdapter;
+import com.example.fitnutricion.fragments.AgregarComidaFragment;
 import com.example.fitnutricion.fragments.AgregarDesayunoFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -30,11 +32,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class DesayunoFragment extends Fragment {
+public class ComidaFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
     private String mParam1;
     private String mParam2;
 
@@ -47,14 +48,14 @@ public class DesayunoFragment extends Fragment {
     desayunoAdapter myAdapter;
     ArrayList<Desayuno> list;
 
-    Button btn_agregarDesayuno;
+    Button btn_agregarComida;
 
-    public DesayunoFragment() {
+    public ComidaFragment() {
         // Required empty public constructor
     }
 
-    public static DesayunoFragment newInstance(String param1, String param2) {
-        DesayunoFragment fragment = new DesayunoFragment();
+    public static ComidaFragment newInstance(String param1, String param2) {
+        ComidaFragment fragment = new ComidaFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -82,14 +83,14 @@ public class DesayunoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        vista = inflater.inflate(R.layout.fragment_desayuno, container, false);
+        vista = inflater.inflate(R.layout.fragment_comida, container, false);
 
-        btn_agregarDesayuno = (Button) vista.findViewById(R.id.btn_agregarDesayuno);
-        recyclerView = vista.findViewById(R.id.desayunoList);
+        btn_agregarComida = (Button) vista.findViewById(R.id.btn_agregarComida);
+        recyclerView = vista.findViewById(R.id.comidaList);
 
         mAuth = FirebaseAuth.getInstance();
         userID = mAuth.getCurrentUser().getUid();
-        dbRef = FirebaseDatabase.getInstance().getReference().child("users").child(userID).child("desayunos");
+        dbRef = FirebaseDatabase.getInstance().getReference().child("users").child(userID).child("comidas");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -97,10 +98,10 @@ public class DesayunoFragment extends Fragment {
         myAdapter = new desayunoAdapter(getContext(),list);
         recyclerView.setAdapter(myAdapter);
 
-        btn_agregarDesayuno.setOnClickListener(new View.OnClickListener() {
+        btn_agregarComida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                replaceFragment(new AgregarDesayunoFragment());
+                replaceFragment(new AgregarComidaFragment());
             }
         });
 

@@ -53,18 +53,28 @@
 
     <!-- DESAYUNO -->
     <string name="desayuno_text">Desayunos</string>
+    <string name="agregarDesayuno">Agregar desayuno</string>
 
-    <!-- AGREGAR COMIDA -->
+    <!-- AGREGAR DESAYUNO -->
     <string name="ag_datosComidas">Información de comida</string>
     <string name="desa_text">Desayuno</string>
     <string name="agregar_comida_tipo">Tipo de comida:</string>
     <string name="agregar_comida_nombre">Nombre de la comida</string>
     <string name="agregar_comida_ingrediente">Ingredientes</string>
 
+    <!-- COMIDA -->
+    <string name="comida_text">Comida</string>
+
+    <!-- AGREGAR Comida -->
+    <string name="comi_text">Comida</string>
+
     <!-- INICIO SPINNER -->
     <string name="spinner_Desayuno">Desayuno</string>
     <string name="spinner_Comida">Comida</string>
     <string name="spinner_Cena">Cena</string>
     <string name="home_generar_pdf">Generar PDF</string>
+
+    <!-- ITEM LIST COMIDAS -->
+    <string name="desaYUNO_item_list">DESAYUNO</string>
 
 </resources>
