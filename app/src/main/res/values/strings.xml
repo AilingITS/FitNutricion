@@ -68,6 +68,11 @@
     <!-- AGREGAR Comida -->
     <string name="comi_text">Comida</string>
 
+    <!-- CENA -->
+    <string name="cena_text">Cena</string>
+    <string name="agregarCena">Agregar cena</string>
+
+
     <!-- INICIO SPINNER -->
     <string name="spinner_Desayuno">Desayuno</string>
     <string name="spinner_Comida">Comida</string>

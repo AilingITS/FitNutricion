@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/background_color"
+    tools:context=".fragments.AgregarCenaFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/datosPaciente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ag_datosComidas"
+            android:textColor="?attr/text_color"
+            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="center"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/tipocomida"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/agregar_comida_tipo"
+            android:textColor="?attr/text_color"
+            app:layout_constraintTop_toBottomOf="@+id/datosPaciente"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/cena_tipocomida"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cena_text"
+            android:textColor="?attr/text_color"
+            app:layout_constraintTop_toBottomOf="@+id/tipocomida"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/correoPaciente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/agregar_comida_nombre"
+            android:textColor="?attr/text_color"
+            app:layout_constraintTop_toBottomOf="@+id/cena_tipocomida"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/cena_nombreComida"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/agregar_comida_nombre"
+            android:textColorHint="@color/light_white"
+            android:textSize="16dp"
+            android:textColor="?attr/text_color"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/correoPaciente"
+            />
+
+        <TextView
+            android:id="@+id/comidaIngrediente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/agregar_comida_ingrediente"
+            android:textColor="?attr/text_color"
+            app:layout_constraintTop_toBottomOf="@+id/cena_nombreComida"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/cena_ingredientes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/agregar_comida_ingrediente"
+            android:textColorHint="@color/light_white"
+            android:textSize="16dp"
+            android:textColor="?attr/text_color"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/comidaIngrediente"
+            />
+
+        <Button
+            android:id="@+id/btn_añadirCena"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="120dp"
+            android:text="@string/agregarCena"
+            android:textColor="?attr/text_color"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

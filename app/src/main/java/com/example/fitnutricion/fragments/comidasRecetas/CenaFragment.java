@@ -1,10 +1,6 @@
-package com.example.fitnutricion.fragments;
+package com.example.fitnutricion.fragments.comidasRecetas;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -14,12 +10,19 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+
 import com.example.fitnutricion.R;
+import com.example.fitnutricion.firebase.Cena;
 import com.example.fitnutricion.firebase.Desayuno;
+import com.example.fitnutricion.firebase.cenaAdapter;
 import com.example.fitnutricion.firebase.desayunoAdapter;
-import com.example.fitnutricion.fragments.comidasRecetas.CenaFragment;
-import com.example.fitnutricion.fragments.comidasRecetas.ComidaFragment;
-import com.example.fitnutricion.fragments.comidasRecetas.DesayunoFragment;
+import com.example.fitnutricion.fragments.AgregarCenaFragment;
+import com.example.fitnutricion.fragments.AgregarComidaFragment;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,7 +33,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class RecetasFragment extends Fragment {
+public class CenaFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -39,16 +42,22 @@ public class RecetasFragment extends Fragment {
     private String mParam2;
 
     private View vista;
+    private String userID;
+    private FirebaseAuth mAuth;
 
-    Button comidaDesayuno, comidaComida, comidaCena;
+    RecyclerView recyclerView;
+    DatabaseReference dbRef;
+    cenaAdapter myAdapter;
+    ArrayList<Cena> list;
 
+    Button btn_agregarCena;
 
-    public RecetasFragment() {
+    public CenaFragment() {
         // Required empty public constructor
     }
 
-    public static RecetasFragment newInstance(String param1, String param2) {
-        RecetasFragment fragment = new RecetasFragment();
+    public static CenaFragment newInstance(String param1, String param2) {
+        CenaFragment fragment = new CenaFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -76,31 +85,41 @@ public class RecetasFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        vista = inflater.inflate(R.layout.fragment_recetas, container, false);
+        vista = inflater.inflate(R.layout.fragment_cena, container, false);
 
-        comidaDesayuno = (Button) vista.findViewById(R.id.comidaDesayuno);
-        comidaComida = (Button) vista.findViewById(R.id.comidaComida);
-        comidaCena = (Button) vista.findViewById(R.id.comidaCena);
+        btn_agregarCena = (Button) vista.findViewById(R.id.btn_agregarCena);
+        recyclerView = vista.findViewById(R.id.cenaList);
 
-        comidaDesayuno.setOnClickListener(new View.OnClickListener() {
+        mAuth = FirebaseAuth.getInstance();
+        userID = mAuth.getCurrentUser().getUid();
+        dbRef = FirebaseDatabase.getInstance().getReference().child("users").child(userID).child("cenas");
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        list = new ArrayList<>();
+        myAdapter = new cenaAdapter(getContext(),list);
+        recyclerView.setAdapter(myAdapter);
+
+        btn_agregarCena.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                replaceFragment(new DesayunoFragment());
+                replaceFragment(new AgregarCenaFragment());
             }
         });
 
-        comidaComida.setOnClickListener(new View.OnClickListener() {
+        dbRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                replaceFragment(new ComidaFragment());
-            }
-        });
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
 
-        comidaCena.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                replaceFragment(new CenaFragment());
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    Cena foods = dataSnapshot.getValue(Cena.class);
+                    list.add(foods);
+                }
+                myAdapter.notifyDataSetChanged();
             }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) { }
         });
 
         return vista;
