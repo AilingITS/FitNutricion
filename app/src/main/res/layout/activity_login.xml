@@ -4,8 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/background_color"
+    android:background="@color/verdeLima"
     tools:context=".LoginActivity">
+
+    <View
+        android:id="@+id/ellipse_1"
+        android:layout_width="525.66dp"
+        android:layout_height="767.95dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/ellipse_1"
+        android:rotation="60"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-25dp"
+        tools:layout_editor_absoluteY="-19dp" />
 
     <ImageView
         android:id="@+id/imageView"
