@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FitNutricion</string>
+
+    <!-- LOGIN -->
+    <string name="titulo1_text">FITNUTRICION</string>
+    <string name="correo_text">Email</string>
+    <string name="password_text">Password</string>
+    <string name="iniciarSesion">Log in</string>
+    <string name="cuentaNueva">Create Account</string>
+
+    <!-- REGISTER -->
+    <string name="uneteAFitN_text">Join FitNutricion!</string>
+    <string name="usuario_text">Username</string>
+    <string name="confPassword_text">Confirm Password</string>
+    <string name="confirmar_text">Confirm</string>
+
+    <!-- MENU -->
+    <string name="home_text">Beginning</string>
+    <string name="recetas_text">Recipes</string>
+    <string name="setting_text">Setting</string>
+
+    <!-- SETTINGS -->
+    <string name="cerrarSesion">Sign off</string>
+    <string name="themeMode">DARK THEME</string>
+    <string name="cambiarIdioma">Change the language</string>
+
+    <!-- PROFILE -->
+    <string name="profile_text">Personal information</string>
+    <string name="nombre_text">Username</string>
+    <string name="nombrecompleto_text">Full name</string>
+    <string name="mail_text">Email</string>
+    <string name="Edad_text">Age</string>
+    <string name="Celular_text">Mobile</string>
+    <string name="actualizar_text">Update data</string>
+    <string name="actualizarpass_text">Update password</string>
+    <string name="modificardatos_text">Modify profile</string>
+
+    <!-- PACIENTE -->
+    <string name="pacientes_text">Pacientes</string>
+    <string name="agregarPaciente">Agregar paciente</string>
+    <string name="añadirPaciente">Añadir paciente</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- AGREGAR PACIENTE -->
+    <string name="ag_nombreCompleto">Nombre completo</string>
+    <string name="ag_datosPaciente">Ingrese los datos del paciente</string>
+    <string name="ag_edadPaciente">Edad</string>
+
+    <!-- RECETAS -->
+    <string name="agregarComida">Agregar comida</string>
+    <string name="comidaDesayuno">Desayuno</string>
+    <string name="comidaComida">Comida</string>
+    <string name="comidaCena">Cena</string>
+
+    <!-- DESAYUNO -->
+    <string name="desayuno_text">Desayunos</string>
+    <string name="agregarDesayuno">Agregar desayuno</string>
+
+    <!-- AGREGAR DESAYUNO -->
+    <string name="ag_datosComidas">Información de comida</string>
+    <string name="desa_text">Desayuno</string>
+    <string name="agregar_comida_tipo">Tipo de comida:</string>
+    <string name="agregar_comida_nombre">Nombre de la comida</string>
+    <string name="agregar_comida_ingrediente">Ingredientes</string>
+
+    <!-- COMIDA -->
+    <string name="comida_text">Comida</string>
+
+    <!-- AGREGAR Comida -->
+    <string name="comi_text">Comida</string>
+
+    <!-- CENA -->
+    <string name="cena_text">Cena</string>
+    <string name="agregarCena">Agregar cena</string>
+
+
+    <!-- INICIO SPINNER -->
+    <string name="spinner_Desayuno">Desayuno</string>
+    <string name="spinner_Comida">Comida</string>
+    <string name="spinner_Cena">Cena</string>
+    <string name="home_generar_pdf">Generar PDF</string>
+
+    <!-- ITEM LIST COMIDAS -->
+    <string name="desaYUNO_item_list">DESAYUNO</string>
+</resources>

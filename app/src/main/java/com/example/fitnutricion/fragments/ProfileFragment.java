@@ -51,6 +51,7 @@ public class ProfileFragment extends Fragment {
     private static final int RESULT_OK = -1;
     private String mParam1;
     private String mParam2;
+
     private View vista;
     private FirebaseAuth mAuth;
     private String userID;

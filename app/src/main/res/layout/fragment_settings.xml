@@ -67,6 +67,24 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_modificar_datos" />
 
+        <Button
+            android:id="@+id/btn_cambiar_idioma"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/config_modificar_perfil_btn"
+            android:drawableEnd="@drawable/ic_next"
+            android:text="@string/cambiarIdioma"
+            android:textColor="?attr/text_color"
+            android:textStyle="bold"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            tools:visibility="visible" />
+
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/settings_theme_night"
             android:layout_width="wrap_content"

@@ -22,6 +22,7 @@
     <!-- SETTINGS -->
     <string name="cerrarSesion">Cerrar sesión</string>
     <string name="themeMode">TEMA OSCURO</string>
+    <string name="cambiarIdioma">Cambiar el idioma</string>
 
     <!-- PROFILE -->
     <string name="profile_text">Datos personales</string>

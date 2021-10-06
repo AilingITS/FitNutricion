@@ -1,6 +1,9 @@
 package com.example.fitnutricion;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -10,9 +13,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.example.fitnutricion.Language.LocaleHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -22,7 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.jetbrains.annotations.NotNull;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity{
 
     private FirebaseAuth mAuth;
     private EditText txtMail, txtPassword;
@@ -43,7 +48,6 @@ public class LoginActivity extends AppCompatActivity {
 
         txtMail = findViewById(R.id.correo_etxt);
         txtPassword = findViewById(R.id.password_etxt);
-
     }
 
     public void onClick(View v){

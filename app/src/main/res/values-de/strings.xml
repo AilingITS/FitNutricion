@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FitNutricion</string>
+
+    <!-- LOGIN -->
+    <string name="titulo1_text">FITNUTRICION</string>
+    <string name="correo_text">Email</string>
+    <string name="password_text">Passwort</string>
+    <string name="iniciarSesion">Einloggen</string>
+    <string name="cuentaNueva">Benutzerkonto erstellen</string>
+
+    <!-- REGISTER -->
+    <string name="uneteAFitN_text">¡beitreten zu FitNutricion!</string>
+    <string name="usuario_text">Nutzername</string>
+    <string name="confPassword_text">Kennwort bestätigen</string>
+    <string name="confirmar_text">Bestätigen Sie</string>
+
+    <!-- MENU -->
+    <string name="home_text">Anfang</string>
+    <string name="recetas_text">Rezepte</string>
+    <string name="setting_text">Einstellung</string>
+
+    <!-- SETTINGS -->
+    <string name="cerrarSesion">Abmelden</string>
+    <string name="themeMode">DUNKLES THEMA</string>
+    <string name="cambiarIdioma">Ändere die Sprache</string>
+
+    <!-- PROFILE -->
+    <string name="profile_text">Persönliche Informationen</string>
+    <string name="nombre_text">Nutzername</string>
+    <string name="nombrecompleto_text">Vollständiger Name</string>
+    <string name="mail_text">Email</string>
+    <string name="Edad_text">Alter</string>
+    <string name="Celular_text">Mobiltelefon</string>
+    <string name="actualizar_text">Daten aktualisieren</string>
+    <string name="actualizarpass_text">Kennwort aktualisieren</string>
+    <string name="modificardatos_text">Profil ändern</string>
+
+    <!-- PACIENTE -->
+    <string name="pacientes_text">Patienten</string>
+    <string name="agregarPaciente">Patient hinzufügen</string>
+    <string name="añadirPaciente">Patient hinzufügen</string>
+
+    <!-- AGREGAR PACIENTE -->
+    <string name="ag_nombreCompleto">Vollständiger Name</string>
+    <string name="ag_datosPaciente">Patientendaten eingeben</string>
+    <string name="ag_edadPaciente">Alter</string>
+
+    <!-- RECETAS -->
+    <string name="agregarComida">Essen hinzufügen</string>
+    <string name="comidaDesayuno">Frühstück</string>
+    <string name="comidaComida">Mahlzeit</string>
+    <string name="comidaCena">Abendessen</string>
+
+    <!-- DESAYUNO -->
+    <string name="desayuno_text">Frühstück</string>
+    <string name="agregarDesayuno">Frühstück hinzufügen</string>
+
+    <!-- AGREGAR DESAYUNO -->
+    <string name="ag_datosComidas">Lebensmittelinformationen</string>
+    <string name="desa_text">Frühstück</string>
+    <string name="agregar_comida_tipo">Art der Nahrung: </string>
+    <string name="agregar_comida_nombre">Lebensmittelname</string>
+    <string name="agregar_comida_ingrediente">Zutaten</string>
+
+    <!-- COMIDA -->
+    <string name="comida_text">Comida</string>
+
+    <!-- AGREGAR Comida -->
+    <string name="comi_text">Mahlzeit</string>
+
+    <!-- CENA -->
+    <string name="cena_text">Abendessen</string>
+    <string name="agregarCena">Abendessen hinzufügen</string>
+
+
+    <!-- INICIO SPINNER -->
+    <string name="spinner_Desayuno">Frühstück</string>
+    <string name="spinner_Comida">Mahlzeit</string>
+    <string name="spinner_Cena">Cena</string>
+    <string name="home_generar_pdf">PDF erstellen</string>
+
+    <!-- ITEM LIST COMIDAS -->
+    <string name="desaYUNO_item_list">FRÜHSTÜCK</string>
+</resources>
