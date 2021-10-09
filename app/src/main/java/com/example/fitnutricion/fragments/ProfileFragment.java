@@ -48,7 +48,6 @@ public class ProfileFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private static final int RESULT_OK = -1;
     private String mParam1;
     private String mParam2;
 
@@ -58,6 +57,7 @@ public class ProfileFragment extends Fragment {
 
     private ImageView fotoperfil;
     private static final int GalleryPick = 1;
+    private static final int RESULT_OK = -1;
     private Uri ImageUri;
     private String downloadImageUrl;
 

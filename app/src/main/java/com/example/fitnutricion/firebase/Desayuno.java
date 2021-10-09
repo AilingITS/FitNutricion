@@ -1,7 +1,7 @@
 package com.example.fitnutricion.firebase;
 
 public class Desayuno {
-    String f_tipo, f_nombrecomida, f_ingredientes;
+    String f_tipo, f_nombrecomida, f_ingredientes, f_image;
 
     public String getF_tipo() {
         return f_tipo;
@@ -14,4 +14,6 @@ public class Desayuno {
     public String getF_ingredientes() {
         return f_ingredientes;
     }
+
+    public String getF_image() { return f_image; }
 }

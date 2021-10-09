@@ -4,10 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.fitnutricion.R;
+import com.squareup.picasso.Picasso;
+
 import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
@@ -37,6 +40,7 @@ public class comidaAdapter extends RecyclerView.Adapter<comidaAdapter.foodsHolde
         holder.f_tipo.setText(foods.getF_tipo());
         holder.f_nombrecomida.setText(foods.getF_nombrecomida());
         holder.f_ingredientes.setText(foods.getF_ingredientes());
+        Picasso.get().load(foods.getF_image()).into(holder.f_image);
 
     }
 
@@ -48,6 +52,7 @@ public class comidaAdapter extends RecyclerView.Adapter<comidaAdapter.foodsHolde
     public static class foodsHolder extends RecyclerView.ViewHolder{
 
         TextView f_tipo, f_nombrecomida, f_ingredientes;
+        ImageView f_image;
 
         public foodsHolder(View itemView){
             super(itemView);
@@ -55,6 +60,7 @@ public class comidaAdapter extends RecyclerView.Adapter<comidaAdapter.foodsHolde
             f_tipo = itemView.findViewById(R.id.item_tipo);
             f_nombrecomida = itemView.findViewById(R.id.item_nombrecomida);
             f_ingredientes = itemView.findViewById(R.id.item_ingredientes);
+            f_image = itemView.findViewById(R.id.item_imagen);
         }
     }
 }
