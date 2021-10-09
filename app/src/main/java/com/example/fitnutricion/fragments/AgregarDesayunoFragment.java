@@ -90,7 +90,7 @@ public class AgregarDesayunoFragment extends Fragment {
         comida_nombreComida = vista.findViewById(R.id.comida_nombreComida);
         comida_ingredientes = vista.findViewById(R.id.comida_ingredientes);
 
-        btn_añadirDesayuno = (Button) vista.findViewById(R.id.btn_añadirComida);
+        btn_añadirDesayuno = (Button) vista.findViewById(R.id.btn_añadirDesayuno);
         btn_añadirDesayuno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
