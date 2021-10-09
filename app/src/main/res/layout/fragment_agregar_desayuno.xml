@@ -26,14 +26,27 @@
             android:textStyle="bold"
             />
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btn_agregar_comida"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:src="@drawable/img_agregar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/datosPaciente"/>
+
         <TextView
             android:id="@+id/tipocomida"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/agregar_comida_tipo"
             android:textColor="?attr/text_color"
-            app:layout_constraintTop_toBottomOf="@+id/datosPaciente"
-            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/btn_agregar_comida"
+            android:layout_marginTop="16dp"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:textSize="20dp"
@@ -111,13 +124,15 @@
             android:id="@+id/btn_añadirDesayuno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="120dp"
-            android:text="@string/agregarComida"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="50dp"
             android:backgroundTint="@color/btn_cafe_iniciar"
+            android:text="@string/agregarComida"
             android:textColor="@color/white"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/comida_ingredientes" />
 
 
 
