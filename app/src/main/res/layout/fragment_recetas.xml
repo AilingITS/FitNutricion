@@ -39,7 +39,7 @@
                 android:layout_marginEnd="32dp"
                 android:backgroundTint="@color/btn_cafe_iniciar"
                 android:text="@string/comidaDesayuno"
-                android:textColor="?attr/text_color" />
+                android:textColor="@color/white" />
 
             <Button
                 android:id="@+id/comidaComida"
@@ -50,7 +50,7 @@
                 android:layout_marginEnd="32dp"
                 android:backgroundTint="@color/btn_cafe_iniciar"
                 android:text="@string/comidaComida"
-                android:textColor="?attr/text_color"
+                android:textColor="@color/white"
                 />
 
             <Button
@@ -62,7 +62,7 @@
                 android:backgroundTint="@color/btn_cafe_iniciar"
                 android:layout_marginEnd="32dp"
                 android:text="@string/comidaCena"
-                android:textColor="?attr/text_color"
+                android:textColor="@color/white"
                 />
 
         </LinearLayout>
