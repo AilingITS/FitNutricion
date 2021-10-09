@@ -6,10 +6,10 @@
     <string name="correo_text">Correo electronico</string>
     <string name="password_text">Contraseña</string>
     <string name="iniciarSesion">Iniciar sesión</string>
-    <string name="cuentaNueva">Crear cuenta</string>
+    <string name="cuentaNueva">¿No tienes cuenta? Regístrate</string>
 
     <!-- REGISTER -->
-    <string name="uneteAFitN_text">¡Unete a FitNutricion!</string>
+    <string name="uneteAFitN_text">Regístrate</string>
     <string name="usuario_text">Nombre de usuario</string>
     <string name="confPassword_text">Confirmar contraseña</string>
     <string name="confirmar_text">Confirmar</string>
@@ -39,7 +39,6 @@
     <string name="pacientes_text">Pacientes</string>
     <string name="agregarPaciente">Agregar paciente</string>
     <string name="añadirPaciente">Añadir paciente</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- AGREGAR PACIENTE -->
     <string name="ag_nombreCompleto">Nombre completo</string>
