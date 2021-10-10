@@ -40,7 +40,6 @@
     <string name="pacientes_text">Pacientes</string>
     <string name="agregarPaciente">Agregar paciente</string>
     <string name="añadirPaciente">Añadir paciente</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- AGREGAR PACIENTE -->
     <string name="ag_nombreCompleto">Nombre completo</string>
