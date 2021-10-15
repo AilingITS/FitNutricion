@@ -35,6 +35,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -64,6 +65,8 @@ public class HomeFragment extends Fragment {
     int pageWidth = 1200;
 
     DatabaseReference dbRef;
+    DatabaseReference dbRef_pdf;
+    private FirebaseDatabase firebaseDatabase_pdf;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -104,8 +107,9 @@ public class HomeFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
         userID = mAuth.getCurrentUser().getUid();
-        //dbRef = FirebaseDatabase.getInstance().getReference();
         dbRef = FirebaseDatabase.getInstance().getReference("users").child(userID);
+        firebaseDatabase_pdf = FirebaseDatabase.getInstance();
+        dbRef_pdf = firebaseDatabase_pdf.getReference();
         spinnerComidas = vista.findViewById(R.id.spinnerComidas);
         spinnerPacientes = vista.findViewById(R.id.spinnerPacientes);
 
@@ -146,11 +150,107 @@ public class HomeFragment extends Fragment {
     }
 
     private void createPDF() throws IOException {
-        String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
+
+        dbRef_pdf.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    userID = mAuth.getCurrentUser().getUid();
+
+                    String nombre_nutri_pdf = snapshot.child("users").child(userID).child("Nombre").getValue().toString();
+                    String correo_nutri_pdf = snapshot.child("users").child(userID).child("Correo").getValue().toString();
+
+                    String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
+                    File file = new File(pdfPath, "FitNutricion.pdf");
+                    OutputStream outputStream = null;
+                    try {
+                        outputStream = new FileOutputStream(file);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+                    /* DECLARANDO DOCUMENTO */
+
+                    PdfDocument document = new PdfDocument();
+
+                    /* INICIO DE PRIMERA PAGINA */
+
+                    PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(1200, 2010, 1).create();
+                    PdfDocument.Page page = document.startPage(pageInfo);
+
+                    Canvas canvas = page.getCanvas();
+                    Paint myPaint = new Paint();
+                    Paint titlePaint = new Paint();
+                    canvas.drawBitmap(scaledbmp, 425, 1800, myPaint);
+
+                    titlePaint.setTextAlign(Paint.Align.CENTER);
+                    titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint.setTextSize(70);
+                    canvas.drawText("RECETA SEMANAL", pageWidth/2, 100, titlePaint);
+
+                    titlePaint.setTextAlign(Paint.Align.CENTER);
+                    titlePaint.setTextSize(50);
+                    titlePaint.setColor(Color.rgb(122, 119, 119));
+                    canvas.drawText("Nutriólogo: " + nombre_nutri_pdf, pageWidth/2, 160, titlePaint);
+
+                    titlePaint.setTextAlign(Paint.Align.CENTER);
+                    titlePaint.setTextSize(50);
+                    titlePaint.setColor(Color.rgb(122, 119, 119));
+                    canvas.drawText("Correo: " + correo_nutri_pdf, pageWidth/2, 220, titlePaint);
+
+                    /*titlePaint.setTextAlign(Paint.Align.CENTER);
+                    titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
+                    titlePaint.setTextSize(70);
+                    canvas.drawText("Lunes", pageWidth/2, 1780, titlePaint);*/
+
+                    document.finishPage(page);
+
+                    /* INICIO DE SEGUNDA PAGINA */
+
+                    PdfDocument.PageInfo pageInfo2 = new PdfDocument.PageInfo.Builder(1200, 2010, 1).create();
+                    PdfDocument.Page page2 = document.startPage(pageInfo2);
+
+                    Canvas canvas2 = page2.getCanvas();
+                    Paint myPaint2 = new Paint();
+                    Paint titlePaint2 = new Paint();
+                    canvas2.drawBitmap(scaledbmp, 425, 1800, myPaint2);
+
+                    titlePaint2.setTextAlign(Paint.Align.CENTER);
+                    titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint2.setTextSize(70);
+                    canvas2.drawText("RECETA", pageWidth/2, 270, titlePaint2);
+
+                    titlePaint2.setTextAlign(Paint.Align.CENTER);
+                    titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
+                    titlePaint2.setTextSize(70);
+                    canvas2.drawText("Martes", pageWidth/2, 500, titlePaint2);
+
+                    document.finishPage(page2);
+
+                    try {
+                        document.writeTo(outputStream);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    document.close();
+                    Toast.makeText(getActivity(), "PDF generado correctamente", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+            }
+        });
+
+        /*String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
         File file = new File(pdfPath, "FitNutricion.pdf");
         OutputStream outputStream = new FileOutputStream(file);
 
+           DECLARANDO DOCUMENTO
+
         PdfDocument document = new PdfDocument();
+
+           INICIO DE PRIMERA PAGINA
+
         PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(1200, 2010, 1).create();
         PdfDocument.Page page = document.startPage(pageInfo);
 
@@ -162,18 +262,40 @@ public class HomeFragment extends Fragment {
         titlePaint.setTextAlign(Paint.Align.CENTER);
         titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
         titlePaint.setTextSize(70);
-        canvas.drawText("RECETA", pageWidth/2, 270, titlePaint);
+        canvas.drawText("RECETA", pageWidth/2, 30, titlePaint);
 
         titlePaint.setTextAlign(Paint.Align.CENTER);
         titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
         titlePaint.setTextSize(70);
-        canvas.drawText("Datos", pageWidth/2, 500, titlePaint);
+        canvas.drawText("Lunes", pageWidth/2, 500, titlePaint);
 
         document.finishPage(page);
 
+            INICIO DE SEGUNDA PAGINA
+
+        PdfDocument.PageInfo pageInfo2 = new PdfDocument.PageInfo.Builder(1200, 2010, 1).create();
+        PdfDocument.Page page2 = document.startPage(pageInfo2);
+
+        Canvas canvas2 = page2.getCanvas();
+        Paint myPaint2 = new Paint();
+        Paint titlePaint2 = new Paint();
+        canvas2.drawBitmap(scaledbmp, 0, 0, myPaint2);
+
+        titlePaint2.setTextAlign(Paint.Align.CENTER);
+        titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        titlePaint2.setTextSize(70);
+        canvas2.drawText("RECETA", pageWidth/2, 270, titlePaint2);
+
+        titlePaint2.setTextAlign(Paint.Align.CENTER);
+        titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
+        titlePaint2.setTextSize(70);
+        canvas2.drawText("Martes", pageWidth/2, 500, titlePaint2);
+
+        document.finishPage(page2);
+
         document.writeTo(outputStream);
         document.close();
-        Toast.makeText(getActivity(), "PDF generado correctamente", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "PDF generado correctamente", Toast.LENGTH_SHORT).show();*/
 
     }
 
