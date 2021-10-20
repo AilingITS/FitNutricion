@@ -18,6 +18,7 @@
     <!-- MENU -->
     <string name="home_text">Anfang</string>
     <string name="recetas_text">Rezepte</string>
+    <string name="pacientes_home">Eliga el paciente:</string>
     <string name="setting_text">Einstellung</string>
 
     <!-- SETTINGS -->

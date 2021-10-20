@@ -110,19 +110,18 @@ public class HomeFragment extends Fragment {
         dbRef = FirebaseDatabase.getInstance().getReference("users").child(userID);
         firebaseDatabase_pdf = FirebaseDatabase.getInstance();
         dbRef_pdf = firebaseDatabase_pdf.getReference();
-        spinnerComidas = vista.findViewById(R.id.spinnerComidas);
+        //spinnerComidas = vista.findViewById(R.id.spinnerComidas);
         spinnerPacientes = vista.findViewById(R.id.spinnerPacientes);
 
         btn_crear_pdf = (Button) vista.findViewById(R.id.btn_crear_pdf);
         bmp = BitmapFactory.decodeResource(getResources(), R.drawable.logo);
         scaledbmp = Bitmap.createScaledBitmap(bmp, 350, 180, false);
 
-        String [] opciones = {"Desayuno", "Comida", "Cena"};
+        //String [] opciones = {"Desayuno", "Comida", "Cena"};
+        //ArrayAdapter <String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, opciones);
+        //spinnerComidas.setAdapter(adapter);
+        //String seleccion = spinnerComidas.getSelectedItem().toString();
 
-        ArrayAdapter <String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, opciones);
-        spinnerComidas.setAdapter(adapter);
-
-        String seleccion = spinnerComidas.getSelectedItem().toString();
         loadNamePacientes();
 
         btn_crear_pdf.setOnClickListener(new View.OnClickListener() {
@@ -218,12 +217,17 @@ public class HomeFragment extends Fragment {
                     titlePaint2.setTextAlign(Paint.Align.CENTER);
                     titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
                     titlePaint2.setTextSize(70);
-                    canvas2.drawText("RECETA", pageWidth/2, 270, titlePaint2);
+                    canvas2.drawText("RECETA SEMANAL", pageWidth/2, 100, titlePaint2);
 
                     titlePaint2.setTextAlign(Paint.Align.CENTER);
-                    titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
-                    titlePaint2.setTextSize(70);
-                    canvas2.drawText("Martes", pageWidth/2, 500, titlePaint2);
+                    titlePaint2.setTextSize(50);
+                    titlePaint2.setColor(Color.rgb(122, 119, 119));
+                    canvas2.drawText("Nutriólogo: " + nombre_nutri_pdf, pageWidth/2, 160, titlePaint2);
+
+                    titlePaint2.setTextAlign(Paint.Align.CENTER);
+                    titlePaint2.setTextSize(50);
+                    titlePaint2.setColor(Color.rgb(122, 119, 119));
+                    canvas2.drawText("Correo: " + correo_nutri_pdf, pageWidth/2, 220, titlePaint2);
 
                     document.finishPage(page2);
 
