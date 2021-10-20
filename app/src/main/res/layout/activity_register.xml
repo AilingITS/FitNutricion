@@ -14,7 +14,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="50dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="68dp"
         android:background="@drawable/ellipse_1"
         android:rotation="-17"
         app:layout_constraintBottom_toBottomOf="parent"

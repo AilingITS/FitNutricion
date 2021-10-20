@@ -53,13 +53,14 @@
             app:layout_constraintBottom_toTopOf="@+id/spinnerPacientes"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloInicio" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_crear_pdf" />
 
         <Spinner
             android:id="@+id/spinnerPacientes"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/style_spinner"
             android:textColor="?attr/text_color"
@@ -69,18 +70,91 @@
 
         <Button
             android:id="@+id/btn_crear_pdf"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/btn_login"
+            android:backgroundTint="@color/btn_cafe_iniciar"
+            android:text="@string/home_generar_pdf"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_eliminar_receta"
+            app:layout_constraintTop_toBottomOf="@+id/tituloInicio" />
+
+        <Button
+            android:id="@+id/btn_eliminar_receta"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/btn_login"
+            android:backgroundTint="@color/btn_cafe_iniciar"
+            android:text="@string/home_eliminar_receta"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/btn_crear_pdf"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tituloInicio" />
+
+        <Button
+            android:id="@+id/desayunoHome"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/input_design"
+            android:text="@string/comidaDesayuno"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerPacientes" />
+
+        <Button
+            android:id="@+id/comidaHome"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/input_design"
+            android:text="@string/comidaComida"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/desayunoHome" />
+
+        <Button
+            android:id="@+id/comidaCena"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/input_design"
+            android:text="@string/comidaCena"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/comidaHome" />
+
+        <Button
+            android:id="@+id/button3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginBottom="32dp"
-            android:text="@string/home_generar_pdf"
-            android:textColor="@color/white"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/btn_login"
             android:backgroundTint="@color/btn_cafe_iniciar"
+            android:text="@string/home_visualizar"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

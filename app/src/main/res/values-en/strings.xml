@@ -16,7 +16,7 @@
     <string name="confirmar_text">Confirm</string>
 
     <!-- MENU -->
-    <string name="home_text">Beginning</string>
+    <string name="home_text">Home</string>
     <string name="recetas_text">Recipes</string>
     <string name="pacientes_home">Eliga el paciente:</string>
     <string name="setting_text">Setting</string>
@@ -80,6 +80,8 @@
     <string name="spinner_Comida">Comida</string>
     <string name="spinner_Cena">Cena</string>
     <string name="home_generar_pdf">Generar PDF</string>
+    <string name="home_eliminar_receta">Eliminar receta</string>
+    <string name="home_visualizar">Visualizar PDF</string>
 
     <!-- ITEM LIST COMIDAS -->
     <string name="desaYUNO_item_list">DESAYUNO</string>
