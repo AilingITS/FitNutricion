@@ -22,8 +22,9 @@
 
     <!-- SETTINGS -->
     <string name="cerrarSesion">Cerrar sesión</string>
+    <string name="modificardatos_text">MODIFICAR PERFIL</string>
     <string name="themeMode">TEMA OSCURO</string>
-    <string name="cambiarIdioma">Cambiar el idioma</string>
+    <string name="cambiarIdioma">CAMBIAR IDIOMA</string>
 
     <!-- PROFILE -->
     <string name="profile_text">Datos personales</string>
@@ -34,7 +35,6 @@
     <string name="Celular_text">Celular</string>
     <string name="actualizar_text">Actualizar datos</string>
     <string name="actualizarpass_text">Actualizar contraseña</string>
-    <string name="modificardatos_text">Modificar perfil</string>
 
     <!-- PACIENTE -->
     <string name="pacientes_text">Pacientes</string>
