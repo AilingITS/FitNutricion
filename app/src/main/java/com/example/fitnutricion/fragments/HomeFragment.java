@@ -45,7 +45,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
@@ -156,6 +158,14 @@ public class HomeFragment extends Fragment {
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
 
+                    Calendar calendar = Calendar.getInstance();
+
+                    //SimpleDateFormat currentDate = new SimpleDateFormat(" dd MM, yyyy");
+                    SimpleDateFormat currentDate = new SimpleDateFormat("dd/MM/yyyy");
+                    String saveCurrentDate = currentDate.format(calendar.getTime());
+
+                    String Fecha = saveCurrentDate;
+
                     /* DATOS DEL NUTRIOLOGO - PDF */
                     userID = mAuth.getCurrentUser().getUid();
                     String nombre_nutri_pdf = snapshot.child("users").child(userID).child("Nombre").getValue().toString();
@@ -219,7 +229,7 @@ public class HomeFragment extends Fragment {
                     titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                     titlePaint.setTextSize(45);
                     titlePaint.setColor(Color.rgb(0,0,0));
-                    canvas.drawText("20 de octubre de 2021", 188, 350, titlePaint);
+                    canvas.drawText(Fecha, 188, 350, titlePaint);
 
                     titlePaint.setTextAlign(Paint.Align.LEFT);
                     titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
