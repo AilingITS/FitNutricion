@@ -9,7 +9,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="80dp">
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -157,7 +158,8 @@
                     android:id="@+id/btn_añadirCena"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="120dp"
+                    android:layout_marginTop="45dp"
+                    android:layout_marginBottom="16dp"
                     android:text="@string/agregarCena"
                     android:backgroundTint="@color/btn_cafe_iniciar"
                     android:textColor="@color/white"

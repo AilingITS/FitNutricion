@@ -129,6 +129,7 @@
                     android:layout_marginEnd="32dp"
                     app:layout_constraintTop_toBottomOf="@+id/comidaIngrediente"
                     />
+
                 <TextView
                     android:id="@+id/comidaCalorias"
                     android:layout_width="match_parent"
@@ -156,14 +157,14 @@
                     app:layout_constraintTop_toBottomOf="@+id/comidaCalorias"
                     />
 
-
                 <Button
                     android:id="@+id/btn_añadirDesayuno"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="50dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="45dp"
                     android:layout_marginEnd="50dp"
+                    android:layout_marginBottom="16dp"
                     android:backgroundTint="@color/btn_cafe_iniciar"
                     android:text="@string/agregarComida"
                     android:textColor="@color/white"
@@ -172,13 +173,8 @@
                     app:layout_constraintTop_toBottomOf="@+id/comida_calorias" />
 
             </LinearLayout>
+
         </ScrollView>
-
-
-
-
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
