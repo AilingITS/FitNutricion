@@ -53,7 +53,7 @@ public class AgregarDesayunoFragment extends Fragment {
     private FirebaseAuth mAuth;
 
     Button btn_añadirDesayuno;
-    private EditText comida_nombreComida, comida_ingredientes;
+    private EditText comida_nombreComida, comida_ingredientes, comida_calorias;
     private String comidaID, saveCurrentDate, saveCurrentTime;
     private DatabaseReference dbRef;
     private StorageReference ImagesRef;
@@ -106,6 +106,7 @@ public class AgregarDesayunoFragment extends Fragment {
 
         comida_nombreComida = vista.findViewById(R.id.comida_nombreComida);
         comida_ingredientes = vista.findViewById(R.id.comida_ingredientes);
+        comida_calorias = vista.findViewById(R.id.comida_calorias);
         btn_agregar_comida = vista.findViewById(R.id.btn_agregar_comida);
 
         btn_añadirDesayuno = (Button) vista.findViewById(R.id.btn_añadirDesayuno);
@@ -183,6 +184,7 @@ public class AgregarDesayunoFragment extends Fragment {
         //Obtenemos los datos que ingreso el usuario
         String nombre = comida_nombreComida.getText().toString();
         String ingredientes = comida_ingredientes.getText().toString();
+        String calorias = comida_calorias.getText().toString();
 
         //Condiciones para verificar que los datos esten correctos
         if (TextUtils.isEmpty(nombre)){
@@ -191,12 +193,16 @@ public class AgregarDesayunoFragment extends Fragment {
         } else if(TextUtils.isEmpty(ingredientes)){
             comida_ingredientes.setError("Ingrese los ingredientes de la comida");
             comida_ingredientes.requestFocus();
+        } else if(TextUtils.isEmpty(calorias)){
+            comida_calorias.setError("Ingrese las calorias de la comida");
+            comida_calorias.requestFocus();
         } else {
             //Map para registrar a un usuario con sus datos
             Map<String, Object> comida = new HashMap<>();
             comida.put("f_tipo", "Desayuno");
             comida.put("f_nombrecomida", nombre);
             comida.put("f_ingredientes", ingredientes);
+            comida.put("f_calorias", calorias);
             comida.put("f_image", downloadImageUrl);
 
             Calendar calendar = Calendar.getInstance();

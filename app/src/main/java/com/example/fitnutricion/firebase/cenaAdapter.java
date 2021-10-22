@@ -42,6 +42,7 @@ public class cenaAdapter extends RecyclerView.Adapter<cenaAdapter.foodsHolder> {
         holder.f_tipo.setText(foods.getF_tipo());
         holder.f_nombrecomida.setText(foods.getF_nombrecomida());
         holder.f_ingredientes.setText(foods.getF_ingredientes());
+        holder.f_calorias.setText(foods.getF_calorias());
         Picasso.get().load(foods.getF_image()).into(holder.f_image);
 
     }
@@ -53,7 +54,7 @@ public class cenaAdapter extends RecyclerView.Adapter<cenaAdapter.foodsHolder> {
 
     public static class foodsHolder extends RecyclerView.ViewHolder{
 
-        TextView f_tipo, f_nombrecomida, f_ingredientes;
+        TextView f_tipo, f_nombrecomida, f_ingredientes, f_calorias;
         ImageView f_image;
 
         public foodsHolder(View itemView){
@@ -62,6 +63,7 @@ public class cenaAdapter extends RecyclerView.Adapter<cenaAdapter.foodsHolder> {
             f_tipo = itemView.findViewById(R.id.item_tipo);
             f_nombrecomida = itemView.findViewById(R.id.item_nombrecomida);
             f_ingredientes = itemView.findViewById(R.id.item_ingredientes);
+            f_calorias = itemView.findViewById(R.id.item_calorias);
             f_image = itemView.findViewById(R.id.item_imagen);
         }
     }

@@ -142,7 +142,7 @@
                     />
 
                 <EditText
-                    android:id="@+id/comida_calorias"
+                    android:id="@+id/cena_calorias"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/agregar_comida_calorias"
