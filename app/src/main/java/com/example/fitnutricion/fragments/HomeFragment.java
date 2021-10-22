@@ -63,7 +63,7 @@ public class HomeFragment extends Fragment {
     private FirebaseAuth mAuth;
 
     String pacienteID;
-    private Spinner spinnerComidas, spinnerPacientes;
+    private Spinner spinnerPacientes;
     Button btn_crear_pdf;
     Bitmap bmp, scaledbmp;
     int pageWidth = 1200;
@@ -163,8 +163,12 @@ public class HomeFragment extends Fragment {
                     //SimpleDateFormat currentDate = new SimpleDateFormat(" dd MM, yyyy");
                     SimpleDateFormat currentDate = new SimpleDateFormat("dd/MM/yyyy");
                     String saveCurrentDate = currentDate.format(calendar.getTime());
-
                     String Fecha = saveCurrentDate;
+
+                    SimpleDateFormat currentDate1 = new SimpleDateFormat("dd MM yyyy");
+                    String nombrepdfFecha = currentDate1.format(calendar.getTime());
+                    SimpleDateFormat currentTime = new SimpleDateFormat("HH mm ss");
+                    String nombrepdfHora = currentTime.format(calendar.getTime());
 
                     /* DATOS DEL NUTRIOLOGO - PDF */
                     userID = mAuth.getCurrentUser().getUid();
@@ -178,7 +182,7 @@ public class HomeFragment extends Fragment {
                     String Sexo_p_pdf = snapshot.child("users").child(userID).child("pacientes").child(pacienteID).child("p_Sexo").getValue().toString();
 
                     String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
-                    File file = new File(pdfPath, "FitNutricion.pdf");
+                    File file = new File(pdfPath, "FitNutricion " + nombrepdfFecha + " " + nombrepdfHora + ".pdf");
                     OutputStream outputStream = null;
                     try {
                         outputStream = new FileOutputStream(file);
@@ -346,6 +350,7 @@ public class HomeFragment extends Fragment {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+
                     document.close();
                     Toast.makeText(getActivity(), "PDF generado correctamente", Toast.LENGTH_SHORT).show();
                 }
