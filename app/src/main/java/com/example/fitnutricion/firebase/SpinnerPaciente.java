@@ -2,10 +2,15 @@ package com.example.fitnutricion.firebase;
 
 public class SpinnerPaciente {
 
-    String p_Nombre;
+    String pacienteID, p_Nombre;
 
-    public SpinnerPaciente(String p_Nombre) {
+    public SpinnerPaciente(String pacienteID, String p_Nombre) {
+        this.pacienteID = pacienteID;
         this.p_Nombre = p_Nombre;
+    }
+
+    public String getPacienteID() {
+        return pacienteID;
     }
 
     public String getP_Nombre() {
@@ -16,5 +21,4 @@ public class SpinnerPaciente {
     public String toString() {
         return p_Nombre;
     }
-
 }

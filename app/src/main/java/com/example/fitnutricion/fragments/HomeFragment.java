@@ -16,6 +16,7 @@ import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -59,6 +60,7 @@ public class HomeFragment extends Fragment {
     private String userID;
     private FirebaseAuth mAuth;
 
+    String pacienteID;
     private Spinner spinnerComidas, spinnerPacientes;
     Button btn_crear_pdf;
     Bitmap bmp, scaledbmp;
@@ -132,7 +134,6 @@ public class HomeFragment extends Fragment {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             }
         });
 
@@ -154,10 +155,17 @@ public class HomeFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
-                    userID = mAuth.getCurrentUser().getUid();
 
+                    /* DATOS DEL NUTRIOLOGO - PDF */
+                    userID = mAuth.getCurrentUser().getUid();
                     String nombre_nutri_pdf = snapshot.child("users").child(userID).child("Nombre").getValue().toString();
                     String correo_nutri_pdf = snapshot.child("users").child(userID).child("Correo").getValue().toString();
+
+                    /* DATOS DEL PACIENTE - PDF */
+                    String nombre_p_pdf = snapshot.child("users").child(userID).child("pacientes").child(pacienteID).child("p_Nombre").getValue().toString();
+                    String Correo_p_pdf = snapshot.child("users").child(userID).child("pacientes").child(pacienteID).child("p_Correo").getValue().toString();
+                    String Edad_p_pdf = snapshot.child("users").child(userID).child("pacientes").child(pacienteID).child("p_Edad").getValue().toString();
+                    String Sexo_p_pdf = snapshot.child("users").child(userID).child("pacientes").child(pacienteID).child("p_Sexo").getValue().toString();
 
                     String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
                     File file = new File(pdfPath, "FitNutricion.pdf");
@@ -224,7 +232,7 @@ public class HomeFragment extends Fragment {
                     titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                     titlePaint.setTextSize(45);
                     titlePaint.setColor(Color.rgb(0,0,0));
-                    canvas.drawText("Juan Candia Ramos", 490, 410, titlePaint);
+                    canvas.drawText(nombre_p_pdf, 490, 410, titlePaint);
 
                     titlePaint.setTextAlign(Paint.Align.LEFT);
                     titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
@@ -237,7 +245,7 @@ public class HomeFragment extends Fragment {
                     titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                     titlePaint.setTextSize(45);
                     titlePaint.setColor(Color.rgb(0,0,0));
-                    canvas.drawText("19 años", 165, 470, titlePaint);
+                    canvas.drawText(Edad_p_pdf + " años", 165, 470, titlePaint);
 
                     titlePaint.setTextAlign(Paint.Align.LEFT);
                     titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
@@ -250,7 +258,7 @@ public class HomeFragment extends Fragment {
                     titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                     titlePaint.setTextSize(45);
                     titlePaint.setColor(Color.rgb(0,0,0));
-                    canvas.drawText("Masculino", 170, 530, titlePaint);
+                    canvas.drawText(Sexo_p_pdf, 170, 530, titlePaint);
                     /* -------------------------- */
 
                     /* LISTA DE COMIDAS - TABLA */
@@ -403,12 +411,24 @@ public class HomeFragment extends Fragment {
                 if(snapshot.exists()){
                     for(DataSnapshot ds: snapshot.getChildren()){
                         String p_Nombre = ds.child("p_Nombre").getValue().toString();
-                        pacientesList.add(new SpinnerPaciente(p_Nombre));
+                        String pacienteID = ds.getKey();
+                        pacientesList.add(new SpinnerPaciente(pacienteID, p_Nombre));
                     }
 
                     if (getActivity() != null) {
                         ArrayAdapter<SpinnerPaciente> arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, pacientesList);
                         spinnerPacientes.setAdapter(arrayAdapter);
+                        spinnerPacientes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                pacienteID = pacientesList.get(position).getPacienteID();
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+
+                            }
+                        });
                     }
                 }
             }
