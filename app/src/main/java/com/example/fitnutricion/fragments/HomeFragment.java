@@ -114,8 +114,8 @@ public class HomeFragment extends Fragment {
         spinnerPacientes = vista.findViewById(R.id.spinnerPacientes);
 
         btn_crear_pdf = (Button) vista.findViewById(R.id.btn_crear_pdf);
-        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.logo);
-        scaledbmp = Bitmap.createScaledBitmap(bmp, 350, 180, false);
+        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.logo_degradado);
+        scaledbmp = Bitmap.createScaledBitmap(bmp, 180, 180, false);
 
         //String [] opciones = {"Desayuno", "Comida", "Cena"};
         //ArrayAdapter <String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, opciones);
@@ -180,27 +180,119 @@ public class HomeFragment extends Fragment {
                     Canvas canvas = page.getCanvas();
                     Paint myPaint = new Paint();
                     Paint titlePaint = new Paint();
-                    canvas.drawBitmap(scaledbmp, 425, 1800, myPaint);
 
+                    /* DATOS DEL NUTRIOLOGO */
+                    titlePaint.setTextAlign(Paint.Align.LEFT);
+                    titlePaint.setTextSize(40);
+                    titlePaint.setColor(Color.rgb(110, 184, 245));
+                    canvas.drawText("Dr.: " + nombre_nutri_pdf, 50, 75, titlePaint);
+
+                    titlePaint.setTextAlign(Paint.Align.LEFT);
+                    titlePaint.setTextSize(40);
+                    titlePaint.setColor(Color.rgb(110, 184, 245));
+                    canvas.drawText(correo_nutri_pdf, 50, 110, titlePaint);
+                    /* -------------------- */
+
+                    /* FECHA Y DATOS DEL PACIENTE */
                     titlePaint.setTextAlign(Paint.Align.CENTER);
+                    titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD_ITALIC));
+                    titlePaint.setTextSize(65);
+                    titlePaint.setColor(Color.rgb(0,0,0));
+                    canvas.drawText("RECETA SEMANAL", pageWidth/2, 220, titlePaint);
+
+                    titlePaint.setTextAlign(Paint.Align.LEFT);
                     titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
-                    titlePaint.setTextSize(70);
-                    canvas.drawText("RECETA SEMANAL", pageWidth/2, 100, titlePaint);
+                    titlePaint.setTextSize(45);
+                    titlePaint.setColor(Color.rgb(0,0,0));
+                    canvas.drawText("Fecha:", 50, 350, titlePaint);
 
+                    // FECHA
+                    titlePaint.setTextAlign(Paint.Align.LEFT);
+                    titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                    titlePaint.setTextSize(45);
+                    titlePaint.setColor(Color.rgb(0,0,0));
+                    canvas.drawText("20 de octubre de 2021", 188, 350, titlePaint);
+
+                    titlePaint.setTextAlign(Paint.Align.LEFT);
+                    titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint.setTextSize(45);
+                    titlePaint.setColor(Color.rgb(0,0,0));
+                    canvas.drawText("Nombre del paciente:", 50, 410, titlePaint);
+
+                    // NOMBRE DEL PACIENTE
+                    titlePaint.setTextAlign(Paint.Align.LEFT);
+                    titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                    titlePaint.setTextSize(45);
+                    titlePaint.setColor(Color.rgb(0,0,0));
+                    canvas.drawText("Juan Candia Ramos", 490, 410, titlePaint);
+
+                    titlePaint.setTextAlign(Paint.Align.LEFT);
+                    titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint.setTextSize(45);
+                    titlePaint.setColor(Color.rgb(0,0,0));
+                    canvas.drawText("Edad:", 50, 470, titlePaint);
+
+                    //Edad
+                    titlePaint.setTextAlign(Paint.Align.LEFT);
+                    titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                    titlePaint.setTextSize(45);
+                    titlePaint.setColor(Color.rgb(0,0,0));
+                    canvas.drawText("19 años", 165, 470, titlePaint);
+
+                    titlePaint.setTextAlign(Paint.Align.LEFT);
+                    titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint.setTextSize(45);
+                    titlePaint.setColor(Color.rgb(0,0,0));
+                    canvas.drawText("Sexo:", 50, 530, titlePaint);
+
+                    //Sexo
+                    titlePaint.setTextAlign(Paint.Align.LEFT);
+                    titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                    titlePaint.setTextSize(45);
+                    titlePaint.setColor(Color.rgb(0,0,0));
+                    canvas.drawText("Masculino", 170, 530, titlePaint);
+                    /* -------------------------- */
+
+                    /* LISTA DE COMIDAS - TABLA */
                     titlePaint.setTextAlign(Paint.Align.CENTER);
-                    titlePaint.setTextSize(50);
-                    titlePaint.setColor(Color.rgb(122, 119, 119));
-                    canvas.drawText("Nutriólogo: " + nombre_nutri_pdf, pageWidth/2, 160, titlePaint);
+                    titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD_ITALIC));
+                    titlePaint.setTextSize(55);
+                    titlePaint.setColor(Color.rgb(0,0,0));
+                    canvas.drawText("Lista de alimentos", pageWidth/2, 660, titlePaint);
 
-                    titlePaint.setTextAlign(Paint.Align.CENTER);
-                    titlePaint.setTextSize(50);
-                    titlePaint.setColor(Color.rgb(122, 119, 119));
-                    canvas.drawText("Correo: " + correo_nutri_pdf, pageWidth/2, 220, titlePaint);
+                    // L-M-M
+                    titlePaint.setStyle(Paint.Style.STROKE);
+                    titlePaint.setStrokeWidth(2);
+                    // Linea horizontal Arriba y abajo
+                    canvas.drawRect(30, 750, 1170, 1000, titlePaint);
+                    // 2 Lineas Verticales del centro
+                    canvas.drawLine(410, 750, 410, 1000, titlePaint);
+                    canvas.drawLine(790, 750, 790, 1000, titlePaint);
 
-                    /*titlePaint.setTextAlign(Paint.Align.CENTER);
-                    titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
-                    titlePaint.setTextSize(70);
-                    canvas.drawText("Lunes", pageWidth/2, 1780, titlePaint);*/
+                    // J-V-S
+                    // Linea horizontal
+                    canvas.drawLine(30, 1250, 1170, 1250, titlePaint);
+                    // Linea Vertical
+                    canvas.drawLine(30, 1000, 30, 1250, titlePaint);
+                    canvas.drawLine(410, 1000, 410, 1250, titlePaint);
+                    canvas.drawLine(790, 1000, 790, 1250, titlePaint);
+                    canvas.drawLine(1170, 1000, 1170, 1250, titlePaint);
+                    titlePaint.setStrokeWidth(0);
+                    titlePaint.setStyle(Paint.Style.FILL);
+
+                    // D
+                    // Linea horizontal
+                    canvas.drawLine(30, 1500, 410, 1500, titlePaint);
+                    // Linea Vertical
+                    canvas.drawLine(30, 1250, 30, 1500, titlePaint);
+                    canvas.drawLine(410, 1250, 410, 1500, titlePaint);
+                    titlePaint.setStrokeWidth(0);
+                    titlePaint.setStyle(Paint.Style.FILL);
+                    /* ----------------------------- */
+
+                    /* LOGO PARTE DE ABAJO DEL PDF */
+                    canvas.drawBitmap(scaledbmp, 515, 1800, myPaint);
+                    /* --------------------------- */
 
                     document.finishPage(page);
 
