@@ -62,6 +62,7 @@
     <string name="agregar_comida_tipo">Tipo de comida:</string>
     <string name="agregar_comida_nombre">Nombre de la comida</string>
     <string name="agregar_comida_ingrediente">Ingredientes</string>
+    <string name="agregar_comida_calorias">Calorías</string>
 
     <!-- COMIDA -->
     <string name="comida_text">Comida</string>

@@ -3,8 +3,37 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/layout/activity_login.xml" value="0.38697916666666665" />
-        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/layout/activity_main.xml" value="0.38697916666666665" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/drawable-v24/ic_challenge.xml" value="0.403125" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/drawable-v24/ic_home.xml" value="0.403125" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/drawable-v24/ic_profile.xml" value="0.403125" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/drawable-v24/ic_settings.xml" value="0.403125" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/drawable-v24/input_design.xml" value="0.403125" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/drawable-v24/item_selector.xml" value="0.403125" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/drawable-v24/round_corner.xml" value="0.403125" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/drawable/config_modificar_perfil_btn.xml" value="0.403125" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.403125" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/drawable/ic_next.xml" value="0.403125" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/drawable/ic_pacientes.xml" value="0.403125" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/drawable/ic_recetas.xml" value="0.403125" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/drawable/style_spinner.xml" value="0.403125" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/layout/activity_register.xml" value="0.38697916666666665" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/layout/fragment_agregar_cena.xml" value="0.25" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/layout/fragment_agregar_comida.xml" value="0.33" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/layout/fragment_agregar_desayuno.xml" value="0.33" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/layout/fragment_agregar_paciente.xml" value="0.33" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/layout/fragment_cena.xml" value="0.375" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/layout/fragment_comida.xml" value="0.375" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/layout/fragment_desayuno.xml" value="0.38697916666666665" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/layout/fragment_pacientes.xml" value="0.33" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/layout/fragment_profile.xml" value="0.33" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/layout/fragment_recetas.xml" value="0.38697916666666665" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/layout/fragment_settings.xml" value="0.38697916666666665" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/layout/item_list_comidas.xml" value="0.38697916666666665" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/layout/item_list_pacientes.xml" value="0.38697916666666665" />
+        <entry key="..\:/ProyectosAndroid/FitNutricion/app/src/main/res/menu/item_menu.xml" value="0.38697916666666665" />
       </map>
     </option>
   </component>

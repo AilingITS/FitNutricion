@@ -12,149 +12,162 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="80dp">
 
-        <TextView
-            android:id="@+id/tituloInicio"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="32dp"
-            android:paddingTop="30dp"
-            android:text="@string/home_text"
-            android:textAlignment="center"
-            android:textColor="?attr/text_color"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            tools:ignore="MissingConstraints" />
+            android:layout_height="match_parent">
 
-        <!--<Spinner
-            android:id="@+id/spinnerComidas"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/style_spinner"
-            android:textColor="?attr/text_color"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloInicio" />-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/home_pacientes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:paddingLeft="12dp"
-            android:text="@string/pacientes_home"
-            android:textColor="?attr/text_color"
-            android:textSize="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/spinnerPacientes"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_crear_pdf" />
+                <TextView
+                    android:id="@+id/tituloInicio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="32dp"
+                    android:paddingTop="30dp"
+                    android:text="@string/home_text"
+                    android:textAlignment="center"
+                    android:textColor="?attr/text_color"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    tools:ignore="MissingConstraints" />
 
-        <Spinner
-            android:id="@+id/spinnerPacientes"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/style_spinner"
-            android:textColor="?attr/text_color"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/home_pacientes" />
+                <!--<Spinner
+                    android:id="@+id/spinnerComidas"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/style_spinner"
+                    android:textColor="?attr/text_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tituloInicio" />-->
 
-        <Button
-            android:id="@+id/btn_crear_pdf"
-            android:layout_width="150dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/btn_login"
-            android:backgroundTint="@color/btn_cafe_iniciar"
-            android:text="@string/home_generar_pdf"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btn_eliminar_receta"
-            app:layout_constraintTop_toBottomOf="@+id/tituloInicio" />
+                <TextView
+                    android:id="@+id/home_pacientes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="32dp"
+                    android:paddingLeft="12dp"
+                    android:text="@string/pacientes_home"
+                    android:textColor="?attr/text_color"
+                    android:textSize="16dp"
+                    app:layout_constraintBottom_toTopOf="@+id/spinnerPacientes"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_crear_pdf" />
 
-        <Button
-            android:id="@+id/btn_eliminar_receta"
-            android:layout_width="150dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/btn_login"
-            android:backgroundTint="@color/btn_cafe_iniciar"
-            android:text="@string/home_eliminar_receta"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toStartOf="@+id/btn_crear_pdf"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloInicio" />
+                <Spinner
+                    android:id="@+id/spinnerPacientes"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/style_spinner"
+                    android:textColor="?attr/text_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/home_pacientes" />
 
-        <Button
-            android:id="@+id/desayunoHome"
-            android:layout_width="match_parent"
-            android:layout_height="110dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/input_design"
-            android:text="@string/comidaDesayuno"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerPacientes" />
+                <Button
+                    android:id="@+id/btn_crear_pdf"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="@drawable/btn_login"
+                    android:backgroundTint="@color/btn_cafe_iniciar"
+                    android:text="@string/home_generar_pdf"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/btn_eliminar_receta"
+                    app:layout_constraintTop_toBottomOf="@+id/tituloInicio" />
 
-        <Button
-            android:id="@+id/comidaHome"
-            android:layout_width="match_parent"
-            android:layout_height="110dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/input_design"
-            android:text="@string/comidaComida"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/desayunoHome" />
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/btn_login"
+                    android:backgroundTint="@color/btn_cafe_iniciar"
+                    android:text="@string/home_visualizar"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_crear_pdf"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tituloInicio" />
 
-        <Button
-            android:id="@+id/comidaCena"
-            android:layout_width="match_parent"
-            android:layout_height="110dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/input_design"
-            android:text="@string/comidaCena"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/comidaHome" />
+                <Button
+                    android:id="@+id/desayunoHome"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/input_design"
+                    android:text="@string/comidaDesayuno"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerPacientes" />
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/btn_login"
-            android:backgroundTint="@color/btn_cafe_iniciar"
-            android:text="@string/home_visualizar"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+                <Button
+                    android:id="@+id/comidaHome"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/input_design"
+                    android:text="@string/comidaComida"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/desayunoHome" />
 
+                <Button
+                    android:id="@+id/comidaCena"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/input_design"
+                    android:text="@string/comidaCena"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/comidaHome" />
+
+
+                <Button
+                    android:id="@+id/btn_eliminar_receta"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/btn_login"
+                    android:backgroundTint="@color/contrasteboton"
+                    android:text="@string/home_eliminar_receta"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+            </LinearLayout>
+        </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

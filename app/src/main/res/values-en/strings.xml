@@ -85,4 +85,5 @@
 
     <!-- ITEM LIST COMIDAS -->
     <string name="desaYUNO_item_list">DESAYUNO</string>
+    <string name="agregar_comida_calorias">Calories</string>
 </resources>
