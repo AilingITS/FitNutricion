@@ -41,6 +41,7 @@ public class pacientesAdapter  extends RecyclerView.Adapter<pacientesAdapter.pac
         holder.p_Nombre.setText(pacientes.getP_Nombre());
         holder.p_Correo.setText(pacientes.getP_Correo());
         holder.p_Edad.setText(pacientes.getP_Edad());
+        holder.p_Sexo.setText(pacientes.getP_Sexo());
 
     }
 
@@ -51,7 +52,7 @@ public class pacientesAdapter  extends RecyclerView.Adapter<pacientesAdapter.pac
 
     public static class pacientesHolder extends RecyclerView.ViewHolder{
 
-        TextView p_Nombre, p_Correo, p_Edad;
+        TextView p_Nombre, p_Correo, p_Edad, p_Sexo;
 
         public pacientesHolder(View itemView){
             super(itemView);
@@ -59,6 +60,7 @@ public class pacientesAdapter  extends RecyclerView.Adapter<pacientesAdapter.pac
             p_Nombre = itemView.findViewById(R.id.item_name);
             p_Correo = itemView.findViewById(R.id.item_mail);
             p_Edad = itemView.findViewById(R.id.item_age);
+            p_Sexo = itemView.findViewById(R.id.item_sexo);
         }
     }
 

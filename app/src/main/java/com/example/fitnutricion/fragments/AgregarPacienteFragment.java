@@ -14,8 +14,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.fitnutricion.LoginActivity;
@@ -48,11 +50,12 @@ public class AgregarPacienteFragment extends Fragment {
     private View vista;
     private String userID;
     private FirebaseAuth mAuth;
+    private DatabaseReference dbRef;
+
     Button btn_añadirPacientes;
     private EditText paciente_nombreCompleto, paciente_correo, paciente_edad;
-
     private String pacienteID, saveCurrentDate, saveCurrentTime;
-    private DatabaseReference dbRef;
+    Spinner sexoSpinner;
 
     public AgregarPacienteFragment() {
         // Required empty public constructor
@@ -97,6 +100,12 @@ public class AgregarPacienteFragment extends Fragment {
         paciente_correo = vista.findViewById(R.id.paciente_correo);
         paciente_edad = vista.findViewById(R.id.paciente_edad);
 
+        sexoSpinner = (Spinner) vista.findViewById(R.id.sexoSpinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.ag_sexoArray, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sexoSpinner.setAdapter(adapter);
+
         btn_añadirPacientes = (Button) vista.findViewById(R.id.btn_añadirPacientes);
         btn_añadirPacientes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,9 +126,11 @@ public class AgregarPacienteFragment extends Fragment {
 
     public void createPaciente(){
         //Obtenemos los datos que ingreso el usuario
+
         String name = paciente_nombreCompleto.getText().toString();
         String mail = paciente_correo.getText().toString();
         String age = paciente_edad.getText().toString();
+        String sexo = sexoSpinner.getSelectedItem().toString();
 
         //Condiciones para verificar que los datos esten correctos
         if(TextUtils.isEmpty(name)){
@@ -137,6 +148,7 @@ public class AgregarPacienteFragment extends Fragment {
             paciente.put("p_Nombre", name);
             paciente.put("p_Correo", mail);
             paciente.put("p_Edad", age);
+            paciente.put("p_Sexo", sexo);
 
             Calendar calendar = Calendar.getInstance();
 

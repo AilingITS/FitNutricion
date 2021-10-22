@@ -2,7 +2,7 @@ package com.example.fitnutricion.firebase;
 
 public class Pacientes{
 
-    String p_Nombre, p_Correo, p_Edad;
+    String p_Nombre, p_Correo, p_Edad, p_Sexo;
 
     public String getP_Nombre() {
         return p_Nombre;
@@ -16,4 +16,5 @@ public class Pacientes{
         return p_Edad;
     }
 
+    public String getP_Sexo() { return p_Sexo; }
 }

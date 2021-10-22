@@ -46,6 +46,7 @@
     <string name="ag_nombreCompleto">Nombre completo</string>
     <string name="ag_datosPaciente">Ingrese los datos del paciente</string>
     <string name="ag_edadPaciente">Edad</string>
+    <string name="ag_sexoPaciente">Sexo</string>
 
     <!-- RECETAS -->
     <string name="agregarComida">Agregar comida</string>
