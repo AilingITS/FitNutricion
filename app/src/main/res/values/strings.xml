@@ -89,7 +89,7 @@
     <string name="spinner_Cena">Cena</string>
     <string name="home_generar_pdf">Generar PDF</string>
     <string name="home_eliminar_receta">Eliminar receta</string>
-    <string name="home_visualizar">Visualizar PDF</string>
+    <string name="home_visualizar">Visualizar Receta</string>
 
     <!-- ITEM LIST COMIDAS -->
     <string name="desaYUNO_item_list">DESAYUNO</string>

@@ -1,8 +1,6 @@
 package com.example.fitnutricion.fragments;
 
 import android.Manifest;
-import android.app.Activity;
-import android.content.ContextWrapper;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,17 +24,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.fitnutricion.R;
-import com.example.fitnutricion.firebase.Pacientes;
 import com.example.fitnutricion.firebase.SpinnerPaciente;
+import com.example.fitnutricion.pacienteReceta.PacienteDesayunoFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -64,7 +63,7 @@ public class HomeFragment extends Fragment {
 
     String pacienteID;
     private Spinner spinnerPacientes;
-    Button btn_crear_pdf;
+    Button btn_crear_pdf, desayunoHome, comidaHome, comidaCena;
     Bitmap bmp, scaledbmp;
     int pageWidth = 1200;
 
@@ -117,6 +116,7 @@ public class HomeFragment extends Fragment {
         //spinnerComidas = vista.findViewById(R.id.spinnerComidas);
         spinnerPacientes = vista.findViewById(R.id.spinnerPacientes);
 
+        desayunoHome = (Button) vista.findViewById(R.id.desayunoHome);
         btn_crear_pdf = (Button) vista.findViewById(R.id.btn_crear_pdf);
         bmp = BitmapFactory.decodeResource(getResources(), R.drawable.logo_degradado);
         scaledbmp = Bitmap.createScaledBitmap(bmp, 180, 180, false);
@@ -136,6 +136,13 @@ public class HomeFragment extends Fragment {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }
+        });
+
+        desayunoHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                replaceFragment(new PacienteDesayunoFragment());
             }
         });
 
@@ -159,7 +166,6 @@ public class HomeFragment extends Fragment {
                 if(snapshot.exists()){
 
                     Calendar calendar = Calendar.getInstance();
-
                     //SimpleDateFormat currentDate = new SimpleDateFormat(" dd MM, yyyy");
                     SimpleDateFormat currentDate = new SimpleDateFormat("dd/MM/yyyy");
                     String saveCurrentDate = currentDate.format(calendar.getTime());
@@ -380,6 +386,13 @@ public class HomeFragment extends Fragment {
                     titlePaint2.setColor(Color.rgb(0,0,0));
                     canvas2.drawText("Nombre:", 100, 500, titlePaint2);
 
+                    //Lunes d_NOMBRE Firebase
+                    titlePaint2.setTextAlign(Paint.Align.LEFT);
+                    titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                    titlePaint2.setTextSize(45);
+                    titlePaint2.setColor(Color.rgb(0,0,0));
+                    canvas2.drawText("Tostadas", 280, 500, titlePaint2);
+
                     titlePaint2.setTextAlign(Paint.Align.LEFT);
                     titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                     titlePaint2.setTextSize(45);
@@ -476,62 +489,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        /*String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
-        File file = new File(pdfPath, "FitNutricion.pdf");
-        OutputStream outputStream = new FileOutputStream(file);
-
-           DECLARANDO DOCUMENTO
-
-        PdfDocument document = new PdfDocument();
-
-           INICIO DE PRIMERA PAGINA
-
-        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(1200, 2010, 1).create();
-        PdfDocument.Page page = document.startPage(pageInfo);
-
-        Canvas canvas = page.getCanvas();
-        Paint myPaint = new Paint();
-        Paint titlePaint = new Paint();
-        canvas.drawBitmap(scaledbmp, 0, 0, myPaint);
-
-        titlePaint.setTextAlign(Paint.Align.CENTER);
-        titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
-        titlePaint.setTextSize(70);
-        canvas.drawText("RECETA", pageWidth/2, 30, titlePaint);
-
-        titlePaint.setTextAlign(Paint.Align.CENTER);
-        titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
-        titlePaint.setTextSize(70);
-        canvas.drawText("Lunes", pageWidth/2, 500, titlePaint);
-
-        document.finishPage(page);
-
-            INICIO DE SEGUNDA PAGINA
-
-        PdfDocument.PageInfo pageInfo2 = new PdfDocument.PageInfo.Builder(1200, 2010, 1).create();
-        PdfDocument.Page page2 = document.startPage(pageInfo2);
-
-        Canvas canvas2 = page2.getCanvas();
-        Paint myPaint2 = new Paint();
-        Paint titlePaint2 = new Paint();
-        canvas2.drawBitmap(scaledbmp, 0, 0, myPaint2);
-
-        titlePaint2.setTextAlign(Paint.Align.CENTER);
-        titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
-        titlePaint2.setTextSize(70);
-        canvas2.drawText("RECETA", pageWidth/2, 270, titlePaint2);
-
-        titlePaint2.setTextAlign(Paint.Align.CENTER);
-        titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
-        titlePaint2.setTextSize(70);
-        canvas2.drawText("Martes", pageWidth/2, 500, titlePaint2);
-
-        document.finishPage(page2);
-
-        document.writeTo(outputStream);
-        document.close();
-        Toast.makeText(getActivity(), "PDF generado correctamente", Toast.LENGTH_SHORT).show();*/
-
     }
 
     public void loadNamePacientes(){
@@ -569,6 +526,13 @@ public class HomeFragment extends Fragment {
 
             }
         });
+    }
+
+    private void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.body_container,fragment);
+        fragmentTransaction.commit();
     }
 
     /*private String getFilePath(){
