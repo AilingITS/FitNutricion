@@ -1,9 +1,12 @@
 package com.example.fitnutricion.firebase;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +17,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fitnutricion.R;
+import com.example.fitnutricion.fragments.EditarPacienteFragment;
 import com.example.fitnutricion.fragments.HomeFragment;
 import com.example.fitnutricion.fragments.PacientesFragment;
 import com.example.fitnutricion.fragments.ProfileFragment;
@@ -42,14 +47,16 @@ import java.util.List;
 public class pacientesAdapter  extends RecyclerView.Adapter<pacientesAdapter.pacientesHolder> {
 
     Context context;
+    View view;
     ArrayList<Pacientes> list;
 
     String userID;
     FirebaseAuth mAuth;
     DatabaseReference dbRef;
 
-    public pacientesAdapter(Context context, ArrayList<Pacientes> list) {
+    public pacientesAdapter(Context context, View view, ArrayList<Pacientes> list) {
         this.context = context;
+        this.view = view;
         this.list = list;
     }
 
@@ -89,7 +96,10 @@ public class pacientesAdapter  extends RecyclerView.Adapter<pacientesAdapter.pac
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if(opciones[which] == "Editar"){
-                            Toast.makeText(context, "Se ha editado correctamente", Toast.LENGTH_SHORT).show();
+                            AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                            Fragment myFragment = new EditarPacienteFragment(pacientes.getP_ID());
+                            activity.getSupportFragmentManager().beginTransaction().replace(R.id.body_container, myFragment).addToBackStack(null).commit();
+
                         }
                         if(opciones[which] == "Borrar"){
                             list.clear();

@@ -51,6 +51,9 @@
         <item>Femenino</item>
     </string-array>
 
+    <!-- EDITAR PACIENTE -->
+    <string name="ed_guardarCambios">Guardar cambios</string>
+
     <!-- RECETAS -->
     <string name="agregarComida">Agregar comida</string>
     <string name="comidaDesayuno">Desayuno</string>

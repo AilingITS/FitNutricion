@@ -47,6 +47,13 @@
     <string name="ag_datosPaciente">Ingrese los datos del paciente</string>
     <string name="ag_edadPaciente">Edad</string>
     <string name="ag_sexoPaciente">Sexo</string>
+    <string-array name="ag_sexoArray">
+        <item>Masculino</item>
+        <item>Femenino</item>
+    </string-array>
+
+    <!-- EDITAR PACIENTE -->
+    <string name="ed_guardarCambios">Guardar cambios</string>
 
     <!-- RECETAS -->
     <string name="agregarComida">Agregar comida</string>

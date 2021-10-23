@@ -98,7 +98,7 @@ public class PacientesFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         list = new ArrayList<>();
-        myAdapter = new pacientesAdapter(getContext(),list);
+        myAdapter = new pacientesAdapter(getContext(), vista, list);
         recyclerView.setAdapter(myAdapter);
 
         btn_agregarPacientes.setOnClickListener(new View.OnClickListener() {
