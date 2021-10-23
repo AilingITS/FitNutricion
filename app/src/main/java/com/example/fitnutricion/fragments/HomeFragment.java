@@ -326,22 +326,138 @@ public class HomeFragment extends Fragment {
                     Canvas canvas2 = page2.getCanvas();
                     Paint myPaint2 = new Paint();
                     Paint titlePaint2 = new Paint();
-                    canvas2.drawBitmap(scaledbmp, 425, 1800, myPaint2);
 
+                    /* DATOS DEL NUTRIOLOGO */
+                    titlePaint2.setTextAlign(Paint.Align.LEFT);
+                    titlePaint2.setTextSize(40);
+                    titlePaint2.setColor(Color.rgb(110, 184, 245));
+                    canvas2.drawText("Dr.: " + nombre_nutri_pdf, 50, 75, titlePaint2);
+
+                    titlePaint2.setTextAlign(Paint.Align.LEFT);
+                    titlePaint2.setTextSize(40);
+                    titlePaint2.setColor(Color.rgb(110, 184, 245));
+                    canvas2.drawText(correo_nutri_pdf, 50, 110, titlePaint2);
+                    /* -------------------- */
+
+                    /* ALIMENTOS LUNES */
                     titlePaint2.setTextAlign(Paint.Align.CENTER);
                     titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
-                    titlePaint2.setTextSize(70);
-                    canvas2.drawText("RECETA SEMANAL", pageWidth/2, 100, titlePaint2);
+                    titlePaint2.setTextSize(65);
+                    titlePaint2.setColor(Color.rgb(0,0,0));
+                    canvas2.drawText("Lunes", pageWidth/2, 260, titlePaint2);
 
-                    titlePaint2.setTextAlign(Paint.Align.CENTER);
-                    titlePaint2.setTextSize(50);
-                    titlePaint2.setColor(Color.rgb(122, 119, 119));
-                    canvas2.drawText("Nutriólogo: " + nombre_nutri_pdf, pageWidth/2, 160, titlePaint2);
+                    titlePaint2.setStyle(Paint.Style.STROKE);
+                    titlePaint2.setStrokeWidth(2);
+                    // Tablas Desayuno, comida y cena
+                    canvas2.drawRect(60, 380, 1140, 780, titlePaint2);
+                    canvas2.drawLine(60, 440, 1140, 440, titlePaint);
 
-                    titlePaint2.setTextAlign(Paint.Align.CENTER);
+                    canvas2.drawRect(60, 830, 1140, 1230, titlePaint2);
+                    canvas2.drawLine(60, 890, 1140, 890, titlePaint);
+
+                    canvas2.drawRect(60, 1280, 1140, 1680, titlePaint2);
+                    canvas2.drawLine(60, 1340, 1140, 1340, titlePaint);
+
+                    titlePaint2.setStrokeWidth(0);
+                    titlePaint2.setStyle(Paint.Style.FILL);
+
+                    //Desayuno
+                    titlePaint2.setTextAlign(Paint.Align.RIGHT);
+                    titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
                     titlePaint2.setTextSize(50);
-                    titlePaint2.setColor(Color.rgb(122, 119, 119));
-                    canvas2.drawText("Correo: " + correo_nutri_pdf, pageWidth/2, 220, titlePaint2);
+                    titlePaint2.setColor(Color.rgb(0,0,0));
+                    canvas2.drawText("Tipo de alimento:", 670, 430, titlePaint2);
+
+                    titlePaint2.setTextAlign(Paint.Align.LEFT);
+                    titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint2.setTextSize(50);
+                    titlePaint2.setColor(Color.rgb(0,0,0));
+                    canvas2.drawText("Desayuno", 700, 430, titlePaint2);
+
+                    titlePaint2.setTextAlign(Paint.Align.LEFT);
+                    titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                    titlePaint2.setTextSize(45);
+                    titlePaint2.setColor(Color.rgb(0,0,0));
+                    canvas2.drawText("Nombre:", 100, 500, titlePaint2);
+
+                    titlePaint2.setTextAlign(Paint.Align.LEFT);
+                    titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                    titlePaint2.setTextSize(45);
+                    titlePaint2.setColor(Color.rgb(0,0,0));
+                    canvas2.drawText("Ingredientes:", 100, 600, titlePaint2);
+
+                    titlePaint2.setTextAlign(Paint.Align.LEFT);
+                    titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                    titlePaint2.setTextSize(40);
+                    titlePaint2.setColor(Color.rgb(0,0,0));
+                    canvas2.drawText("Contenido calórico aproximado:", 100, 760, titlePaint2);
+
+                    //Comida
+                    titlePaint2.setTextAlign(Paint.Align.RIGHT);
+                    titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint2.setTextSize(50);
+                    titlePaint2.setColor(Color.rgb(0,0,0));
+                    canvas2.drawText("Tipo de alimento:", 670, 880, titlePaint2);
+
+                    titlePaint2.setTextAlign(Paint.Align.LEFT);
+                    titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint2.setTextSize(50);
+                    titlePaint2.setColor(Color.rgb(0,0,0));
+                    canvas2.drawText("Comida", 700, 880, titlePaint2);
+
+                    titlePaint2.setTextAlign(Paint.Align.LEFT);
+                    titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                    titlePaint2.setTextSize(45);
+                    titlePaint2.setColor(Color.rgb(0,0,0));
+                    canvas2.drawText("Nombre:", 100, 950, titlePaint2);
+
+                    titlePaint2.setTextAlign(Paint.Align.LEFT);
+                    titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                    titlePaint2.setTextSize(45);
+                    titlePaint2.setColor(Color.rgb(0,0,0));
+                    canvas2.drawText("Ingredientes:", 100, 1050, titlePaint2);
+
+                    titlePaint2.setTextAlign(Paint.Align.LEFT);
+                    titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                    titlePaint2.setTextSize(40);
+                    titlePaint2.setColor(Color.rgb(0,0,0));
+                    canvas2.drawText("Contenido calórico aproximado:", 100, 1210, titlePaint2);
+
+                    //Cena
+                    titlePaint2.setTextAlign(Paint.Align.RIGHT);
+                    titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint2.setTextSize(50);
+                    titlePaint2.setColor(Color.rgb(0,0,0));
+                    canvas2.drawText("Tipo de alimento:", 670, 1330, titlePaint2);
+
+                    titlePaint2.setTextAlign(Paint.Align.LEFT);
+                    titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint2.setTextSize(50);
+                    titlePaint2.setColor(Color.rgb(0,0,0));
+                    canvas2.drawText("Cena", 700, 1330, titlePaint2);
+
+                    titlePaint2.setTextAlign(Paint.Align.LEFT);
+                    titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                    titlePaint2.setTextSize(45);
+                    titlePaint2.setColor(Color.rgb(0,0,0));
+                    canvas2.drawText("Nombre:", 100, 1400, titlePaint2);
+
+                    titlePaint2.setTextAlign(Paint.Align.LEFT);
+                    titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                    titlePaint2.setTextSize(45);
+                    titlePaint2.setColor(Color.rgb(0,0,0));
+                    canvas2.drawText("Ingredientes:", 100, 1500, titlePaint2);
+
+                    titlePaint2.setTextAlign(Paint.Align.LEFT);
+                    titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                    titlePaint2.setTextSize(40);
+                    titlePaint2.setColor(Color.rgb(0,0,0));
+                    canvas2.drawText("Contenido calórico aproximado:", 100, 1660, titlePaint2);
+                    /* ---------------- */
+
+                    /* LOGO PARTE DE ABAJO DEL PDF */
+                    canvas2.drawBitmap(scaledbmp, 515, 1800, myPaint2);
+                    /* --------------------------- */
 
                     document.finishPage(page2);
 
