@@ -14,12 +14,12 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             tools:ignore="MissingConstraints">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <TextView
@@ -51,7 +51,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/pacienteList"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="497dp"
                     android:layout_marginTop="16dp"
                     tools:layout_editor_absoluteX="0dp" />
 

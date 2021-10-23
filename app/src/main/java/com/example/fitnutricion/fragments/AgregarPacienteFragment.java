@@ -143,13 +143,6 @@ public class AgregarPacienteFragment extends Fragment {
             paciente_edad.setError("Ingrese una edad");
             paciente_edad.requestFocus();
         } else {
-            //Map para registrar a un usuario con sus datos
-            Map<String, Object> paciente = new HashMap<>();
-            paciente.put("p_Nombre", name);
-            paciente.put("p_Correo", mail);
-            paciente.put("p_Edad", age);
-            paciente.put("p_Sexo", sexo);
-
             Calendar calendar = Calendar.getInstance();
 
             //SimpleDateFormat currentDate = new SimpleDateFormat(" dd MM, yyyy");
@@ -160,6 +153,14 @@ public class AgregarPacienteFragment extends Fragment {
             saveCurrentTime = currentTime.format(calendar.getTime());
 
             pacienteID = saveCurrentDate + saveCurrentTime;
+
+            //Map para registrar a un usuario con sus datos
+            Map<String, Object> paciente = new HashMap<>();
+            paciente.put("p_ID", pacienteID);
+            paciente.put("p_Nombre", name);
+            paciente.put("p_Correo", mail);
+            paciente.put("p_Edad", age);
+            paciente.put("p_Sexo", sexo);
 
             dbRef.child(pacienteID).updateChildren(paciente).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
