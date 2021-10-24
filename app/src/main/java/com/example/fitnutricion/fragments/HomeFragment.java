@@ -29,6 +29,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.fitnutricion.R;
 import com.example.fitnutricion.firebase.SpinnerPaciente;
+import com.example.fitnutricion.pacienteReceta.PacienteCenaFragment;
+import com.example.fitnutricion.pacienteReceta.PacienteComidaFragment;
 import com.example.fitnutricion.pacienteReceta.PacienteDesayunoFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -117,6 +119,8 @@ public class HomeFragment extends Fragment {
         spinnerPacientes = vista.findViewById(R.id.spinnerPacientes);
 
         desayunoHome = (Button) vista.findViewById(R.id.desayunoHome);
+        comidaHome = (Button) vista.findViewById(R.id.comidaHome);
+        comidaCena = (Button) vista.findViewById(R.id.comidaCena);
         btn_crear_pdf = (Button) vista.findViewById(R.id.btn_crear_pdf);
         bmp = BitmapFactory.decodeResource(getResources(), R.drawable.logo_degradado);
         scaledbmp = Bitmap.createScaledBitmap(bmp, 180, 180, false);
@@ -143,6 +147,20 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 replaceFragment(new PacienteDesayunoFragment());
+            }
+        });
+
+        comidaHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                replaceFragment(new PacienteComidaFragment());
+            }
+        });
+
+        comidaCena.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                replaceFragment(new PacienteCenaFragment());
             }
         });
 

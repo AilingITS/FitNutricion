@@ -122,13 +122,13 @@
                     android:orientation="horizontal">
 
                     <Button
+                        android:id="@+id/btn_f_agregarComida"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:background="@color/btn_cafe_iniciar"
                         android:textColor="@color/white"
                         android:layout_gravity="center_horizontal"
                         android:text="@string/item_list_Agregar"
-
                         />
 
                 </LinearLayout>

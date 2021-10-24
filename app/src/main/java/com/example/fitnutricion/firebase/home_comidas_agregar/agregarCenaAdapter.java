@@ -19,12 +19,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class agregarComidaAdapter extends RecyclerView.Adapter<agregarComidaAdapter.agregarComidaHolder>{
-
+public class agregarCenaAdapter extends RecyclerView.Adapter<agregarCenaAdapter.agregarCenaHolder>{
     Context context;
-    ArrayList<agregarComida> list;
+    ArrayList<agregarCena> list;
 
-    public agregarComidaAdapter(Context context, ArrayList<agregarComida> list) {
+    public agregarCenaAdapter(Context context, ArrayList<agregarCena> list) {
         this.context = context;
         this.list = list;
     }
@@ -32,14 +31,14 @@ public class agregarComidaAdapter extends RecyclerView.Adapter<agregarComidaAdap
     @NonNull
     @NotNull
     @Override
-    public agregarComidaAdapter.agregarComidaHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+    public agregarCenaAdapter.agregarCenaHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.item_list_agregar_comida_to_receta,parent,false);
-        return new agregarComidaAdapter.agregarComidaHolder(v);
+        return new agregarCenaAdapter.agregarCenaHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull agregarComidaAdapter.agregarComidaHolder holder, int position) {
-        agregarComida foods = list.get(position);
+    public void onBindViewHolder(@NonNull @NotNull agregarCenaAdapter.agregarCenaHolder holder, int position) {
+        agregarCena foods = list.get(position);
         holder.f_tipo.setText(foods.getF_tipo());
         holder.f_nombrecomida.setText(foods.getF_nombrecomida());
 
@@ -56,13 +55,13 @@ public class agregarComidaAdapter extends RecyclerView.Adapter<agregarComidaAdap
         return list.size();
     }
 
-    public static class agregarComidaHolder extends RecyclerView.ViewHolder{
+    public static class agregarCenaHolder extends RecyclerView.ViewHolder{
 
         TextView f_tipo, f_nombrecomida;
         ImageView f_image;
         Spinner item_list_spinner;
 
-        public agregarComidaHolder(View itemView){
+        public agregarCenaHolder(View itemView){
             super(itemView);
 
             f_tipo = itemView.findViewById(R.id.item_tipo);
@@ -71,5 +70,4 @@ public class agregarComidaAdapter extends RecyclerView.Adapter<agregarComidaAdap
             item_list_spinner = (Spinner) itemView.findViewById(R.id.item_list_spinner);
         }
     }
-
 }

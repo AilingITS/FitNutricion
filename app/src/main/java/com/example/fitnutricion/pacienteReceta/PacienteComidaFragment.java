@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.fitnutricion.R;
+import com.example.fitnutricion.firebase.home_comidas_agregar.agregarComida;
+import com.example.fitnutricion.firebase.home_comidas_agregar.agregarComidaAdapter;
 import com.example.fitnutricion.firebase.home_comidas_agregar.agregarDesayuno;
 import com.example.fitnutricion.firebase.home_comidas_agregar.agregarDesayunoAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,7 +27,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class PacienteDesayunoFragment extends Fragment {
+public class PacienteComidaFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -33,21 +35,20 @@ public class PacienteDesayunoFragment extends Fragment {
     private String mParam2;
 
     private View vista;
-
     private String userID;
     private FirebaseAuth mAuth;
     DatabaseReference dbRef;
 
     RecyclerView recyclerView;
-    agregarDesayunoAdapter myAdapter;
-    ArrayList<agregarDesayuno> list;
+    agregarComidaAdapter myAdapter;
+    ArrayList<agregarComida> list;
 
-    public PacienteDesayunoFragment() {
+    public PacienteComidaFragment() {
         // Required empty public constructor
     }
 
-    public static PacienteDesayunoFragment newInstance(String param1, String param2) {
-        PacienteDesayunoFragment fragment = new PacienteDesayunoFragment();
+    public static PacienteComidaFragment newInstance(String param1, String param2) {
+        PacienteComidaFragment fragment = new PacienteComidaFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -67,19 +68,18 @@ public class PacienteDesayunoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        vista = inflater.inflate(R.layout.fragment_paciente_desayuno, container, false);
+        vista = inflater.inflate(R.layout.fragment_paciente_comida, container, false);
 
         mAuth = FirebaseAuth.getInstance();
         userID = mAuth.getCurrentUser().getUid();
-        dbRef = FirebaseDatabase.getInstance().getReference().child("users").child(userID).child("desayunos");
+        dbRef = FirebaseDatabase.getInstance().getReference().child("users").child(userID).child("comidas");
 
-        recyclerView = vista.findViewById(R.id.agregardesayunoList);
+        recyclerView = vista.findViewById(R.id.agregarcomidaList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         list = new ArrayList<>();
-        myAdapter = new agregarDesayunoAdapter(getContext(), vista, list);
+        myAdapter = new agregarComidaAdapter(getContext(),list);
         recyclerView.setAdapter(myAdapter);
 
         dbRef.addValueEventListener(new ValueEventListener() {
@@ -87,7 +87,7 @@ public class PacienteDesayunoFragment extends Fragment {
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
 
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    agregarDesayuno agregar_comida = dataSnapshot.getValue(agregarDesayuno.class);
+                    agregarComida agregar_comida = dataSnapshot.getValue(agregarComida.class);
                     list.add(agregar_comida);
                 }
                 myAdapter.notifyDataSetChanged();
