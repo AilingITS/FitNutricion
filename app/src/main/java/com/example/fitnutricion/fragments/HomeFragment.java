@@ -65,12 +65,13 @@ public class HomeFragment extends Fragment {
 
     String pacienteID;
     private Spinner spinnerPacientes;
-    Button btn_crear_pdf, desayunoHome, comidaHome, comidaCena;
+    Button btn_crear_pdf, desayunoHome, comidaHome, comidaCena, btn_eliminar_receta;
     Bitmap bmp, scaledbmp;
     int pageWidth = 1200;
 
     DatabaseReference dbRef;
     DatabaseReference dbRef_pdf;
+    DatabaseReference dbRef_eliminarReceta;
     private FirebaseDatabase firebaseDatabase_pdf;
 
     public HomeFragment() {
@@ -113,6 +114,7 @@ public class HomeFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         userID = mAuth.getCurrentUser().getUid();
         dbRef = FirebaseDatabase.getInstance().getReference("users").child(userID);
+        dbRef_eliminarReceta = FirebaseDatabase.getInstance().getReference().child("users").child(userID);
         firebaseDatabase_pdf = FirebaseDatabase.getInstance();
         dbRef_pdf = firebaseDatabase_pdf.getReference();
         //spinnerComidas = vista.findViewById(R.id.spinnerComidas);
@@ -122,6 +124,7 @@ public class HomeFragment extends Fragment {
         comidaHome = (Button) vista.findViewById(R.id.comidaHome);
         comidaCena = (Button) vista.findViewById(R.id.comidaCena);
         btn_crear_pdf = (Button) vista.findViewById(R.id.btn_crear_pdf);
+        btn_eliminar_receta = (Button) vista.findViewById(R.id.btn_eliminar_receta);
         bmp = BitmapFactory.decodeResource(getResources(), R.drawable.logo_degradado);
         scaledbmp = Bitmap.createScaledBitmap(bmp, 180, 180, false);
 
@@ -140,6 +143,14 @@ public class HomeFragment extends Fragment {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }
+        });
+
+        btn_eliminar_receta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dbRef_eliminarReceta.child("recetas").removeValue();
+                Toast.makeText(getContext(), "Receta eliminada correctamente", Toast.LENGTH_SHORT).show();
             }
         });
 
