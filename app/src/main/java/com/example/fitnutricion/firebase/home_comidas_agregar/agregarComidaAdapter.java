@@ -4,7 +4,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -33,7 +35,7 @@ public class agregarComidaAdapter extends RecyclerView.Adapter<agregarComidaAdap
     @NotNull
     @Override
     public agregarComidaAdapter.agregarComidaHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.item_list_comidas,parent,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.item_list_agregar_comida_to_receta,parent,false);
         return new agregarComidaAdapter.agregarComidaHolder(v);
     }
 
@@ -42,8 +44,12 @@ public class agregarComidaAdapter extends RecyclerView.Adapter<agregarComidaAdap
         agregarComida foods = list.get(position);
         holder.f_tipo.setText(foods.getF_tipo());
         holder.f_nombrecomida.setText(foods.getF_nombrecomida());
-        holder.f_ingredientes.setText(foods.getF_ingredientes());
-        holder.f_calorias.setText(foods.getF_calorias());
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,
+                R.array.item_list_semana, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        holder.item_list_spinner.setAdapter(adapter);
+
         Picasso.get().load(foods.getF_image()).into(holder.f_image);
     }
 
@@ -54,17 +60,20 @@ public class agregarComidaAdapter extends RecyclerView.Adapter<agregarComidaAdap
 
     public static class agregarComidaHolder extends RecyclerView.ViewHolder{
 
-        TextView f_tipo, f_nombrecomida, f_ingredientes, f_calorias;
+        TextView f_tipo, f_nombrecomida;
+                //, f_ingredientes, f_calorias;
         ImageView f_image;
+        Spinner item_list_spinner;
 
         public agregarComidaHolder(View itemView){
             super(itemView);
 
             f_tipo = itemView.findViewById(R.id.item_tipo);
             f_nombrecomida = itemView.findViewById(R.id.item_nombrecomida);
-            f_ingredientes = itemView.findViewById(R.id.item_ingredientes);
-            f_calorias = itemView.findViewById(R.id.item_calorias);
+            //f_ingredientes = itemView.findViewById(R.id.item_ingredientes);
+            //f_calorias = itemView.findViewById(R.id.item_calorias);
             f_image = itemView.findViewById(R.id.item_imagen);
+            item_list_spinner = (Spinner) itemView.findViewById(R.id.item_list_spinner);
         }
     }
 }

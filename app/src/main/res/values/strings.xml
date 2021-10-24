@@ -94,4 +94,17 @@
     <!-- ITEM LIST COMIDAS -->
     <string name="desaYUNO_item_list">DESAYUNO</string>
 
+    <!-- ITEM LIST agregar comida -->
+    <string name="item_list_Agregar">Agregar a receta</string>
+    <string name="item_list_dia">Día</string>
+    <string-array name="item_list_semana">
+        <item>Lunes</item>
+        <item>Martes</item>
+        <item>Miercoles</item>
+        <item>Jueves</item>
+        <item>Viernes</item>
+        <item>Sabado</item>
+        <item>Domingo</item>
+    </string-array>
+
 </resources>

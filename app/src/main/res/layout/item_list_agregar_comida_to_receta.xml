@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:backgroundTint="@color/white"
+    app:cardElevation="8dp"
+    app:cardCornerRadius="8dp"
+    android:layout_margin="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -73,65 +78,60 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:paddingLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ingredientes:"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="normal" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/item_ingredientes"
+                        android:id="@+id/item_dia"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:text="Arroz"
+                        android:paddingLeft="3dp"
+                        android:text="@string/item_list_dia"
                         android:textColor="@color/black"
-                        android:textStyle="italic"
-                        android:textSize="16sp"/>
+                        android:textSize="15sp"
+                        android:textStyle="normal"/>
+
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:paddingLeft="10dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_gravity="center_horizontal"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Calorías: "
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="normal" />
+                    <Spinner
+                        android:id="@+id/item_list_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/item_calorias"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:text="0"
-                        android:textColor="@color/black"
-                        android:textStyle="italic"
-                        android:textSize="16sp"/>
-                </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal">
 
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:background="@color/btn_cafe_iniciar"
+                        android:textColor="@color/white"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/item_list_Agregar"
+
+                        />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -157,4 +157,4 @@
 
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</android.support.v7.widget.CardView>
