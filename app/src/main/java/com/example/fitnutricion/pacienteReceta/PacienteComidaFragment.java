@@ -79,7 +79,7 @@ public class PacienteComidaFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         list = new ArrayList<>();
-        myAdapter = new agregarComidaAdapter(getContext(),list);
+        myAdapter = new agregarComidaAdapter(getContext(), vista, list);
         recyclerView.setAdapter(myAdapter);
 
         dbRef.addValueEventListener(new ValueEventListener() {

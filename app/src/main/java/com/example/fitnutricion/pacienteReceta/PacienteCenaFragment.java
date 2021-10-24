@@ -82,7 +82,7 @@ public class PacienteCenaFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         list = new ArrayList<>();
-        myAdapter = new agregarCenaAdapter(getContext(),list);
+        myAdapter = new agregarCenaAdapter(getContext(), vista, list);
         recyclerView.setAdapter(myAdapter);
 
         dbRef.addValueEventListener(new ValueEventListener() {

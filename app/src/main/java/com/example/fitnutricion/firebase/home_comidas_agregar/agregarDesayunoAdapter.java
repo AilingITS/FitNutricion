@@ -38,9 +38,9 @@ import java.util.Map;
 public class agregarDesayunoAdapter extends RecyclerView.Adapter<agregarDesayunoAdapter.agregarDesayunoHolder>{
 
     Context context;
-    View view;
     ArrayList<agregarDesayuno> list;
 
+    View view;
     private String userID;
     private FirebaseAuth mAuth;
     private DatabaseReference dbRef;
@@ -95,7 +95,7 @@ public class agregarDesayunoAdapter extends RecyclerView.Adapter<agregarDesayuno
                     @Override
                     public void onComplete(@NonNull @NotNull Task<Void> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(context, "Desayuno agregado correctamente en la receta", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Desayuno agregado correctamente a la receta", Toast.LENGTH_SHORT).show();
                             /*AppCompatActivity activity = (AppCompatActivity) view.getContext();
                             Fragment myFragment = new PacienteDesayunoFragment();
                             activity.getSupportFragmentManager().beginTransaction().replace(R.id.body_container, myFragment).addToBackStack(null).commit();*/
