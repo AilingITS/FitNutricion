@@ -786,11 +786,20 @@ public class HomeFragment extends Fragment {
                     canvas2.drawText("Nombre:", 100, 500, titlePaint2);
 
                     //Lunes d_NOMBRE Firebase
-                    titlePaint2.setTextAlign(Paint.Align.LEFT);
-                    titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
-                    titlePaint2.setTextSize(45);
-                    titlePaint2.setColor(Color.rgb(0,0,0));
-                    canvas2.drawText("Tostadas", 280, 500, titlePaint2);
+                    if(snapshot.child("users").child(userID).child("recetas").child("Lunes").child("A_Desayuno").exists()){
+                        String lunesDesayuno = snapshot.child("users").child(userID).child("recetas").child("Lunes").child("A_Desayuno").child("f_nombrecomida").getValue().toString();
+                        titlePaint2.setTextAlign(Paint.Align.LEFT);
+                        titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint2.setTextSize(45);
+                        titlePaint2.setColor(Color.rgb(0,0,0));
+                        canvas2.drawText(lunesDesayuno, 280, 500, titlePaint2);
+                    } else {
+                        titlePaint2.setTextAlign(Paint.Align.LEFT);
+                        titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint2.setTextSize(45);
+                        titlePaint2.setColor(Color.rgb(0,0,0));
+                        canvas2.drawText("Sin desayuno", 280, 500, titlePaint2);
+                    }
 
                     titlePaint2.setTextAlign(Paint.Align.LEFT);
                     titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
@@ -798,11 +807,29 @@ public class HomeFragment extends Fragment {
                     titlePaint2.setColor(Color.rgb(0,0,0));
                     canvas2.drawText("Ingredientes:", 100, 600, titlePaint2);
 
+                    if(snapshot.child("users").child(userID).child("recetas").child("Lunes").child("A_Desayuno").exists()){
+                        String lunesIngredientes = snapshot.child("users").child(userID).child("recetas").child("Lunes").child("A_Desayuno").child("f_ingredientes").getValue().toString();
+                        titlePaint2.setTextAlign(Paint.Align.LEFT);
+                        titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint2.setTextSize(45);
+                        titlePaint2.setColor(Color.rgb(0,0,0));
+                        canvas2.drawText(lunesIngredientes, 100, 650, titlePaint2);
+                    }
+
                     titlePaint2.setTextAlign(Paint.Align.LEFT);
                     titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                     titlePaint2.setTextSize(40);
                     titlePaint2.setColor(Color.rgb(0,0,0));
                     canvas2.drawText("Contenido calórico aproximado:", 100, 760, titlePaint2);
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Lunes").child("A_Desayuno").exists()){
+                        String lunesIngredientes = snapshot.child("users").child(userID).child("recetas").child("Lunes").child("A_Desayuno").child("f_calorias").getValue().toString();
+                        titlePaint2.setTextAlign(Paint.Align.LEFT);
+                        titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint2.setTextSize(40);
+                        titlePaint2.setColor(Color.rgb(0,0,0));
+                        canvas2.drawText(lunesIngredientes, 680, 760, titlePaint2);
+                    }
 
                     //Comida
                     titlePaint2.setTextAlign(Paint.Align.RIGHT);
