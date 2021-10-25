@@ -2,9 +2,12 @@ package com.example.fitnutricion.fragments.receta;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +15,21 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.fitnutricion.R;
+import com.example.fitnutricion.firebase.receta.Domingo;
+import com.example.fitnutricion.firebase.receta.Sabado;
+import com.example.fitnutricion.firebase.receta.domingoAdapter;
+import com.example.fitnutricion.firebase.receta.sabadoAdapter;
 import com.example.fitnutricion.fragments.HomeFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 
 public class DomingoFragment extends Fragment {
 
@@ -23,6 +40,14 @@ public class DomingoFragment extends Fragment {
 
     private View vista;
     Button btn_back_sabado, btn_next_lunes, btn_cerrar_fragment;
+
+    private String userID;
+    private FirebaseAuth mAuth;
+
+    RecyclerView recyclerView;
+    DatabaseReference dbRef;
+    domingoAdapter myAdapter;
+    ArrayList<Domingo> list;
 
     public DomingoFragment() {
         // Required empty public constructor
@@ -51,9 +76,36 @@ public class DomingoFragment extends Fragment {
                              Bundle savedInstanceState) {
         vista = inflater.inflate(R.layout.fragment_domingo, container, false);
 
+        recyclerView = vista.findViewById(R.id.receta_domingo_List);
+
+        mAuth = FirebaseAuth.getInstance();
+        userID = mAuth.getCurrentUser().getUid();
+        dbRef = FirebaseDatabase.getInstance().getReference().child("users").child(userID).child("recetas").child("Domingo");
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        list = new ArrayList<>();
+        myAdapter = new domingoAdapter(getContext(),list);
+        recyclerView.setAdapter(myAdapter);
+
         btn_back_sabado = (Button) vista.findViewById(R.id.btn_back_sabado);
         btn_next_lunes = (Button) vista.findViewById(R.id.btn_next_lunes);
         btn_cerrar_fragment = (Button) vista.findViewById(R.id.btn_cerrar_fragment);
+
+        dbRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    Domingo foods = dataSnapshot.getValue(Domingo.class);
+                    list.add(foods);
+                }
+                myAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) { }
+        });
 
         btn_back_sabado.setOnClickListener(new View.OnClickListener() {
             @Override

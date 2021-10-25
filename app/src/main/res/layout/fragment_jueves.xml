@@ -20,6 +20,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="75dp"
+        android:layout_marginTop="75dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_cerrar_fragment"
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/receta_jueves_List"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            tools:layout_editor_absoluteX="0dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <Button
         android:id="@+id/btn_cerrar_fragment"
         android:layout_width="wrap_content"
