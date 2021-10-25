@@ -336,26 +336,50 @@ public class HomeFragment extends Fragment {
                     titlePaint.setColor(Color.rgb(0,0,0));
                     canvas.drawText("Lunes", 220, 800, titlePaint);
 
-                    String lunesA = snapshot.child("users").child(userID).child("recetas").child("Lunes").child("A_Desayuno").child("f_nombrecomida").getValue().toString();
-                    titlePaint.setTextAlign(Paint.Align.CENTER);
-                    titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
-                    titlePaint.setTextSize(40);
-                    titlePaint.setColor(Color.rgb(0,0,0));
-                    canvas.drawText(lunesA, 220, 860, titlePaint);
+                    if(snapshot.child("users").child(userID).child("recetas").child("Lunes").child("A_Desayuno").exists()){
+                        String lunesA = snapshot.child("users").child(userID).child("recetas").child("Lunes").child("A_Desayuno").child("f_nombrecomida").getValue().toString();
+                        titlePaint.setTextAlign(Paint.Align.CENTER);
+                        titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint.setTextSize(40);
+                        titlePaint.setColor(Color.rgb(0,0,0));
+                        canvas.drawText(lunesA, 220, 865, titlePaint);
+                    } else {
+                        titlePaint.setTextAlign(Paint.Align.CENTER);
+                        titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint.setTextSize(40);
+                        titlePaint.setColor(Color.rgb(0,0,0));
+                        canvas.drawText("Sin desayuno", 220, 865, titlePaint);
+                    }
 
-                    String lunesB = snapshot.child("users").child(userID).child("recetas").child("Lunes").child("B_Comida").child("f_nombrecomida").getValue().toString();
-                    titlePaint.setTextAlign(Paint.Align.CENTER);
-                    titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
-                    titlePaint.setTextSize(40);
-                    titlePaint.setColor(Color.rgb(0,0,0));
-                    canvas.drawText(lunesB, 220, 920, titlePaint);
+                    if(snapshot.child("users").child(userID).child("recetas").child("Lunes").child("B_Comida").exists()){
+                        String lunesB = snapshot.child("users").child(userID).child("recetas").child("Lunes").child("B_Comida").child("f_nombrecomida").getValue().toString();
+                        titlePaint.setTextAlign(Paint.Align.CENTER);
+                        titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint.setTextSize(40);
+                        titlePaint.setColor(Color.rgb(0,0,0));
+                        canvas.drawText(lunesB, 220, 915, titlePaint);
+                    } else {
+                        titlePaint.setTextAlign(Paint.Align.CENTER);
+                        titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint.setTextSize(40);
+                        titlePaint.setColor(Color.rgb(0,0,0));
+                        canvas.drawText("Sin comida", 220, 915, titlePaint);
+                    }
 
-                    String lunesC = snapshot.child("users").child(userID).child("recetas").child("Lunes").child("C_Cena").child("f_nombrecomida").getValue().toString();
-                    titlePaint.setTextAlign(Paint.Align.CENTER);
-                    titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
-                    titlePaint.setTextSize(40);
-                    titlePaint.setColor(Color.rgb(0,0,0));
-                    canvas.drawText(lunesC, 220, 980, titlePaint);
+                    if(snapshot.child("users").child(userID).child("recetas").child("Lunes").child("B_Comida").exists()){
+                        String lunesC = snapshot.child("users").child(userID).child("recetas").child("Lunes").child("C_Cena").child("f_nombrecomida").getValue().toString();
+                        titlePaint.setTextAlign(Paint.Align.CENTER);
+                        titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint.setTextSize(40);
+                        titlePaint.setColor(Color.rgb(0,0,0));
+                        canvas.drawText(lunesC, 220, 965, titlePaint);
+                    } else {
+                        titlePaint.setTextAlign(Paint.Align.CENTER);
+                        titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint.setTextSize(40);
+                        titlePaint.setColor(Color.rgb(0,0,0));
+                        canvas.drawText("Sin cena", 220, 965, titlePaint);
+                    }
 
                     // L-M-M
                     titlePaint.setStyle(Paint.Style.STROKE);
