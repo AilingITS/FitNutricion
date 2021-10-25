@@ -29,6 +29,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.fitnutricion.R;
 import com.example.fitnutricion.firebase.SpinnerPaciente;
+import com.example.fitnutricion.fragments.receta.LunesFragment;
 import com.example.fitnutricion.pacienteReceta.PacienteCenaFragment;
 import com.example.fitnutricion.pacienteReceta.PacienteComidaFragment;
 import com.example.fitnutricion.pacienteReceta.PacienteDesayunoFragment;
@@ -65,7 +66,7 @@ public class HomeFragment extends Fragment {
 
     String pacienteID;
     private Spinner spinnerPacientes;
-    Button btn_crear_pdf, desayunoHome, comidaHome, comidaCena, btn_eliminar_receta;
+    Button btn_crear_pdf, desayunoHome, comidaHome, comidaCena, btn_eliminar_receta, btn_receta;
     Bitmap bmp, scaledbmp;
     int pageWidth = 1200;
 
@@ -124,6 +125,7 @@ public class HomeFragment extends Fragment {
         comidaHome = (Button) vista.findViewById(R.id.comidaHome);
         comidaCena = (Button) vista.findViewById(R.id.comidaCena);
         btn_crear_pdf = (Button) vista.findViewById(R.id.btn_crear_pdf);
+        btn_receta = (Button) vista.findViewById(R.id.btn_receta);
         btn_eliminar_receta = (Button) vista.findViewById(R.id.btn_eliminar_receta);
         bmp = BitmapFactory.decodeResource(getResources(), R.drawable.logo_degradado);
         scaledbmp = Bitmap.createScaledBitmap(bmp, 180, 180, false);
@@ -151,6 +153,15 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 dbRef_eliminarReceta.child("recetas").removeValue();
                 Toast.makeText(getContext(), "Receta eliminada correctamente", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btn_receta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                replaceFragment(new LunesFragment());
+                /*Intent intent = new Intent(getActivity(), VisualizarRecetaActivity.class);
+                startActivity(intent);*/
             }
         });
 

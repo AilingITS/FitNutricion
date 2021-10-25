@@ -107,4 +107,16 @@
         <item>Domingo</item>
     </string-array>
 
+    <!-- ITEM LIST agregar comida -->
+    <string name="item_lunes">Lunes</string>
+    <string name="item_martes">Martes</string>
+    <string name="item_miercoles">Miércoles</string>
+    <string name="item_jueves">Jueves</string>
+    <string name="item_viernes">Viernes</string>
+    <string name="item_sabado">Sabado</string>
+    <string name="item_domingo">Domingo</string>
+
+    <!-- semana fragments -->
+    <string name="txt_salir">Regresar a inicio</string>
+
 </resources>
