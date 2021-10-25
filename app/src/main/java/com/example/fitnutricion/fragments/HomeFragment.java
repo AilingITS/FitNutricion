@@ -961,7 +961,7 @@ public class HomeFragment extends Fragment {
         int y = yi;
         int x = xi;
         int salto =  0;
-        String palabra = "";
+        String palabra = " ";
         for(int i=0; i<ingredientes.length(); i++){
             char letra = ingredientes.charAt(i);
             String letraS = String.valueOf(letra);
@@ -981,7 +981,7 @@ public class HomeFragment extends Fragment {
 
             if(salto == 4){
                 y = yi;
-                x = x + 300;
+                x = x + 280;
                 salto = 0;
             }
         }
