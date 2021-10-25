@@ -739,17 +739,11 @@ public class HomeFragment extends Fragment {
                     titlePaint2.setStyle(Paint.Style.FILL);
 
                     //Desayuno
-                    titlePaint2.setTextAlign(Paint.Align.RIGHT);
+                    titlePaint2.setTextAlign(Paint.Align.CENTER);
                     titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
                     titlePaint2.setTextSize(30);
                     titlePaint2.setColor(Color.rgb(0,0,0));
-                    canvas2.drawText("Tipo de alimento:", 670, 430, titlePaint2);
-
-                    titlePaint2.setTextAlign(Paint.Align.LEFT);
-                    titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
-                    titlePaint2.setTextSize(30);
-                    titlePaint2.setColor(Color.rgb(0,0,0));
-                    canvas2.drawText("Desayuno", 700, 430, titlePaint2);
+                    canvas2.drawText("Tipo de alimento: Desayuno", pageWidth/2, 420, titlePaint2);
 
                     //Lunes d_NOMBRE Firebase
                     if(snapshot.child("users").child(userID).child("recetas").child("Lunes").child("A_Desayuno").exists()){
@@ -790,17 +784,11 @@ public class HomeFragment extends Fragment {
                     }
 
                     //Comida
-                    titlePaint2.setTextAlign(Paint.Align.RIGHT);
+                    titlePaint2.setTextAlign(Paint.Align.CENTER);
                     titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
                     titlePaint2.setTextSize(30);
                     titlePaint2.setColor(Color.rgb(0,0,0));
-                    canvas2.drawText("Tipo de alimento:", 670, 880, titlePaint2);
-
-                    titlePaint2.setTextAlign(Paint.Align.LEFT);
-                    titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
-                    titlePaint2.setTextSize(30);
-                    titlePaint2.setColor(Color.rgb(0,0,0));
-                    canvas2.drawText("Comida", 700, 880, titlePaint2);
+                    canvas2.drawText("Tipo de alimento: Comida", pageWidth/2, 870, titlePaint2);
 
                     if(snapshot.child("users").child(userID).child("recetas").child("Lunes").child("B_Comida").exists()){
                         String lunesComida = snapshot.child("users").child(userID).child("recetas").child("Lunes").child("B_Comida").child("f_nombrecomida").getValue().toString();
@@ -840,17 +828,11 @@ public class HomeFragment extends Fragment {
                     }
 
                     //Cena
-                    titlePaint2.setTextAlign(Paint.Align.RIGHT);
+                    titlePaint2.setTextAlign(Paint.Align.CENTER);
                     titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
                     titlePaint2.setTextSize(30);
                     titlePaint2.setColor(Color.rgb(0,0,0));
-                    canvas2.drawText("Tipo de alimento:", 670, 1330, titlePaint2);
-
-                    titlePaint2.setTextAlign(Paint.Align.LEFT);
-                    titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
-                    titlePaint2.setTextSize(30);
-                    titlePaint2.setColor(Color.rgb(0,0,0));
-                    canvas2.drawText("Cena", 700, 1330, titlePaint2);
+                    canvas2.drawText("Tipo de alimento: Cena", pageWidth/2, 1320, titlePaint2);
 
                     if(snapshot.child("users").child(userID).child("recetas").child("Lunes").child("C_Cena").exists()){
                         String lunesCena = snapshot.child("users").child(userID).child("recetas").child("Lunes").child("C_Cena").child("f_nombrecomida").getValue().toString();
@@ -903,7 +885,7 @@ public class HomeFragment extends Fragment {
 
 
                     PdfDocument.PageInfo pageInfo3 = new PdfDocument.PageInfo.Builder(1200, 2010, 1).create();
-                    PdfDocument.Page page3 = document.startPage(pageInfo2);
+                    PdfDocument.Page page3 = document.startPage(pageInfo3);
 
                     Canvas canvas3 = page3.getCanvas();
                     Paint myPaint3 = new Paint();
@@ -943,12 +925,12 @@ public class HomeFragment extends Fragment {
                     titlePaint3.setStrokeWidth(0);
                     titlePaint3.setStyle(Paint.Style.FILL);
 
-                    //Comida
-                    titlePaint3.setTextAlign(Paint.Align.RIGHT);
+                    //Desayuno
+                    titlePaint3.setTextAlign(Paint.Align.CENTER);
                     titlePaint3.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
                     titlePaint3.setTextSize(30);
                     titlePaint3.setColor(Color.rgb(0,0,0));
-                    canvas3.drawText("Tipo de alimento: Comida ", 670, 430, titlePaint3);
+                    canvas3.drawText("Tipo de alimento: Desayuno", pageWidth/2, 420, titlePaint3);
 
                     //Martes d_NOMBRE Firebase
                     if(snapshot.child("users").child(userID).child("recetas").child("Martes").child("A_Desayuno").exists()){
@@ -957,7 +939,7 @@ public class HomeFragment extends Fragment {
                         titlePaint3.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                         titlePaint3.setTextSize(25);
                         titlePaint3.setColor(Color.rgb(0,0,0));
-                        canvas2.drawText("Nombre: " + martesDesayuno, 100, 500, titlePaint3);
+                        canvas3.drawText("Nombre: " + martesDesayuno, 100, 500, titlePaint3);
                     } else {
                         titlePaint3.setTextAlign(Paint.Align.LEFT);
                         titlePaint3.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
@@ -989,11 +971,11 @@ public class HomeFragment extends Fragment {
                     }
 
                     //Comida
-                    titlePaint3.setTextAlign(Paint.Align.RIGHT);
+                    titlePaint3.setTextAlign(Paint.Align.CENTER);
                     titlePaint3.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
                     titlePaint3.setTextSize(30);
                     titlePaint3.setColor(Color.rgb(0,0,0));
-                    canvas3.drawText("Tipo de alimento: Comida", 670, 880, titlePaint3);
+                    canvas3.drawText("Tipo de alimento: Comida", pageWidth/2, 870, titlePaint3);
 
                     if(snapshot.child("users").child(userID).child("recetas").child("Martes").child("B_Comida").exists()){
                         String martesComida = snapshot.child("users").child(userID).child("recetas").child("Martes").child("B_Comida").child("f_nombrecomida").getValue().toString();
@@ -1033,17 +1015,11 @@ public class HomeFragment extends Fragment {
                     }
 
                     //Cena
-                    titlePaint3.setTextAlign(Paint.Align.RIGHT);
+                    titlePaint3.setTextAlign(Paint.Align.CENTER);
                     titlePaint3.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
                     titlePaint3.setTextSize(30);
                     titlePaint3.setColor(Color.rgb(0,0,0));
-                    canvas3.drawText("Tipo de alimento:", 670, 1330, titlePaint3);
-
-                    titlePaint3.setTextAlign(Paint.Align.LEFT);
-                    titlePaint3.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
-                    titlePaint3.setTextSize(30);
-                    titlePaint3.setColor(Color.rgb(0,0,0));
-                    canvas3.drawText("Cena", 700, 1330, titlePaint3);
+                    canvas3.drawText("Tipo de alimento: Cena", pageWidth/2, 1320, titlePaint3);
 
                     if(snapshot.child("users").child(userID).child("recetas").child("Martes").child("C_Cena").exists()){
                         String martesCena = snapshot.child("users").child(userID).child("recetas").child("Martes").child("C_Cena").child("f_nombrecomida").getValue().toString();
@@ -1061,7 +1037,7 @@ public class HomeFragment extends Fragment {
                     }
 
                     if(snapshot.child("users").child(userID).child("recetas").child("Martes").child("C_Cena").exists()){
-                        String martesIngredientes = snapshot.child("users").child(userID).child("Martes").child("Lunes").child("C_Cena").child("f_ingredientes").getValue().toString();
+                        String martesIngredientes = snapshot.child("users").child(userID).child("recetas").child("Martes").child("C_Cena").child("f_ingredientes").getValue().toString();
 
                         titlePaint3.setTextAlign(Paint.Align.LEFT);
                         titlePaint3.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
@@ -1069,7 +1045,7 @@ public class HomeFragment extends Fragment {
                         titlePaint3.setColor(Color.rgb(0,0,0));
                         canvas3.drawText("Ingredientes:", 100, 1450, titlePaint3);
 
-                        imprimirIngredientes(100, 1480, martesIngredientes, titlePaint2, canvas2);
+                        imprimirIngredientes(100, 1480, martesIngredientes, titlePaint3, canvas3);
                     }
 
                     if(snapshot.child("users").child(userID).child("recetas").child("Martes").child("C_Cena").exists()){
