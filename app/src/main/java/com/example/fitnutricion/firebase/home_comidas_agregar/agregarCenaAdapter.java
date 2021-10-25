@@ -70,7 +70,7 @@ public class agregarCenaAdapter extends RecyclerView.Adapter<agregarCenaAdapter.
         holder.btn_f_agregarComida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String f_id = "Cena";
+                String f_id = "C_Cena";
                 String f_dia_id = holder.item_list_spinner.getSelectedItem().toString();
 
                 Map<String, Object> recetaMAP = new HashMap<>();
