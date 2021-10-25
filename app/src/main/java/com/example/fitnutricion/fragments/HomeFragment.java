@@ -330,7 +330,6 @@ public class HomeFragment extends Fragment {
                     titlePaint.setColor(Color.rgb(0,0,0));
                     canvas.drawText("Lista de alimentos", pageWidth/2, 660, titlePaint);
 
-
                     titlePaint.setTextAlign(Paint.Align.CENTER);
                     titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
                     titlePaint.setTextSize(50);
