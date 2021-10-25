@@ -895,6 +895,199 @@ public class HomeFragment extends Fragment {
 
                     document.finishPage(page2);
 
+
+
+
+                    /* INICIO DE TERCERA PAGINA (MARTES) */
+
+
+
+                    PdfDocument.PageInfo pageInfo3 = new PdfDocument.PageInfo.Builder(1200, 2010, 1).create();
+                    PdfDocument.Page page3 = document.startPage(pageInfo2);
+
+                    Canvas canvas3 = page3.getCanvas();
+                    Paint myPaint3 = new Paint();
+                    Paint titlePaint3 = new Paint();
+
+                    /* DATOS DEL NUTRIOLOGO */
+                    titlePaint3.setTextAlign(Paint.Align.LEFT);
+                    titlePaint3.setTextSize(20);
+                    titlePaint3.setColor(Color.rgb(110, 184, 245));
+                    canvas3.drawText("Dr.: " + nombre_nutri_pdf, 50, 75, titlePaint3);
+
+                    titlePaint3.setTextAlign(Paint.Align.LEFT);
+                    titlePaint3.setTextSize(20);
+                    titlePaint3.setColor(Color.rgb(110, 184, 245));
+                    canvas3.drawText(correo_nutri_pdf, 50, 110, titlePaint3);
+                    /* -------------------- */
+
+                    /* ALIMENTOS MARTES */
+                    titlePaint3.setTextAlign(Paint.Align.CENTER);
+                    titlePaint3.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint3.setTextSize(45);
+                    titlePaint3.setColor(Color.rgb(0,0,0));
+                    canvas3.drawText("Martes", pageWidth/2, 260, titlePaint3);
+
+                    titlePaint3.setStyle(Paint.Style.STROKE);
+                    titlePaint3.setStrokeWidth(2);
+                    // Tablas Desayuno, comida y cena
+                    canvas3.drawRect(60, 380, 1140, 780, titlePaint3);
+                    canvas3.drawLine(60, 440, 1140, 440, titlePaint3);
+
+                    canvas3.drawRect(60, 830, 1140, 1230, titlePaint3);
+                    canvas3.drawLine(60, 890, 1140, 890, titlePaint3);
+
+                    canvas3.drawRect(60, 1280, 1140, 1680, titlePaint3);
+                    canvas3.drawLine(60, 1340, 1140, 1340, titlePaint3);
+
+                    titlePaint3.setStrokeWidth(0);
+                    titlePaint3.setStyle(Paint.Style.FILL);
+
+                    //Comida
+                    titlePaint3.setTextAlign(Paint.Align.RIGHT);
+                    titlePaint3.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint3.setTextSize(30);
+                    titlePaint3.setColor(Color.rgb(0,0,0));
+                    canvas3.drawText("Tipo de alimento: Comida ", 670, 430, titlePaint3);
+
+                    //Martes d_NOMBRE Firebase
+                    if(snapshot.child("users").child(userID).child("recetas").child("Martes").child("A_Desayuno").exists()){
+                        String martesDesayuno = snapshot.child("users").child(userID).child("recetas").child("Martes").child("A_Desayuno").child("f_nombrecomida").getValue().toString();
+                        titlePaint3.setTextAlign(Paint.Align.LEFT);
+                        titlePaint3.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint3.setTextSize(25);
+                        titlePaint3.setColor(Color.rgb(0,0,0));
+                        canvas2.drawText("Nombre: " + martesDesayuno, 100, 500, titlePaint3);
+                    } else {
+                        titlePaint3.setTextAlign(Paint.Align.LEFT);
+                        titlePaint3.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint3.setTextSize(25);
+                        titlePaint3.setColor(Color.rgb(0,0,0));
+                        canvas3.drawText("Nombre: Sin desayuno", 280, 500, titlePaint3);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Martes").child("A_Desayuno").exists()){
+                        String martesIngredientes = snapshot.child("users").child(userID).child("recetas").child("Martes").child("A_Desayuno").child("f_ingredientes").getValue().toString();
+
+                        titlePaint3.setTextAlign(Paint.Align.LEFT);
+                        titlePaint3.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint3.setTextSize(25);
+                        titlePaint3.setColor(Color.rgb(0,0,0));
+                        canvas3.drawText("Ingredientes:", 100, 560, titlePaint3);
+
+                        imprimirIngredientes(100, 590, martesIngredientes, titlePaint3, canvas3);
+
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Martes").child("A_Desayuno").exists()){
+                        String martesCalorias = snapshot.child("users").child(userID).child("recetas").child("Martes").child("A_Desayuno").child("f_calorias").getValue().toString();
+                        titlePaint3.setTextAlign(Paint.Align.LEFT);
+                        titlePaint3.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint3.setTextSize(20);
+                        titlePaint3.setColor(Color.rgb(0,0,0));
+                        canvas3.drawText("Contenido calórico aproximado: " + martesCalorias, 100, 760, titlePaint3);
+                    }
+
+                    //Comida
+                    titlePaint3.setTextAlign(Paint.Align.RIGHT);
+                    titlePaint3.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint3.setTextSize(30);
+                    titlePaint3.setColor(Color.rgb(0,0,0));
+                    canvas3.drawText("Tipo de alimento: Comida", 670, 880, titlePaint3);
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Martes").child("B_Comida").exists()){
+                        String martesComida = snapshot.child("users").child(userID).child("recetas").child("Martes").child("B_Comida").child("f_nombrecomida").getValue().toString();
+                        titlePaint3.setTextAlign(Paint.Align.LEFT);
+                        titlePaint3.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint3.setTextSize(25);
+                        titlePaint3.setColor(Color.rgb(0,0,0));
+                        canvas3.drawText("Nombre: " + martesComida, 100, 950, titlePaint3);
+                    } else {
+                        titlePaint3.setTextAlign(Paint.Align.LEFT);
+                        titlePaint3.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint3.setTextSize(25);
+                        titlePaint3.setColor(Color.rgb(0,0,0));
+                        canvas3.drawText("Nombre: Sin desayuno", 280, 950, titlePaint3);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Martes").child("B_Comida").exists()){
+                        String martesIngredientes = snapshot.child("users").child(userID).child("recetas").child("Martes").child("B_Comida").child("f_ingredientes").getValue().toString();
+
+                        titlePaint3.setTextAlign(Paint.Align.LEFT);
+                        titlePaint3.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint3.setTextSize(25);
+                        titlePaint3.setColor(Color.rgb(0,0,0));
+                        canvas3.drawText("Ingredientes:", 100, 1010, titlePaint3);
+
+                        imprimirIngredientes(100, 1040, martesIngredientes, titlePaint3, canvas3);
+
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Martes").child("B_Comida").exists()){
+                        String martesCalorias = snapshot.child("users").child(userID).child("recetas").child("Martes").child("B_Comida").child("f_calorias").getValue().toString();
+                        titlePaint3.setTextAlign(Paint.Align.LEFT);
+                        titlePaint3.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint3.setTextSize(20);
+                        titlePaint3.setColor(Color.rgb(0,0,0));
+                        canvas3.drawText("Contenido calórico aproximado: " + martesCalorias, 100, 1210, titlePaint3);
+                    }
+
+                    //Cena
+                    titlePaint3.setTextAlign(Paint.Align.RIGHT);
+                    titlePaint3.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint3.setTextSize(30);
+                    titlePaint3.setColor(Color.rgb(0,0,0));
+                    canvas3.drawText("Tipo de alimento:", 670, 1330, titlePaint3);
+
+                    titlePaint3.setTextAlign(Paint.Align.LEFT);
+                    titlePaint3.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint3.setTextSize(30);
+                    titlePaint3.setColor(Color.rgb(0,0,0));
+                    canvas3.drawText("Cena", 700, 1330, titlePaint3);
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Martes").child("C_Cena").exists()){
+                        String martesCena = snapshot.child("users").child(userID).child("recetas").child("Martes").child("C_Cena").child("f_nombrecomida").getValue().toString();
+                        titlePaint3.setTextAlign(Paint.Align.LEFT);
+                        titlePaint3.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint3.setTextSize(25);
+                        titlePaint3.setColor(Color.rgb(0,0,0));
+                        canvas3.drawText("Nombre: " + martesCena, 100, 1400, titlePaint3);
+                    } else {
+                        titlePaint3.setTextAlign(Paint.Align.LEFT);
+                        titlePaint3.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint3.setTextSize(25);
+                        titlePaint3.setColor(Color.rgb(0,0,0));
+                        canvas3.drawText("Sin desayuno", 280, 1400, titlePaint3);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Martes").child("C_Cena").exists()){
+                        String martesIngredientes = snapshot.child("users").child(userID).child("Martes").child("Lunes").child("C_Cena").child("f_ingredientes").getValue().toString();
+
+                        titlePaint3.setTextAlign(Paint.Align.LEFT);
+                        titlePaint3.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint3.setTextSize(25);
+                        titlePaint3.setColor(Color.rgb(0,0,0));
+                        canvas3.drawText("Ingredientes:", 100, 1450, titlePaint3);
+
+                        imprimirIngredientes(100, 1480, martesIngredientes, titlePaint2, canvas2);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Martes").child("C_Cena").exists()){
+                        String martesIngredientes = snapshot.child("users").child(userID).child("recetas").child("Martes").child("C_Cena").child("f_calorias").getValue().toString();
+                        titlePaint3.setTextAlign(Paint.Align.LEFT);
+                        titlePaint3.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint3.setTextSize(20);
+                        titlePaint3.setColor(Color.rgb(0,0,0));
+                        canvas3.drawText("Contenido calórico aproximado: " + martesIngredientes, 100, 1660, titlePaint3);
+                    }
+                    /* ---------------- */
+
+                    /* LOGO PARTE DE ABAJO DEL PDF */
+                    canvas3.drawBitmap(scaledbmp, 515, 1800, myPaint3);
+                    /* --------------------------- */
+
+                    document.finishPage(page3);
+
                     try {
                         document.writeTo(outputStream);
                     } catch (IOException e) {
@@ -986,4 +1179,11 @@ public class HomeFragment extends Fragment {
             }
         }
     }
+    /*public void imprimirTexto(int textSize, Paint.Align Align, Typeface default1, Typeface textType, String textoAImprimir, Paint titlepaint, Canvas canvas, int R, int G, int B, int x, int y){
+        titlepaint.setTextAlign(Align);
+        titlepaint.setTypeface(Typeface.create(default1, textType));
+        titlepaint.setTextSize(textSize);
+        titlepaint.setColor(Color.rgb(R,G,B);
+        canvas.drawText(textoAImprimir, x, y, titlepaint);
+    }*/
 }
