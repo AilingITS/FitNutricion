@@ -73,6 +73,7 @@ public class HomeFragment extends Fragment {
     DatabaseReference dbRef;
     DatabaseReference dbRef_pdf;
     DatabaseReference dbRef_eliminarReceta;
+    DatabaseReference dbRef_recetas;
     private FirebaseDatabase firebaseDatabase_pdf;
 
     public HomeFragment() {
@@ -116,6 +117,7 @@ public class HomeFragment extends Fragment {
         userID = mAuth.getCurrentUser().getUid();
         dbRef = FirebaseDatabase.getInstance().getReference("users").child(userID);
         dbRef_eliminarReceta = FirebaseDatabase.getInstance().getReference().child("users").child(userID);
+
         firebaseDatabase_pdf = FirebaseDatabase.getInstance();
         dbRef_pdf = firebaseDatabase_pdf.getReference();
         //spinnerComidas = vista.findViewById(R.id.spinnerComidas);
@@ -327,6 +329,34 @@ public class HomeFragment extends Fragment {
                     titlePaint.setTextSize(55);
                     titlePaint.setColor(Color.rgb(0,0,0));
                     canvas.drawText("Lista de alimentos", pageWidth/2, 660, titlePaint);
+
+
+                    titlePaint.setTextAlign(Paint.Align.CENTER);
+                    titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint.setTextSize(50);
+                    titlePaint.setColor(Color.rgb(0,0,0));
+                    canvas.drawText("Lunes", 220, 800, titlePaint);
+
+                    String lunesA = snapshot.child("users").child(userID).child("recetas").child("Lunes").child("A_Desayuno").child("f_nombrecomida").getValue().toString();
+                    titlePaint.setTextAlign(Paint.Align.CENTER);
+                    titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                    titlePaint.setTextSize(40);
+                    titlePaint.setColor(Color.rgb(0,0,0));
+                    canvas.drawText(lunesA, 220, 860, titlePaint);
+
+                    String lunesB = snapshot.child("users").child(userID).child("recetas").child("Lunes").child("B_Comida").child("f_nombrecomida").getValue().toString();
+                    titlePaint.setTextAlign(Paint.Align.CENTER);
+                    titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                    titlePaint.setTextSize(40);
+                    titlePaint.setColor(Color.rgb(0,0,0));
+                    canvas.drawText(lunesB, 220, 920, titlePaint);
+
+                    String lunesC = snapshot.child("users").child(userID).child("recetas").child("Lunes").child("C_Cena").child("f_nombrecomida").getValue().toString();
+                    titlePaint.setTextAlign(Paint.Align.CENTER);
+                    titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                    titlePaint.setTextSize(40);
+                    titlePaint.setColor(Color.rgb(0,0,0));
+                    canvas.drawText(lunesC, 220, 980, titlePaint);
 
                     // L-M-M
                     titlePaint.setStyle(Paint.Style.STROKE);
