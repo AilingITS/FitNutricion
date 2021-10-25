@@ -823,12 +823,12 @@ public class HomeFragment extends Fragment {
                     canvas2.drawText("Contenido calórico aproximado:", 100, 760, titlePaint2);
 
                     if(snapshot.child("users").child(userID).child("recetas").child("Lunes").child("A_Desayuno").exists()){
-                        String lunesIngredientes = snapshot.child("users").child(userID).child("recetas").child("Lunes").child("A_Desayuno").child("f_calorias").getValue().toString();
+                        String lunesCalorias = snapshot.child("users").child(userID).child("recetas").child("Lunes").child("A_Desayuno").child("f_calorias").getValue().toString();
                         titlePaint2.setTextAlign(Paint.Align.LEFT);
                         titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                         titlePaint2.setTextSize(40);
                         titlePaint2.setColor(Color.rgb(0,0,0));
-                        canvas2.drawText(lunesIngredientes, 680, 760, titlePaint2);
+                        canvas2.drawText(lunesCalorias, 680, 760, titlePaint2);
                     }
 
                     //Comida
@@ -850,17 +850,50 @@ public class HomeFragment extends Fragment {
                     titlePaint2.setColor(Color.rgb(0,0,0));
                     canvas2.drawText("Nombre:", 100, 950, titlePaint2);
 
+                    if(snapshot.child("users").child(userID).child("recetas").child("Lunes").child("B_Comida").exists()){
+                        String lunesComida = snapshot.child("users").child(userID).child("recetas").child("Lunes").child("B_Comida").child("f_nombrecomida").getValue().toString();
+                        titlePaint2.setTextAlign(Paint.Align.LEFT);
+                        titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint2.setTextSize(45);
+                        titlePaint2.setColor(Color.rgb(0,0,0));
+                        canvas2.drawText(lunesComida, 280, 950, titlePaint2);
+                    } else {
+                        titlePaint2.setTextAlign(Paint.Align.LEFT);
+                        titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint2.setTextSize(45);
+                        titlePaint2.setColor(Color.rgb(0,0,0));
+                        canvas2.drawText("Sin desayuno", 280, 950, titlePaint2);
+                    }
+
                     titlePaint2.setTextAlign(Paint.Align.LEFT);
                     titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                     titlePaint2.setTextSize(45);
                     titlePaint2.setColor(Color.rgb(0,0,0));
                     canvas2.drawText("Ingredientes:", 100, 1050, titlePaint2);
 
+                    if(snapshot.child("users").child(userID).child("recetas").child("Lunes").child("B_Comida").exists()){
+                        String lunesIngredientes = snapshot.child("users").child(userID).child("recetas").child("Lunes").child("B_Comida").child("f_ingredientes").getValue().toString();
+                        titlePaint2.setTextAlign(Paint.Align.LEFT);
+                        titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint2.setTextSize(45);
+                        titlePaint2.setColor(Color.rgb(0,0,0));
+                        canvas2.drawText(lunesIngredientes, 100, 1100, titlePaint2);
+                    }
+
                     titlePaint2.setTextAlign(Paint.Align.LEFT);
                     titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                     titlePaint2.setTextSize(40);
                     titlePaint2.setColor(Color.rgb(0,0,0));
                     canvas2.drawText("Contenido calórico aproximado:", 100, 1210, titlePaint2);
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Lunes").child("B_Comida").exists()){
+                        String lunesCalorias = snapshot.child("users").child(userID).child("recetas").child("Lunes").child("B_Comida").child("f_calorias").getValue().toString();
+                        titlePaint2.setTextAlign(Paint.Align.LEFT);
+                        titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint2.setTextSize(40);
+                        titlePaint2.setColor(Color.rgb(0,0,0));
+                        canvas2.drawText(lunesCalorias, 680, 1210, titlePaint2);
+                    }
 
                     //Cena
                     titlePaint2.setTextAlign(Paint.Align.RIGHT);
@@ -881,17 +914,50 @@ public class HomeFragment extends Fragment {
                     titlePaint2.setColor(Color.rgb(0,0,0));
                     canvas2.drawText("Nombre:", 100, 1400, titlePaint2);
 
+                    if(snapshot.child("users").child(userID).child("recetas").child("Lunes").child("C_Cena").exists()){
+                        String lunesCena = snapshot.child("users").child(userID).child("recetas").child("Lunes").child("C_Cena").child("f_nombrecomida").getValue().toString();
+                        titlePaint2.setTextAlign(Paint.Align.LEFT);
+                        titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint2.setTextSize(45);
+                        titlePaint2.setColor(Color.rgb(0,0,0));
+                        canvas2.drawText(lunesCena, 280, 1400, titlePaint2);
+                    } else {
+                        titlePaint2.setTextAlign(Paint.Align.LEFT);
+                        titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint2.setTextSize(45);
+                        titlePaint2.setColor(Color.rgb(0,0,0));
+                        canvas2.drawText("Sin desayuno", 280, 1400, titlePaint2);
+                    }
+
                     titlePaint2.setTextAlign(Paint.Align.LEFT);
                     titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                     titlePaint2.setTextSize(45);
                     titlePaint2.setColor(Color.rgb(0,0,0));
                     canvas2.drawText("Ingredientes:", 100, 1500, titlePaint2);
 
+                    if(snapshot.child("users").child(userID).child("recetas").child("Lunes").child("C_Cena").exists()){
+                        String lunesIngredientes = snapshot.child("users").child(userID).child("recetas").child("Lunes").child("C_Cena").child("f_ingredientes").getValue().toString();
+                        titlePaint2.setTextAlign(Paint.Align.LEFT);
+                        titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint2.setTextSize(45);
+                        titlePaint2.setColor(Color.rgb(0,0,0));
+                        canvas2.drawText(lunesIngredientes, 100, 1550, titlePaint2);
+                    }
+
                     titlePaint2.setTextAlign(Paint.Align.LEFT);
                     titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                     titlePaint2.setTextSize(40);
                     titlePaint2.setColor(Color.rgb(0,0,0));
                     canvas2.drawText("Contenido calórico aproximado:", 100, 1660, titlePaint2);
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Lunes").child("C_Cena").exists()){
+                        String lunesCalorias = snapshot.child("users").child(userID).child("recetas").child("Lunes").child("C_Cena").child("f_calorias").getValue().toString();
+                        titlePaint2.setTextAlign(Paint.Align.LEFT);
+                        titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint2.setTextSize(40);
+                        titlePaint2.setColor(Color.rgb(0,0,0));
+                        canvas2.drawText(lunesCalorias, 680, 1660, titlePaint2);
+                    }
                     /* ---------------- */
 
                     /* LOGO PARTE DE ABAJO DEL PDF */
