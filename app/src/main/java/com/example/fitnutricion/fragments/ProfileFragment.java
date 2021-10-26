@@ -168,9 +168,9 @@ public class ProfileFragment extends Fragment {
         if(ImageUri == null){ //En caso que el usuario modifico datos pero no su imagen se llama a la sig función solo para actualizar datos
             SaveInfoToDatabasewithoutImage();
         } else if (TextUtils.isEmpty(usuario)){
-            Toast.makeText(getActivity(), "Ingrese un usuario", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.stringIngreseUnUsuario, Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(mail)){
-            Toast.makeText(getActivity(), "Ingrese un correo", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.stringIngreseUnCorreo, Toast.LENGTH_SHORT).show();
         } else { //Si el usuario si agrego una imagen de perfil entra en este else
             userID = mAuth.getCurrentUser().getUid();
             StorageReference fileRef = ImagesRef.child(userID + ".jpg");
@@ -180,7 +180,7 @@ public class ProfileFragment extends Fragment {
                 @Override
                 public void onFailure(@NonNull @NotNull Exception e) {
                     String message = e.toString();
-                    Toast.makeText(getActivity(), "Error: " + message, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.stringError + message, Toast.LENGTH_SHORT).show();
                 }
             }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -221,11 +221,11 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onComplete(@NonNull @NotNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(getActivity(), "Datos actualizados correctamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.stringCambiosGuardadosCorrectamente, Toast.LENGTH_SHORT).show();
                     replaceFragment(new SettingsFragment());
                 } else {
                     String message = task.getException().toString();
-                    Toast.makeText(getActivity(), "Error: " + message, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.stringError + message, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -245,11 +245,11 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onComplete(@NonNull @NotNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(getActivity(), "Datos actualizados correctamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.stringCambiosGuardadosCorrectamente, Toast.LENGTH_SHORT).show();
                     replaceFragment(new SettingsFragment());
                 } else {
                     String message = task.getException().toString();
-                    Toast.makeText(getActivity(), "Error: " + message, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.stringError + message, Toast.LENGTH_SHORT).show();
                 }
             }
         });

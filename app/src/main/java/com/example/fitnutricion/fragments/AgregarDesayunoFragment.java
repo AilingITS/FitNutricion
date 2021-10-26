@@ -152,7 +152,7 @@ public class AgregarDesayunoFragment extends Fragment {
             @Override
             public void onFailure(@NonNull @NotNull Exception e) {
                 String message = e.toString();
-                Toast.makeText(getActivity(), "Error: " + message, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.stringError + message, Toast.LENGTH_SHORT).show();
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -218,11 +218,11 @@ public class AgregarDesayunoFragment extends Fragment {
                 @Override
                 public void onComplete(@NonNull @NotNull Task<Void> task) {
                     if(task.isSuccessful()){
-                        Toast.makeText(getActivity(), "Comida agregada correctamente", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), R.string.stringCambiosGuardadosCorrectamente, Toast.LENGTH_SHORT).show();
                         replaceFragment(new DesayunoFragment());
                     } else {
                         String message = task.getException().toString();
-                        Toast.makeText(getActivity(), "Error: " + message, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), R.string.stringError + message, Toast.LENGTH_SHORT).show();
                     }
                 }
             });

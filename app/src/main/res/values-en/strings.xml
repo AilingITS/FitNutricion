@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">FitNutricion</string>
+    <string name="app_name">FitNutrition</string>
 
     <!-- LOGIN -->
-    <string name="titulo1_text">FITNUTRICION</string>
+    <string name="titulo1_text">FITNUTRITION</string>
     <string name="correo_text">Email</string>
     <string name="password_text">Password</string>
     <string name="iniciarSesion">Log in</string>
     <string name="cuentaNueva">Create Account</string>
 
     <!-- REGISTER -->
-    <string name="uneteAFitN_text">Join FitNutricion!</string>
+    <string name="uneteAFitN_text">Join FitNutrition!</string>
     <string name="usuario_text">Username</string>
     <string name="confPassword_text">Confirm Password</string>
     <string name="confirmar_text">Confirm</string>
@@ -18,13 +18,13 @@
     <!-- MENU -->
     <string name="home_text">Home</string>
     <string name="recetas_text">Recipes</string>
-    <string name="pacientes_home">Eliga el paciente:</string>
-    <string name="setting_text">Setting</string>
+    <string name="pacientes_home">Choose patient:</string>
+    <string name="setting_text">Settings</string>
 
     <!-- SETTINGS -->
     <string name="cerrarSesion">Sign off</string>
     <string name="themeMode">DARK THEME</string>
-    <string name="cambiarIdioma">Change the language</string>
+    <string name="cambiarIdioma">Change language</string>
 
     <!-- PROFILE -->
     <string name="profile_text">Personal information</string>
@@ -32,91 +32,113 @@
     <string name="nombrecompleto_text">Full name</string>
     <string name="mail_text">Email</string>
     <string name="Edad_text">Age</string>
-    <string name="Celular_text">Mobile</string>
+    <string name="Celular_text">Phone number</string>
     <string name="actualizar_text">Update data</string>
     <string name="actualizarpass_text">Update password</string>
     <string name="modificardatos_text">Modify profile</string>
 
     <!-- PACIENTE -->
-    <string name="pacientes_text">Pacientes</string>
-    <string name="agregarPaciente">Agregar paciente</string>
-    <string name="añadirPaciente">Añadir paciente</string>
+    <string name="pacientes_text">Patients</string>
+    <string name="agregarPaciente">Add patients</string>
+    <string name="añadirPaciente">Add patients</string>
 
     <!-- AGREGAR PACIENTE -->
-    <string name="ag_nombreCompleto">Nombre completo</string>
-    <string name="ag_datosPaciente">Ingrese los datos del paciente</string>
-    <string name="ag_edadPaciente">Edad</string>
-    <string name="ag_sexoPaciente">Sexo</string>
+    <string name="ag_nombreCompleto">Full name</string>
+    <string name="ag_datosPaciente">Enter patient data</string>
+    <string name="ag_edadPaciente">Age</string>
+    <string name="ag_sexoPaciente">Gender</string>
     <string-array name="ag_sexoArray">
-        <item>Masculino</item>
-        <item>Femenino</item>
+        <item>Male</item>
+        <item>Female</item>
     </string-array>
 
     <!-- EDITAR PACIENTE -->
-    <string name="ed_guardarCambios">Guardar cambios</string>
+    <string name="ed_guardarCambios">Save changes</string>
 
     <!-- RECETAS -->
-    <string name="agregarComida">Agregar comida</string>
-    <string name="comidaDesayuno">Desayuno</string>
-    <string name="comidaComida">Comida</string>
-    <string name="comidaCena">Cena</string>
+    <string name="agregarComida">Add meal</string>
+    <string name="comidaDesayuno">Breakfast</string>
+    <string name="comidaComida">Lunch</string>
+    <string name="comidaCena">Dinner</string>
 
     <!-- DESAYUNO -->
-    <string name="desayuno_text">Desayunos</string>
-    <string name="agregarDesayuno">Agregar desayuno</string>
+    <string name="desayuno_text">Breakfasts</string>
+    <string name="agregarDesayuno">Add breakfasts</string>
 
     <!-- AGREGAR DESAYUNO -->
-    <string name="ag_datosComidas">Información de comida</string>
-    <string name="desa_text">Desayuno</string>
-    <string name="agregar_comida_tipo">Tipo de comida:</string>
-    <string name="agregar_comida_nombre">Nombre de la comida</string>
-    <string name="agregar_comida_ingrediente">Ingredientes</string>
+    <string name="ag_datosComidas">Meal information</string>
+    <string name="desa_text">Breakfast</string>
+    <string name="agregar_comida_tipo">Type of meal</string>
+    <string name="agregar_comida_nombre">Meal name</string>
+    <string name="agregar_comida_ingrediente">Ingredients</string>
 
     <!-- COMIDA -->
-    <string name="comida_text">Comida</string>
+    <string name="comida_text">Lunch</string>
 
     <!-- AGREGAR Comida -->
-    <string name="comi_text">Comida</string>
+    <string name="comi_text">Lunch</string>
 
     <!-- CENA -->
-    <string name="cena_text">Cena</string>
-    <string name="agregarCena">Agregar cena</string>
+    <string name="cena_text">Dinner</string>
+    <string name="agregarCena">Add dinner</string>
 
 
     <!-- INICIO SPINNER -->
-    <string name="spinner_Desayuno">Desayuno</string>
-    <string name="spinner_Comida">Comida</string>
-    <string name="spinner_Cena">Cena</string>
-    <string name="home_generar_pdf">Generar PDF</string>
-    <string name="home_eliminar_receta">Eliminar receta</string>
-    <string name="home_visualizar">Visualizar PDF</string>
+    <string name="spinner_Desayuno">Breakfast</string>
+    <string name="spinner_Comida">Meal</string>
+    <string name="spinner_Cena">Dinner</string>
+    <string name="home_generar_pdf">Make PDF</string>
+    <string name="home_eliminar_receta">Delete recipe</string>
+    <string name="home_visualizar">Visualize PDF</string>
 
     <!-- ITEM LIST COMIDAS -->
-    <string name="desaYUNO_item_list">DESAYUNO</string>
+    <string name="desaYUNO_item_list">Breakfasts</string>
     <string name="agregar_comida_calorias">Calories</string>
 
     <!-- ITEM LIST agregar comida -->
-    <string name="item_list_Agregar">Agregar a receta</string>
-    <string name="item_list_dia">Día</string>
+    <string name="item_list_Agregar">Add a recipe</string>
+    <string name="item_list_dia">Day</string>
     <string-array name="item_list_semana">
-        <item>Lunes</item>
-        <item>Martes</item>
-        <item>Miercoles</item>
-        <item>Jueves</item>
-        <item>Viernes</item>
-        <item>Sabado</item>
-        <item>Domingo</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
     </string-array>
 
     <!-- ITEM LIST agregar comida -->
-    <string name="item_lunes">Lunes</string>
-    <string name="item_martes">Martes</string>
-    <string name="item_miercoles">Miércoles</string>
-    <string name="item_jueves">Jueves</string>
-    <string name="item_viernes">Viernes</string>
-    <string name="item_sabado">Sabado</string>
-    <string name="item_domingo">Domingo</string>
+    <string name="item_lunes">Monday</string>
+    <string name="item_martes">Tuesday</string>
+    <string name="item_miercoles">Wednesday</string>
+    <string name="item_jueves">Thursday</string>
+    <string name="item_viernes">Friday</string>
+    <string name="item_sabado">Saturday</string>
+    <string name="item_domingo">Sunday</string>
 
     <!-- semana fragments -->
-    <string name="txt_salir">Salir</string>
+    <string name="txt_salir">Exit</string>
+
+    <!-- Toast strings-->
+    <string name="stringError">\"Error: \"</string>
+    <string name="stringCambiosGuardadosCorrectamente">Changes saved successfully</string>
+    <string name="stringPacienteAgregadoCorrectamente">Patient added successfully</string>
+    <string name="stringIngreseUnUsuario">Enter an user</string>
+    <string name="stringIngreseUnCorreo">Enter an email</string>
+    <string name="stringCerrandoSesion">Logging out...</string>
+    <string name="stringVerificandoDatos">Verifying data</string>
+    <string name="stringCargano">Loading...</string>
+    <string name="stringIngreseContraseña">Enter a password</string>
+    <string name="stringBienvenidoAFit">Welcome to fitnutrition</string>
+    <string name="stringDatosIncorrectos">Incorrect data, please verify email or password</string>
+    <string name="stringIngreseUsuario">Enter an user name</string>
+    <string name="stringIngreseCorreo">Enter a password</string>
+    <string name="stringIngreseConfirmacion">Enter password confirmation</string>
+    <string name="stringContraseñasNoCoinciden">Passwords don\'t match</string>
+    <string name="stringContraseñaCaracteres">Password should have more than 6 characters</string>
+    <string name="stringUsuarioRegistrado">User recorded</string>
+    <string name="stringUsuarioNoRegistrado">User not recorded</string>
+    <string name="stringDatosRegistrados">\"onSuccess: Data recorded \"</string>
+
 </resources>

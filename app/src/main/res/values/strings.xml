@@ -119,4 +119,25 @@
     <!-- semana fragments -->
     <string name="txt_salir">Regresar a inicio</string>
 
+    <!-- Toast strings-->
+    <string name="stringError">\"Error: \"</string>
+    <string name="stringCambiosGuardadosCorrectamente">Cambios guardados correctamente</string>
+    <string name="stringPacienteAgregadoCorrectamente">Paciente agregado correctamente</string>
+    <string name="stringIngreseUnUsuario">Ingrese un usuario</string>
+    <string name="stringIngreseUnCorreo">Ingrese un correo</string>
+    <string name="stringCerrandoSesion">Cerrando sesión...</string>
+    <string name="stringVerificandoDatos">Verificando datos</string>
+    <string name="stringCargano">Cargando...</string>
+    <string name="stringIngreseContraseña">Ingrese una contraseña</string>
+    <string name="stringBienvenidoAFit">Bienvenid@ a FitNutricion</string>
+    <string name="stringDatosIncorrectos">Datos incorrectos, Verifique bien el correo o contraseña</string>
+    <string name="stringIngreseUsuario">Ingrese un nombre de usuario</string>
+    <string name="stringIngreseCorreo">Ingrese un correo</string>
+    <string name="stringIngreseConfirmacion">Ingrese la confrimación de su contraseña</string>
+    <string name="stringContraseñasNoCoinciden">Las contraseñas no coinciden</string>
+    <string name="stringContraseñaCaracteres">La contraseña debe tener mas de 6 caracteres</string>
+    <string name="stringUsuarioRegistrado">Usuario registrado</string>
+    <string name="stringUsuarioNoRegistrado">Usuario no registrado</string>
+    <string name="stringDatosRegistrados">\"onSuccess: Datos registrados \"</string>
+
 </resources>

@@ -166,11 +166,11 @@ public class AgregarPacienteFragment extends Fragment {
                 @Override
                 public void onComplete(@NonNull @NotNull Task<Void> task) {
                     if(task.isSuccessful()){
-                        Toast.makeText(getActivity(), "Paciente agregado correctamente", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), R.string.stringPacienteAgregadoCorrectamente, Toast.LENGTH_SHORT).show();
                         replaceFragment(new PacientesFragment());
                     } else {
                         String message = task.getException().toString();
-                        Toast.makeText(getActivity(), "Error: " + message, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), R.string.stringError + message, Toast.LENGTH_SHORT).show();
                     }
                 }
             });

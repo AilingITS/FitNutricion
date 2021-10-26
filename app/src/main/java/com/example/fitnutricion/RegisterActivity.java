@@ -74,22 +74,22 @@ public class RegisterActivity extends AppCompatActivity{
 
         //Condiciones para verificar que los datos esten correctos
         if(TextUtils.isEmpty(name)){
-            txtUser.setError("Ingrese un nombre de usuario");
+            txtUser.setError(getString(R.string.stringIngreseUsuario));
             txtUser.requestFocus();
         } else if (TextUtils.isEmpty(mail)){
-            txtMail.setError("Ingrese un correo");
+            txtMail.setError(getString(R.string.stringIngreseCorreo));
             txtMail.requestFocus();
         } else if(TextUtils.isEmpty(password)){
-            txtPassword.setError("Ingrese una contraseña");
+            txtPassword.setError(getString(R.string.stringIngreseContraseña));
             txtPassword.requestFocus();
         } else if(TextUtils.isEmpty(confpassword)){
-            txtConfPassword.setError("Ingrese la confrimación de su contraseña");
+            txtConfPassword.setError(getString(R.string.stringIngreseConfirmacion));
             txtConfPassword.requestFocus();
         } else if(!password.equals(confpassword)){
-            txtConfPassword.setError("Las contraseñas no coinciden");
+            txtConfPassword.setError(getString(R.string.stringContraseñasNoCoinciden));
             txtPassword.requestFocus();
         } else if (password.length() <= 5) {
-            txtPassword.setError("La contraseña debe tener mas de 6 caracteres");
+            txtPassword.setError(getString(R.string.stringContraseñaCaracteres));
             txtPassword.requestFocus();
         } else {
             mAuth.createUserWithEmailAndPassword(mail, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -107,13 +107,13 @@ public class RegisterActivity extends AppCompatActivity{
                         dbRef.setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-                                Log.d("TAG", "onSuccess: Datos registrados " + userID);
+                                Log.d("TAG", getString(R.string.stringDatosRegistrados) + userID);
                             }
                         });
-                        Toast.makeText(RegisterActivity.this, "Usuario registrado", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, R.string.stringUsuarioRegistrado, Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                     } else {
-                        Toast.makeText(RegisterActivity.this, "Usuario no registrado" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, getString(R.string.stringUsuarioNoRegistrado) + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             });

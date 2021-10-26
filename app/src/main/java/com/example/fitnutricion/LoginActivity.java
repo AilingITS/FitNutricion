@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity{
     public void onClick(View v){
         switch (v.getId()){
             case R.id.btniniciarSesion:
-                Toast.makeText(this , "Verificando datos", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this , R.string.stringVerificandoDatos, Toast.LENGTH_SHORT).show();
                 //Intent intent = new Intent (LoginActivity.this, MainActivity.class);
                 //startActivity(intent);
                 userLogin();
@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity{
             case R.id.btnRegistrarse:
                 Intent intent2 = new Intent (LoginActivity.this, RegisterActivity.class);
                 startActivity(intent2);
-                Toast.makeText(this , "Cargando...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this , R.string.stringCargano, Toast.LENGTH_SHORT).show();
                 break;
         }
     }
@@ -75,18 +75,18 @@ public class LoginActivity extends AppCompatActivity{
             txtMail.setError("Ingrese un correo");
             txtMail.requestFocus();
         } else if (TextUtils.isEmpty(password)){
-            Toast.makeText(this, "Ingrese una contraseña", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.stringIngreseContraseña, Toast.LENGTH_SHORT).show();
             txtPassword.requestFocus();
         } else {
             mAuth.signInWithEmailAndPassword(mail, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        Toast.makeText(LoginActivity.this, "Bienvenid@ a FitNutricion", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, R.string.stringBienvenidoAFit, Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         finish();
                     } else {
-                        Toast.makeText(LoginActivity.this, "Datos incorrectos, Verifique bien el correo o contraseña", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, R.string.stringDatosIncorrectos, Toast.LENGTH_SHORT).show();
                         Log.w("TAG", "Error:", task.getException());
                     }
                 }
