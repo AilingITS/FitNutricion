@@ -1175,7 +1175,7 @@ public class HomeFragment extends Fragment {
                         titlePaint4.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                         titlePaint4.setTextSize(25);
                         titlePaint4.setColor(Color.rgb(0,0,0));
-                        canvas4.drawText("Nombre: Sin desayuno", 280, 950, titlePaint4);
+                        canvas4.drawText("Nombre: Sin comida", 280, 950, titlePaint4);
                     }
 
                     if(snapshot.child("users").child(userID).child("recetas").child("Miercoles").child("B_Comida").exists()){
@@ -1219,7 +1219,7 @@ public class HomeFragment extends Fragment {
                         titlePaint4.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                         titlePaint4.setTextSize(25);
                         titlePaint4.setColor(Color.rgb(0,0,0));
-                        canvas4.drawText("Sin desayuno", 280, 1400, titlePaint4);
+                        canvas4.drawText("Nombre: Sin cena", 280, 1400, titlePaint4);
                     }
 
                     if(snapshot.child("users").child(userID).child("recetas").child("Miercoles").child("C_Cena").exists()){
@@ -1403,7 +1403,7 @@ public class HomeFragment extends Fragment {
                         titlePaint5.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                         titlePaint5.setTextSize(25);
                         titlePaint5.setColor(Color.rgb(0,0,0));
-                        canvas5.drawText("Nombre de comida: Sin cena", 280, 1400, titlePaint5);
+                        canvas5.drawText("Nombre: Sin cena", 280, 1400, titlePaint5);
                     }
 
                     if(snapshot.child("users").child(userID).child("recetas").child("Jueves").child("C_Cena").exists()){
@@ -1587,7 +1587,7 @@ public class HomeFragment extends Fragment {
                         titlePaint6.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                         titlePaint6.setTextSize(25);
                         titlePaint6.setColor(Color.rgb(0,0,0));
-                        canvas6.drawText("Nombre de comida: Sin cena", 280, 1400, titlePaint6);
+                        canvas6.drawText("Nombre: Sin cena", 280, 1400, titlePaint6);
                     }
 
                     if(snapshot.child("users").child(userID).child("recetas").child("Viernes").child("C_Cena").exists()){
@@ -1769,7 +1769,7 @@ public class HomeFragment extends Fragment {
                         titlePaint7.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                         titlePaint7.setTextSize(25);
                         titlePaint7.setColor(Color.rgb(0,0,0));
-                        canvas7.drawText("Nombre de comida: Sin cena", 280, 1400, titlePaint7);
+                        canvas7.drawText("Nombre: Sin cena", 280, 1400, titlePaint7);
                     }
 
                     if(snapshot.child("users").child(userID).child("recetas").child("Sabado").child("C_Cena").exists()){
@@ -1952,7 +1952,7 @@ public class HomeFragment extends Fragment {
                         titlePaint8.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                         titlePaint8.setTextSize(25);
                         titlePaint8.setColor(Color.rgb(0,0,0));
-                        canvas8.drawText("Nombre de comida: Sin cena", 280, 1400, titlePaint8);
+                        canvas8.drawText("Nombre: Sin cena", 280, 1400, titlePaint8);
                     }
 
                     if(snapshot.child("users").child(userID).child("recetas").child("Domingo").child("C_Cena").exists()){
