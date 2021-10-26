@@ -802,7 +802,7 @@ public class HomeFragment extends Fragment {
                         titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                         titlePaint2.setTextSize(25);
                         titlePaint2.setColor(Color.rgb(0,0,0));
-                        canvas2.drawText("Nombre: Sin desayuno", 280, 950, titlePaint2);
+                        canvas2.drawText("Nombre: Sin comida", 280, 950, titlePaint2);
                     }
 
                     if(snapshot.child("users").child(userID).child("recetas").child("Lunes").child("B_Comida").exists()){
@@ -846,7 +846,7 @@ public class HomeFragment extends Fragment {
                         titlePaint2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                         titlePaint2.setTextSize(25);
                         titlePaint2.setColor(Color.rgb(0,0,0));
-                        canvas2.drawText("Sin desayuno", 280, 1400, titlePaint2);
+                        canvas2.drawText("Nombre: Sin cena", 280, 1400, titlePaint2);
                     }
 
                     if(snapshot.child("users").child(userID).child("recetas").child("Lunes").child("C_Cena").exists()){
@@ -989,7 +989,7 @@ public class HomeFragment extends Fragment {
                         titlePaint3.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                         titlePaint3.setTextSize(25);
                         titlePaint3.setColor(Color.rgb(0,0,0));
-                        canvas3.drawText("Nombre: Sin desayuno", 280, 950, titlePaint3);
+                        canvas3.drawText("Nombre: Sin comida", 280, 950, titlePaint3);
                     }
 
                     if(snapshot.child("users").child(userID).child("recetas").child("Martes").child("B_Comida").exists()){
@@ -1033,7 +1033,7 @@ public class HomeFragment extends Fragment {
                         titlePaint3.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                         titlePaint3.setTextSize(25);
                         titlePaint3.setColor(Color.rgb(0,0,0));
-                        canvas3.drawText("Sin desayuno", 280, 1400, titlePaint3);
+                        canvas3.drawText("Nombre: Sin cena", 280, 1400, titlePaint3);
                     }
 
                     if(snapshot.child("users").child(userID).child("recetas").child("Martes").child("C_Cena").exists()){
@@ -1231,7 +1231,7 @@ public class HomeFragment extends Fragment {
                         titlePaint4.setColor(Color.rgb(0,0,0));
                         canvas4.drawText("Ingredientes:", 100, 1450, titlePaint4);
 
-                        imprimirIngredientes(100, 1480, miercolesIngredientes, titlePaint4, canvas3);
+                        imprimirIngredientes(100, 1480, miercolesIngredientes, titlePaint4, canvas4);
                     }
 
                     if(snapshot.child("users").child(userID).child("recetas").child("Miercoles").child("C_Cena").exists()){
@@ -1249,7 +1249,6 @@ public class HomeFragment extends Fragment {
                     /* --------------------------- */
 
                     document.finishPage(page4);
-
 
                     /* INICIO DE QUINTA PAGINA (JUEVES) */
 
@@ -1574,7 +1573,7 @@ public class HomeFragment extends Fragment {
                     titlePaint6.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
                     titlePaint6.setTextSize(30);
                     titlePaint6.setColor(Color.rgb(0,0,0));
-                    canvas6.drawText("Tipo de alimento: Cena", pageWidth/2, 1320, titlePaint5);
+                    canvas6.drawText("Tipo de alimento: Cena", pageWidth/2, 1320, titlePaint6);
 
                     if(snapshot.child("users").child(userID).child("recetas").child("Viernes").child("C_Cena").exists()){
                         String viernesCena = snapshot.child("users").child(userID).child("recetas").child("Viernes").child("C_Cena").child("f_nombrecomida").getValue().toString();
@@ -1618,8 +1617,6 @@ public class HomeFragment extends Fragment {
                     /* --------------------------- */
 
                     document.finishPage(page6);
-
-
 
                     /* INICIO DE SEPTIMA PAGINA (SABADO) */
 
@@ -1706,7 +1703,7 @@ public class HomeFragment extends Fragment {
                         titlePaint7.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                         titlePaint7.setTextSize(20);
                         titlePaint7.setColor(Color.rgb(0,0,0));
-                        canvas7.drawText("Contenido calórico aproximado: " + sabadoCalorias, 100, 760, titlePaint6);
+                        canvas7.drawText("Contenido calórico aproximado: " + sabadoCalorias, 100, 760, titlePaint7);
                     }
 
                     //Comida
@@ -1830,7 +1827,7 @@ public class HomeFragment extends Fragment {
                     titlePaint8.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
                     titlePaint8.setTextSize(45);
                     titlePaint8.setColor(Color.rgb(0,0,0));
-                    canvas8.drawText("Sabado", pageWidth/2, 260, titlePaint8);
+                    canvas8.drawText("Domingo", pageWidth/2, 260, titlePaint8);
 
                     titlePaint8.setStyle(Paint.Style.STROKE);
                     titlePaint8.setStrokeWidth(2);
@@ -1878,7 +1875,7 @@ public class HomeFragment extends Fragment {
                         titlePaint8.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                         titlePaint8.setTextSize(25);
                         titlePaint8.setColor(Color.rgb(0,0,0));
-                        canvas8.drawText("Ingredientes:", 100, 560, titlePaint4);
+                        canvas8.drawText("Ingredientes:", 100, 560, titlePaint8);
 
                         imprimirIngredientes(100, 590, domingoIngredientes, titlePaint8, canvas8);
                     }
@@ -1889,7 +1886,7 @@ public class HomeFragment extends Fragment {
                         titlePaint8.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                         titlePaint8.setTextSize(20);
                         titlePaint8.setColor(Color.rgb(0,0,0));
-                        canvas8.drawText("Contenido calórico aproximado: " + domingoCalorias, 100, 760, titlePaint6);
+                        canvas8.drawText("Contenido calórico aproximado: " + domingoCalorias, 100, 760, titlePaint8);
                     }
 
                     //Comida
@@ -1985,6 +1982,8 @@ public class HomeFragment extends Fragment {
                     /* --------------------------- */
 
                     document.finishPage(page8);
+
+
                     try {
                         document.writeTo(outputStream);
                     } catch (IOException e) {
