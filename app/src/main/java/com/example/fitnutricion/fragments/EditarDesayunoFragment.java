@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -21,8 +20,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.fitnutricion.R;
-import com.example.fitnutricion.fragments.comidasRecetas.CenaFragment;
-import com.example.fitnutricion.fragments.comidasRecetas.ComidaFragment;
 import com.example.fitnutricion.fragments.comidasRecetas.DesayunoFragment;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,8 +27,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -43,7 +43,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AgregarCenaFragment extends Fragment {
+public class EditarDesayunoFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -53,26 +53,29 @@ public class AgregarCenaFragment extends Fragment {
     private View vista;
     private String userID;
     private FirebaseAuth mAuth;
-
-    Button btn_añadirCena;
-    private EditText cena_nombreComida, cena_ingredientes, cena_calorias;
-    private String comidaID, saveCurrentDate, saveCurrentTime;
     private DatabaseReference dbRef;
     private StorageReference ImagesRef;
 
-    private ImageView btn_agregar_comida;
+    Button btn_editarDesayuno;
+    private EditText editar_paciente_nombre, editar_Ingredientes, editar_calorias;
+    private String desayunoID;
+
+    private ImageView btn_editar_img;
     private static final int GalleryPick = 1;
     private static final int RESULT_OK = -1;
     private Uri ImageUri;
     private String downloadImageUrl;
 
+    public EditarDesayunoFragment(String desayunoID){
+        this.desayunoID = desayunoID;
+    }
 
-    public AgregarCenaFragment() {
+    public EditarDesayunoFragment() {
         // Required empty public constructor
     }
 
-    public static AgregarCenaFragment newInstance(String param1, String param2) {
-        AgregarCenaFragment fragment = new AgregarCenaFragment();
+    public static EditarDesayunoFragment newInstance(String param1, String param2) {
+        EditarDesayunoFragment fragment = new EditarDesayunoFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -82,13 +85,6 @@ public class AgregarCenaFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        // checar condicion night mode en settings
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
-            getActivity().setTheme(R.style.ThemeDark_FitNutricion);
-        } else {
-            getActivity().setTheme(R.style.ThemeLight_FitNutricion);
-        }
-
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -99,33 +95,54 @@ public class AgregarCenaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        vista = inflater.inflate(R.layout.fragment_agregar_cena, container, false);
+        vista = inflater.inflate(R.layout.fragment_editar_alimento, container, false);
 
         mAuth = FirebaseAuth.getInstance();
         userID = mAuth.getCurrentUser().getUid();
-        dbRef = FirebaseDatabase.getInstance().getReference().child("users").child(userID).child("cenas");
-        ImagesRef = FirebaseStorage.getInstance().getReference().child("cenas");
+        dbRef = FirebaseDatabase.getInstance().getReference("users").child(userID).child("desayunos");
+        ImagesRef = FirebaseStorage.getInstance().getReference().child("desayunos");
 
-        cena_nombreComida = vista.findViewById(R.id.cena_nombreComida);
-        cena_ingredientes = vista.findViewById(R.id.cena_ingredientes);
-        cena_calorias = vista.findViewById(R.id.cena_calorias);
-        btn_agregar_comida = vista.findViewById(R.id.btn_agregar_comida);
+        editar_paciente_nombre = vista.findViewById(R.id.editar_paciente_nombre);
+        editar_Ingredientes = vista.findViewById(R.id.editar_Ingredientes);
+        editar_calorias = vista.findViewById(R.id.editar_calorias);
+        btn_editar_img = vista.findViewById(R.id.btn_editar_img);
 
-        btn_añadirCena = (Button) vista.findViewById(R.id.btn_añadirCena);
-        btn_añadirCena.setOnClickListener(new View.OnClickListener() {
+        dbRef.child(desayunoID).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                createComida();
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+
+                    String nombre = snapshot.child("f_nombrecomida").getValue().toString();
+                    String ingredientes = snapshot.child("f_ingredientes").getValue().toString();
+                    String calorias = snapshot.child("f_calorias").getValue().toString();
+
+                    editar_paciente_nombre.setText(nombre);
+                    editar_Ingredientes.setText(ingredientes);
+                    editar_calorias.setText(calorias);
+
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
             }
         });
 
-        btn_agregar_comida.setOnClickListener(new View.OnClickListener() {
+        btn_editar_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 OpenGallery();
             }
         });
+
+
+        btn_editarDesayuno = (Button) vista.findViewById(R.id.btn_editarDesayuno);
+        btn_editarDesayuno.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editDesayuno();
+            }
+        });
+
 
         return vista;
     }
@@ -137,18 +154,18 @@ public class AgregarCenaFragment extends Fragment {
         fragmentTransaction.commit();
     }
 
-    public void createComida(){
+    public void editDesayuno(){
         userID = mAuth.getCurrentUser().getUid();
 
         Calendar calendar = Calendar.getInstance();
         //SimpleDateFormat currentDate = new SimpleDateFormat(" dd MM, yyyy");
         SimpleDateFormat currentDate = new SimpleDateFormat("MM dd, yyyy");
-        saveCurrentDate = currentDate.format(calendar.getTime());
+        String saveCurrentDate = currentDate.format(calendar.getTime());
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss");
-        saveCurrentTime = currentTime.format(calendar.getTime());
-        comidaID = saveCurrentDate + saveCurrentTime;
+        String saveCurrentTime = currentTime.format(calendar.getTime());
+        String imgID = saveCurrentDate + saveCurrentTime;
 
-        StorageReference fileRef = ImagesRef.child(userID).child(comidaID + ".jpg");
+        StorageReference fileRef = ImagesRef.child(userID).child(imgID + ".jpg");
         final UploadTask uploadTask = fileRef.putFile(ImageUri);
 
         uploadTask.addOnFailureListener(new OnFailureListener() {
@@ -182,47 +199,37 @@ public class AgregarCenaFragment extends Fragment {
         });
     }
 
-    //Guardar información de perfil con imagen de perfil
-    private void SaveInfoToDatabase() {
+    public void SaveInfoToDatabase(){
         //Obtenemos los datos que ingreso el usuario
-        String nombre = cena_nombreComida.getText().toString();
-        String ingredientes = cena_ingredientes.getText().toString();
-        String calorias = cena_calorias.getText().toString();
+
+        String nombre = editar_paciente_nombre.getText().toString();
+        String ingredientes = editar_Ingredientes.getText().toString();
+        String calorias = editar_calorias.getText().toString();
 
         //Condiciones para verificar que los datos esten correctos
-        if (TextUtils.isEmpty(nombre)){
-            cena_nombreComida.setError("Ingrese el nombre de la comida");
-            cena_nombreComida.requestFocus();
-        } else if(TextUtils.isEmpty(ingredientes)){
-            cena_ingredientes.setError("Ingrese los ingredientes de la comida");
-            cena_ingredientes.requestFocus();
-        } else if(TextUtils.isEmpty(ingredientes)){
-            cena_calorias.setError("Ingrese las calorias de la comida");
-            cena_calorias.requestFocus();
-        }else {
-            Calendar calendar = Calendar.getInstance();
-            //SimpleDateFormat currentDate = new SimpleDateFormat(" dd MM, yyyy");
-            SimpleDateFormat currentDate = new SimpleDateFormat("MM dd, yyyy");
-            saveCurrentDate = currentDate.format(calendar.getTime());
-            SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss");
-            saveCurrentTime = currentTime.format(calendar.getTime());
-            comidaID = saveCurrentDate + saveCurrentTime;
-
+        if(TextUtils.isEmpty(nombre)){
+            editar_paciente_nombre.setError("Ingrese el nombre de la comida");
+            editar_paciente_nombre.requestFocus();
+        } else if (TextUtils.isEmpty(ingredientes)){
+            editar_Ingredientes.setError("Ingrese los ingredientes");
+            editar_Ingredientes.requestFocus();
+        } else if(TextUtils.isEmpty(calorias)){
+            editar_calorias.setError("Ingrese las calorías");
+            editar_calorias.requestFocus();
+        } else {
             //Map para registrar a un usuario con sus datos
-            Map<String, Object> comida = new HashMap<>();
-            comida.put("p_ID", comidaID);
-            comida.put("f_tipo", "Cena");
-            comida.put("f_nombrecomida", nombre);
-            comida.put("f_ingredientes", ingredientes);
-            comida.put("f_calorias", calorias);
-            comida.put("f_image", downloadImageUrl);
+            Map<String, Object> desayunoMap = new HashMap<>();
+            desayunoMap.put("f_nombrecomida", nombre);
+            desayunoMap.put("f_ingredientes", ingredientes);
+            desayunoMap.put("f_calorias", calorias);
+            desayunoMap.put("f_image", downloadImageUrl);
 
-            dbRef.child(comidaID).updateChildren(comida).addOnCompleteListener(new OnCompleteListener<Void>() {
+            dbRef.child(desayunoID).updateChildren(desayunoMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull @NotNull Task<Void> task) {
                     if(task.isSuccessful()){
-                        Toast.makeText(getActivity(), "Comida agregada correctamente", Toast.LENGTH_SHORT).show();
-                        replaceFragment(new CenaFragment());
+                        Toast.makeText(getActivity(), "Cambios guardados correctamente", Toast.LENGTH_SHORT).show();
+                        replaceFragment(new DesayunoFragment());
                     } else {
                         String message = task.getException().toString();
                         Toast.makeText(getActivity(), "Error: " + message, Toast.LENGTH_SHORT).show();
@@ -246,7 +253,7 @@ public class AgregarCenaFragment extends Fragment {
 
         if (requestCode==GalleryPick && resultCode==RESULT_OK && data!=null){
             ImageUri = data.getData();
-            btn_agregar_comida.setImageURI(ImageUri);
+            btn_editar_img.setImageURI(ImageUri);
         }
     }
 }

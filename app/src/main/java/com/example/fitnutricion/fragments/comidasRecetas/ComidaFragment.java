@@ -95,7 +95,7 @@ public class ComidaFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         list = new ArrayList<>();
-        myAdapter = new desayunoAdapter(getContext(),list);
+        myAdapter = new desayunoAdapter(getContext(), vista, list);
         recyclerView.setAdapter(myAdapter);
 
         btn_agregarComida.setOnClickListener(new View.OnClickListener() {

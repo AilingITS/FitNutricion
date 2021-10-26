@@ -39,6 +39,7 @@
                 android:layout_marginEnd="32dp"
                 android:backgroundTint="@color/btn_cafe_iniciar"
                 android:text="@string/comidaDesayuno"
+                android:textSize="30dp"
                 android:textColor="@color/white" />
 
             <Button
@@ -50,6 +51,7 @@
                 android:layout_marginEnd="32dp"
                 android:backgroundTint="@color/btn_cafe_iniciar"
                 android:text="@string/comidaComida"
+                android:textSize="30dp"
                 android:textColor="@color/white"
                 />
 
@@ -61,6 +63,7 @@
                 android:layout_marginTop="16dp"
                 android:backgroundTint="@color/btn_cafe_iniciar"
                 android:layout_marginEnd="32dp"
+                android:textSize="30dp"
                 android:text="@string/comidaCena"
                 android:textColor="@color/white"
                 />

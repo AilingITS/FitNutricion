@@ -199,14 +199,6 @@ public class AgregarComidaFragment extends Fragment {
             comida_calorias.setError("Ingrese las calorias de la comida");
             comida_calorias.requestFocus();
         }else {
-            //Map para registrar a un usuario con sus datos
-            Map<String, Object> comida = new HashMap<>();
-            comida.put("f_tipo", "Comida");
-            comida.put("f_nombrecomida", nombre);
-            comida.put("f_ingredientes", ingredientes);
-            comida.put("f_calorias", calorias);
-            comida.put("f_image", downloadImageUrl);
-
             Calendar calendar = Calendar.getInstance();
             //SimpleDateFormat currentDate = new SimpleDateFormat(" dd MM, yyyy");
             SimpleDateFormat currentDate = new SimpleDateFormat("MM dd, yyyy");
@@ -214,6 +206,15 @@ public class AgregarComidaFragment extends Fragment {
             SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss");
             saveCurrentTime = currentTime.format(calendar.getTime());
             comidaID = saveCurrentDate + saveCurrentTime;
+
+            //Map para registrar a un usuario con sus datos
+            Map<String, Object> comida = new HashMap<>();
+            comida.put("p_ID", comidaID);
+            comida.put("f_tipo", "Comida");
+            comida.put("f_nombrecomida", nombre);
+            comida.put("f_ingredientes", ingredientes);
+            comida.put("f_calorias", calorias);
+            comida.put("f_image", downloadImageUrl);
 
             dbRef.child(comidaID).updateChildren(comida).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override

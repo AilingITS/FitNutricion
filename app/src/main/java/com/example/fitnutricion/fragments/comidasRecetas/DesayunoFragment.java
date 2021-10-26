@@ -93,7 +93,7 @@ public class DesayunoFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         list = new ArrayList<>();
-        myAdapter = new desayunoAdapter(getContext(),list);
+        myAdapter = new desayunoAdapter(getContext(), vista, list);
         recyclerView.setAdapter(myAdapter);
 
         btn_agregarDesayuno.setOnClickListener(new View.OnClickListener() {
