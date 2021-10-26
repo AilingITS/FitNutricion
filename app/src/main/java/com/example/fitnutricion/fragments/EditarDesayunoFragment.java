@@ -35,6 +35,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -66,7 +67,7 @@ public class EditarDesayunoFragment extends Fragment {
     private Uri ImageUri;
     private String downloadImageUrl;
 
-    public EditarDesayunoFragment(String desayunoID){
+    public EditarDesayunoFragment(String desayunoID) {
         this.desayunoID = desayunoID;
     }
 
@@ -95,7 +96,7 @@ public class EditarDesayunoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        vista = inflater.inflate(R.layout.fragment_editar_alimento, container, false);
+        vista = inflater.inflate(R.layout.fragment_editar_desayuno, container, false);
 
         mAuth = FirebaseAuth.getInstance();
         userID = mAuth.getCurrentUser().getUid();
@@ -110,7 +111,12 @@ public class EditarDesayunoFragment extends Fragment {
         dbRef.child(desayunoID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
+                if (snapshot.exists()) {
+
+                    if (snapshot.child("f_image").exists()) {
+                        String image = snapshot.child("f_image").getValue().toString();
+                        Picasso.get().load(image).into(btn_editar_img);
+                    }
 
                     String nombre = snapshot.child("f_nombrecomida").getValue().toString();
                     String ingredientes = snapshot.child("f_ingredientes").getValue().toString();
@@ -122,6 +128,7 @@ public class EditarDesayunoFragment extends Fragment {
 
                 }
             }
+
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
             }
@@ -139,7 +146,7 @@ public class EditarDesayunoFragment extends Fragment {
         btn_editarDesayuno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editDesayuno();
+                ValidateProductData();
             }
         });
 
@@ -150,56 +157,98 @@ public class EditarDesayunoFragment extends Fragment {
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.body_container,fragment);
+        fragmentTransaction.replace(R.id.body_container, fragment);
         fragmentTransaction.commit();
     }
 
-    public void editDesayuno(){
-        userID = mAuth.getCurrentUser().getUid();
+    //Función cuando el usuario da clic en el boton actualizar datos
+    private void ValidateProductData() {
+        String nombre = editar_paciente_nombre.getText().toString();
+        String ingredientes = editar_Ingredientes.getText().toString();
+        String calorias = editar_calorias.getText().toString();
 
-        Calendar calendar = Calendar.getInstance();
-        //SimpleDateFormat currentDate = new SimpleDateFormat(" dd MM, yyyy");
-        SimpleDateFormat currentDate = new SimpleDateFormat("MM dd, yyyy");
-        String saveCurrentDate = currentDate.format(calendar.getTime());
-        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss");
-        String saveCurrentTime = currentTime.format(calendar.getTime());
-        String imgID = saveCurrentDate + saveCurrentTime;
+        if (ImageUri == null) { //En caso que el usuario modifico datos pero no su imagen se llama a la sig función solo para actualizar datos
+            SaveInfoToDatabasewithoutImage();
+        } else if (TextUtils.isEmpty(nombre)) {
+            editar_paciente_nombre.setError("Ingrese el nombre de la comida");
+            editar_paciente_nombre.requestFocus();
+        } else if (TextUtils.isEmpty(ingredientes)) {
+            editar_Ingredientes.setError("Ingrese los ingredientes");
+            editar_Ingredientes.requestFocus();
+        } else if (TextUtils.isEmpty(calorias)) {
+            editar_calorias.setError("Ingrese las calorías");
+            editar_calorias.requestFocus();
+        } else { //Si el usuario si agrego una imagen de perfil entra en este else
+            userID = mAuth.getCurrentUser().getUid();
 
-        StorageReference fileRef = ImagesRef.child(userID).child(imgID + ".jpg");
-        final UploadTask uploadTask = fileRef.putFile(ImageUri);
+            Calendar calendar = Calendar.getInstance();
+            //SimpleDateFormat currentDate = new SimpleDateFormat(" dd MM, yyyy");
+            SimpleDateFormat currentDate = new SimpleDateFormat("MM dd, yyyy");
+            String saveCurrentDate = currentDate.format(calendar.getTime());
+            SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss");
+            String saveCurrentTime = currentTime.format(calendar.getTime());
+            String imgID = saveCurrentDate + saveCurrentTime;
 
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull @NotNull Exception e) {
-                String message = e.toString();
-                Toast.makeText(getActivity(), "Error: " + message, Toast.LENGTH_SHORT).show();
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                    @Override
-                    public Task<Uri> then(@NonNull @NotNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                        if (!task.isSuccessful()){
-                            throw task.getException();
+            StorageReference fileRef = ImagesRef.child(userID).child(imgID + ".jpg");
+            final UploadTask uploadTask = fileRef.putFile(ImageUri);
+
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull @NotNull Exception e) {
+                    String message = e.toString();
+                    Toast.makeText(getActivity(), "Error: " + message, Toast.LENGTH_SHORT).show();
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                        @Override
+                        public Task<Uri> then(@NonNull @NotNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                            if (!task.isSuccessful()) {
+                                throw task.getException();
+                            }
+                            downloadImageUrl = fileRef.getDownloadUrl().toString();
+                            return fileRef.getDownloadUrl();
                         }
-                        downloadImageUrl = fileRef.getDownloadUrl().toString();
-                        return fileRef.getDownloadUrl();
-                    }
-                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                    @Override
-                    public void onComplete(@NonNull @NotNull Task<Uri> task) {
-                        if(task.isSuccessful()){
-                            downloadImageUrl = task.getResult().toString();
-                            SaveInfoToDatabase(); //Función para actualizar datos e imagen de perfil
+                    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull @NotNull Task<Uri> task) {
+                            if (task.isSuccessful()) {
+                                downloadImageUrl = task.getResult().toString();
+                                SaveInfoToDatabase(); //Función para actualizar datos e imagen de perfil
+                            }
                         }
-                    }
-                });
+                    });
+                }
+            });
+        }
+    }
+
+    // Actualiza los datos menos la foto de perfil
+    private void SaveInfoToDatabasewithoutImage () {
+        HashMap<String, Object> infoMap = new HashMap<>();
+        String nombre = editar_paciente_nombre.getText().toString();
+        String ingredientes = editar_Ingredientes.getText().toString();
+        String calorias = editar_calorias.getText().toString();
+        infoMap.put("f_nombrecomdia", nombre);
+        infoMap.put("f_ingredientes", ingredientes);
+        infoMap.put("f_calorias", calorias);
+
+        dbRef.child(desayunoID).updateChildren(infoMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull @NotNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(getActivity(), "Cambios guardados correctamente", Toast.LENGTH_SHORT).show();
+                    replaceFragment(new DesayunoFragment());
+                } else {
+                    String message = task.getException().toString();
+                    Toast.makeText(getActivity(), "Error: " + message, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
 
-    public void SaveInfoToDatabase(){
+    public void SaveInfoToDatabase () {
         //Obtenemos los datos que ingreso el usuario
 
         String nombre = editar_paciente_nombre.getText().toString();
@@ -207,13 +256,13 @@ public class EditarDesayunoFragment extends Fragment {
         String calorias = editar_calorias.getText().toString();
 
         //Condiciones para verificar que los datos esten correctos
-        if(TextUtils.isEmpty(nombre)){
+        if (TextUtils.isEmpty(nombre)) {
             editar_paciente_nombre.setError("Ingrese el nombre de la comida");
             editar_paciente_nombre.requestFocus();
-        } else if (TextUtils.isEmpty(ingredientes)){
+        } else if (TextUtils.isEmpty(ingredientes)) {
             editar_Ingredientes.setError("Ingrese los ingredientes");
             editar_Ingredientes.requestFocus();
-        } else if(TextUtils.isEmpty(calorias)){
+        } else if (TextUtils.isEmpty(calorias)) {
             editar_calorias.setError("Ingrese las calorías");
             editar_calorias.requestFocus();
         } else {
@@ -227,7 +276,7 @@ public class EditarDesayunoFragment extends Fragment {
             dbRef.child(desayunoID).updateChildren(desayunoMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull @NotNull Task<Void> task) {
-                    if(task.isSuccessful()){
+                    if (task.isSuccessful()) {
                         Toast.makeText(getActivity(), "Cambios guardados correctamente", Toast.LENGTH_SHORT).show();
                         replaceFragment(new DesayunoFragment());
                     } else {
@@ -240,7 +289,7 @@ public class EditarDesayunoFragment extends Fragment {
     }
 
     //Función para abrir la galeria cuando da clic en la imagen
-    private void OpenGallery() {
+    private void OpenGallery () {
         Intent galleryIntent = new Intent();
         galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
         galleryIntent.setType("image/*");
@@ -248,12 +297,14 @@ public class EditarDesayunoFragment extends Fragment {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+    public void onActivityResult ( int requestCode, int resultCode,
+                                   @Nullable @org.jetbrains.annotations.Nullable Intent data){
         super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode==GalleryPick && resultCode==RESULT_OK && data!=null){
+        if (requestCode == GalleryPick && resultCode == RESULT_OK && data != null) {
             ImageUri = data.getData();
             btn_editar_img.setImageURI(ImageUri);
         }
     }
 }
+
+
