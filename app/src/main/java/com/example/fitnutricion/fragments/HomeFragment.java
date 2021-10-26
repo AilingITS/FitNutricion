@@ -1049,12 +1049,12 @@ public class HomeFragment extends Fragment {
                     }
 
                     if(snapshot.child("users").child(userID).child("recetas").child("Martes").child("C_Cena").exists()){
-                        String martesIngredientes = snapshot.child("users").child(userID).child("recetas").child("Martes").child("C_Cena").child("f_calorias").getValue().toString();
+                        String martesCalorias = snapshot.child("users").child(userID).child("recetas").child("Martes").child("C_Cena").child("f_calorias").getValue().toString();
                         titlePaint3.setTextAlign(Paint.Align.LEFT);
                         titlePaint3.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                         titlePaint3.setTextSize(20);
                         titlePaint3.setColor(Color.rgb(0,0,0));
-                        canvas3.drawText("Contenido calórico aproximado: " + martesIngredientes, 100, 1660, titlePaint3);
+                        canvas3.drawText("Contenido calórico aproximado: " + martesCalorias, 100, 1660, titlePaint3);
                     }
                     /* ---------------- */
 
@@ -1063,7 +1063,928 @@ public class HomeFragment extends Fragment {
                     /* --------------------------- */
 
                     document.finishPage(page3);
+                    /* BORRAR DESDE AQUÍ */
 
+
+                    /* INICIO DE CUARTA PAGINA (MIERCOLES) */
+
+
+
+                    PdfDocument.PageInfo pageInfo4 = new PdfDocument.PageInfo.Builder(1200, 2010, 1).create();
+                    PdfDocument.Page page4 = document.startPage(pageInfo4);
+
+                    Canvas canvas4 = page4.getCanvas();
+                    Paint myPaint4 = new Paint();
+                    Paint titlePaint4 = new Paint();
+
+                    /* DATOS DEL NUTRIOLOGO */
+                    titlePaint4.setTextAlign(Paint.Align.LEFT);
+                    titlePaint4.setTextSize(20);
+                    titlePaint4.setColor(Color.rgb(110, 184, 245));
+                    canvas4.drawText("Dr.: " + nombre_nutri_pdf, 50, 75, titlePaint4);
+
+                    titlePaint4.setTextAlign(Paint.Align.LEFT);
+                    titlePaint4.setTextSize(20);
+                    titlePaint4.setColor(Color.rgb(110, 184, 245));
+                    canvas4.drawText(correo_nutri_pdf, 50, 110, titlePaint4);
+                    /* -------------------- */
+
+                    /* ALIMENTOS MIERCOLES */
+                    titlePaint4.setTextAlign(Paint.Align.CENTER);
+                    titlePaint4.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint4.setTextSize(45);
+                    titlePaint4.setColor(Color.rgb(0,0,0));
+                    canvas4.drawText("Miércoles", pageWidth/2, 260, titlePaint4);
+
+                    titlePaint4.setStyle(Paint.Style.STROKE);
+                    titlePaint4.setStrokeWidth(2);
+
+                    // Tablas Desayuno, comida y cena
+                    canvas4.drawRect(60, 380, 1140, 780, titlePaint4);
+                    canvas4.drawLine(60, 440, 1140, 440, titlePaint4);
+
+                    canvas4.drawRect(60, 830, 1140, 1230, titlePaint4);
+                    canvas4.drawLine(60, 890, 1140, 890, titlePaint4);
+
+                    canvas4.drawRect(60, 1280, 1140, 1680, titlePaint4);
+                    canvas4.drawLine(60, 1340, 1140, 1340, titlePaint4);
+
+                    titlePaint4.setStrokeWidth(0);
+                    titlePaint4.setStyle(Paint.Style.FILL);
+
+                    //Desayuno
+                    titlePaint4.setTextAlign(Paint.Align.CENTER);
+                    titlePaint4.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint4.setTextSize(30);
+                    titlePaint4.setColor(Color.rgb(0,0,0));
+                    canvas4.drawText("Tipo de alimento: Desayuno", pageWidth/2, 420, titlePaint4);
+
+                    //Miercoles d_NOMBRE Firebase
+                    if(snapshot.child("users").child(userID).child("recetas").child("Miercoles").child("A_Desayuno").exists()){
+                        String miercolesDesayuno = snapshot.child("users").child(userID).child("recetas").child("Miercoles").child("A_Desayuno").child("f_nombrecomida").getValue().toString();
+                        titlePaint4.setTextAlign(Paint.Align.LEFT);
+                        titlePaint4.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint4.setTextSize(25);
+                        titlePaint4.setColor(Color.rgb(0,0,0));
+                        canvas4.drawText("Nombre: " + miercolesDesayuno, 100, 500, titlePaint4);
+                    } else {
+                        titlePaint4.setTextAlign(Paint.Align.LEFT);
+                        titlePaint4.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint4.setTextSize(25);
+                        titlePaint4.setColor(Color.rgb(0,0,0));
+                        canvas4.drawText("Nombre: Sin desayuno", 280, 500, titlePaint4);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Miercoles").child("A_Desayuno").exists()){
+                        String miercolesIngredientes = snapshot.child("users").child(userID).child("recetas").child("Miercoles").child("A_Desayuno").child("f_ingredientes").getValue().toString();
+
+                        titlePaint4.setTextAlign(Paint.Align.LEFT);
+                        titlePaint4.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint4.setTextSize(25);
+                        titlePaint4.setColor(Color.rgb(0,0,0));
+                        canvas4.drawText("Ingredientes:", 100, 560, titlePaint4);
+
+                        imprimirIngredientes(100, 590, miercolesIngredientes, titlePaint4, canvas4);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Miercoles").child("A_Desayuno").exists()){
+                        String miercolesCalorias = snapshot.child("users").child(userID).child("recetas").child("Miercoles").child("A_Desayuno").child("f_calorias").getValue().toString();
+                        titlePaint4.setTextAlign(Paint.Align.LEFT);
+                        titlePaint4.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint4.setTextSize(20);
+                        titlePaint4.setColor(Color.rgb(0,0,0));
+                        canvas4.drawText("Contenido calórico aproximado: " + miercolesCalorias, 100, 760, titlePaint4);
+                    }
+
+                    //Comida
+                    titlePaint4.setTextAlign(Paint.Align.CENTER);
+                    titlePaint4.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint4.setTextSize(30);
+                    titlePaint4.setColor(Color.rgb(0,0,0));
+                    canvas4.drawText("Tipo de alimento: Comida", pageWidth/2, 870, titlePaint4);
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Miercoles").child("B_Comida").exists()){
+                        String miercolesComida = snapshot.child("users").child(userID).child("recetas").child("Miercoles").child("B_Comida").child("f_nombrecomida").getValue().toString();
+                        titlePaint4.setTextAlign(Paint.Align.LEFT);
+                        titlePaint4.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint4.setTextSize(25);
+                        titlePaint4.setColor(Color.rgb(0,0,0));
+                        canvas4.drawText("Nombre: " + miercolesComida, 100, 950, titlePaint4);
+                    } else {
+                        titlePaint4.setTextAlign(Paint.Align.LEFT);
+                        titlePaint4.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint4.setTextSize(25);
+                        titlePaint4.setColor(Color.rgb(0,0,0));
+                        canvas4.drawText("Nombre: Sin desayuno", 280, 950, titlePaint4);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Miercoles").child("B_Comida").exists()){
+                        String miercolesIngredientes = snapshot.child("users").child(userID).child("recetas").child("Miercoles").child("B_Comida").child("f_ingredientes").getValue().toString();
+
+                        titlePaint4.setTextAlign(Paint.Align.LEFT);
+                        titlePaint4.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint4.setTextSize(25);
+                        titlePaint4.setColor(Color.rgb(0,0,0));
+                        canvas4.drawText("Ingredientes:", 100, 1010, titlePaint4);
+
+                        imprimirIngredientes(100, 1040, miercolesIngredientes, titlePaint4, canvas4);
+
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Miercoles").child("B_Comida").exists()){
+                        String miercolesCalorias = snapshot.child("users").child(userID).child("recetas").child("Miercoles").child("B_Comida").child("f_calorias").getValue().toString();
+                        titlePaint4.setTextAlign(Paint.Align.LEFT);
+                        titlePaint4.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint4.setTextSize(20);
+                        titlePaint4.setColor(Color.rgb(0,0,0));
+                        canvas4.drawText("Contenido calórico aproximado: " + miercolesCalorias, 100, 1210, titlePaint4);
+                    }
+
+                    //Cena
+                    titlePaint4.setTextAlign(Paint.Align.CENTER);
+                    titlePaint4.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint4.setTextSize(30);
+                    titlePaint4.setColor(Color.rgb(0,0,0));
+                    canvas4.drawText("Tipo de alimento: Cena", pageWidth/2, 1320, titlePaint4);
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Miercoles").child("C_Cena").exists()){
+                        String miercolesCena = snapshot.child("users").child(userID).child("recetas").child("Miercoles").child("C_Cena").child("f_nombrecomida").getValue().toString();
+                        titlePaint4.setTextAlign(Paint.Align.LEFT);
+                        titlePaint4.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint4.setTextSize(25);
+                        titlePaint4.setColor(Color.rgb(0,0,0));
+                        canvas4.drawText("Nombre: " + miercolesCena, 100, 1400, titlePaint4);
+                    } else {
+                        titlePaint4.setTextAlign(Paint.Align.LEFT);
+                        titlePaint4.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint4.setTextSize(25);
+                        titlePaint4.setColor(Color.rgb(0,0,0));
+                        canvas4.drawText("Sin desayuno", 280, 1400, titlePaint4);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Miercoles").child("C_Cena").exists()){
+                        String miercolesIngredientes = snapshot.child("users").child(userID).child("recetas").child("Miercoles").child("C_Cena").child("f_ingredientes").getValue().toString();
+
+                        titlePaint4.setTextAlign(Paint.Align.LEFT);
+                        titlePaint4.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint4.setTextSize(25);
+                        titlePaint4.setColor(Color.rgb(0,0,0));
+                        canvas4.drawText("Ingredientes:", 100, 1450, titlePaint4);
+
+                        imprimirIngredientes(100, 1480, miercolesIngredientes, titlePaint4, canvas3);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Miercoles").child("C_Cena").exists()){
+                        String miercolesCalorias = snapshot.child("users").child(userID).child("recetas").child("Miercoles").child("C_Cena").child("f_calorias").getValue().toString();
+                        titlePaint4.setTextAlign(Paint.Align.LEFT);
+                        titlePaint4.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint4.setTextSize(20);
+                        titlePaint4.setColor(Color.rgb(0,0,0));
+                        canvas4.drawText("Contenido calórico aproximado: " + miercolesCalorias, 100, 1660, titlePaint4);
+                    }
+                    /* ---------------- */
+
+                    /* LOGO PARTE DE ABAJO DEL PDF */
+                    canvas4.drawBitmap(scaledbmp, 515, 1800, myPaint4);
+                    /* --------------------------- */
+
+                    document.finishPage(page4);
+
+
+                    /* INICIO DE QUINTA PAGINA (JUEVES) */
+
+
+
+                    PdfDocument.PageInfo pageInfo5 = new PdfDocument.PageInfo.Builder(1200, 2010, 1).create();
+                    PdfDocument.Page page5 = document.startPage(pageInfo5);
+
+                    Canvas canvas5 = page5.getCanvas();
+                    Paint myPaint5 = new Paint();
+                    Paint titlePaint5 = new Paint();
+
+                    /* DATOS DEL NUTRIOLOGO */
+                    titlePaint5.setTextAlign(Paint.Align.LEFT);
+                    titlePaint5.setTextSize(20);
+                    titlePaint5.setColor(Color.rgb(110, 184, 245));
+                    canvas5.drawText("Dr.: " + nombre_nutri_pdf, 50, 75, titlePaint5);
+
+                    titlePaint5.setTextAlign(Paint.Align.LEFT);
+                    titlePaint5.setTextSize(20);
+                    titlePaint5.setColor(Color.rgb(110, 184, 245));
+                    canvas5.drawText(correo_nutri_pdf, 50, 110, titlePaint5);
+                    /* -------------------- */
+
+                    /* ALIMENTOS JUEVES */
+                    titlePaint5.setTextAlign(Paint.Align.CENTER);
+                    titlePaint5.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint5.setTextSize(45);
+                    titlePaint5.setColor(Color.rgb(0,0,0));
+                    canvas5.drawText("Jueves", pageWidth/2, 260, titlePaint5);
+
+                    titlePaint5.setStyle(Paint.Style.STROKE);
+                    titlePaint5.setStrokeWidth(2);
+
+                    // Tablas Desayuno, comida y cena
+                    canvas5.drawRect(60, 380, 1140, 780, titlePaint5);
+                    canvas5.drawLine(60, 440, 1140, 440, titlePaint5);
+
+                    canvas5.drawRect(60, 830, 1140, 1230, titlePaint5);
+                    canvas5.drawLine(60, 890, 1140, 890, titlePaint5);
+
+                    canvas5.drawRect(60, 1280, 1140, 1680, titlePaint5);
+                    canvas5.drawLine(60, 1340, 1140, 1340, titlePaint5);
+
+                    titlePaint5.setStrokeWidth(0);
+                    titlePaint5.setStyle(Paint.Style.FILL);
+
+                    //Desayuno
+                    titlePaint5.setTextAlign(Paint.Align.CENTER);
+                    titlePaint5.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint5.setTextSize(30);
+                    titlePaint5.setColor(Color.rgb(0,0,0));
+                    canvas5.drawText("Tipo de alimento: Desayuno", pageWidth/2, 420, titlePaint5);
+
+                    //Jueves d_NOMBRE Firebase
+                    if(snapshot.child("users").child(userID).child("recetas").child("Jueves").child("A_Desayuno").exists()){
+                        String juevesDesayuno = snapshot.child("users").child(userID).child("recetas").child("Jueves").child("A_Desayuno").child("f_nombrecomida").getValue().toString();
+                        titlePaint5.setTextAlign(Paint.Align.LEFT);
+                        titlePaint5.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint5.setTextSize(25);
+                        titlePaint5.setColor(Color.rgb(0,0,0));
+                        canvas5.drawText("Nombre: " + juevesDesayuno, 100, 500, titlePaint5);
+                    } else {
+                        titlePaint5.setTextAlign(Paint.Align.LEFT);
+                        titlePaint5.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint5.setTextSize(25);
+                        titlePaint5.setColor(Color.rgb(0,0,0));
+                        canvas5.drawText("Nombre: Sin desayuno", 280, 500, titlePaint5);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Jueves").child("A_Desayuno").exists()){
+                        String juevesIngredientes = snapshot.child("users").child(userID).child("recetas").child("Jueves").child("A_Desayuno").child("f_ingredientes").getValue().toString();
+
+                        titlePaint5.setTextAlign(Paint.Align.LEFT);
+                        titlePaint5.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint5.setTextSize(25);
+                        titlePaint5.setColor(Color.rgb(0,0,0));
+                        canvas5.drawText("Ingredientes:", 100, 560, titlePaint4);
+
+                        imprimirIngredientes(100, 590, juevesIngredientes, titlePaint5, canvas5);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Jueves").child("A_Desayuno").exists()){
+                        String juevesCalorias = snapshot.child("users").child(userID).child("recetas").child("Jueves").child("A_Desayuno").child("f_calorias").getValue().toString();
+                        titlePaint5.setTextAlign(Paint.Align.LEFT);
+                        titlePaint5.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint5.setTextSize(20);
+                        titlePaint5.setColor(Color.rgb(0,0,0));
+                        canvas5.drawText("Contenido calórico aproximado: " + juevesCalorias, 100, 760, titlePaint5);
+                    }
+
+                    //Comida
+                    titlePaint5.setTextAlign(Paint.Align.CENTER);
+                    titlePaint5.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint5.setTextSize(30);
+                    titlePaint5.setColor(Color.rgb(0,0,0));
+                    canvas5.drawText("Tipo de alimento: Comida", pageWidth/2, 870, titlePaint5);
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Jueves").child("B_Comida").exists()){
+                        String juevesComida = snapshot.child("users").child(userID).child("recetas").child("Jueves").child("B_Comida").child("f_nombrecomida").getValue().toString();
+                        titlePaint5.setTextAlign(Paint.Align.LEFT);
+                        titlePaint5.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint5.setTextSize(25);
+                        titlePaint5.setColor(Color.rgb(0,0,0));
+                        canvas5.drawText("Nombre: " + juevesComida, 100, 950, titlePaint5);
+                    } else {
+                        titlePaint5.setTextAlign(Paint.Align.LEFT);
+                        titlePaint5.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint5.setTextSize(25);
+                        titlePaint5.setColor(Color.rgb(0,0,0));
+                        canvas5.drawText("Nombre: Sin comida", 280, 950, titlePaint5);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Jueves").child("B_Comida").exists()){
+                        String juevesIngredientes = snapshot.child("users").child(userID).child("recetas").child("Jueves").child("B_Comida").child("f_ingredientes").getValue().toString();
+
+                        titlePaint5.setTextAlign(Paint.Align.LEFT);
+                        titlePaint5.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint5.setTextSize(25);
+                        titlePaint5.setColor(Color.rgb(0,0,0));
+                        canvas5.drawText("Ingredientes:", 100, 1010, titlePaint5);
+
+                        imprimirIngredientes(100, 1040, juevesIngredientes, titlePaint5, canvas5);
+
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Jueves").child("B_Comida").exists()){
+                        String juevesCalorias = snapshot.child("users").child(userID).child("recetas").child("Jueves").child("B_Comida").child("f_calorias").getValue().toString();
+                        titlePaint5.setTextAlign(Paint.Align.LEFT);
+                        titlePaint5.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint5.setTextSize(20);
+                        titlePaint5.setColor(Color.rgb(0,0,0));
+                        canvas5.drawText("Contenido calórico aproximado: " + juevesCalorias, 100, 1210, titlePaint5);
+                    }
+
+                    //Cena
+                    titlePaint5.setTextAlign(Paint.Align.CENTER);
+                    titlePaint5.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint5.setTextSize(30);
+                    titlePaint5.setColor(Color.rgb(0,0,0));
+                    canvas5.drawText("Tipo de alimento: Cena", pageWidth/2, 1320, titlePaint5);
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Jueves").child("C_Cena").exists()){
+                        String juevesCena = snapshot.child("users").child(userID).child("recetas").child("Jueves").child("C_Cena").child("f_nombrecomida").getValue().toString();
+                        titlePaint5.setTextAlign(Paint.Align.LEFT);
+                        titlePaint5.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint5.setTextSize(25);
+                        titlePaint5.setColor(Color.rgb(0,0,0));
+                        canvas5.drawText("Nombre: " + juevesCena, 100, 1400, titlePaint5);
+                    } else {
+                        titlePaint5.setTextAlign(Paint.Align.LEFT);
+                        titlePaint5.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint5.setTextSize(25);
+                        titlePaint5.setColor(Color.rgb(0,0,0));
+                        canvas5.drawText("Nombre de comida: Sin cena", 280, 1400, titlePaint5);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Jueves").child("C_Cena").exists()){
+                        String juevesIngredientes = snapshot.child("users").child(userID).child("recetas").child("Jueves").child("C_Cena").child("f_ingredientes").getValue().toString();
+
+                        titlePaint5.setTextAlign(Paint.Align.LEFT);
+                        titlePaint5.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint5.setTextSize(25);
+                        titlePaint5.setColor(Color.rgb(0,0,0));
+                        canvas5.drawText("Ingredientes:", 100, 1450, titlePaint5);
+
+                        imprimirIngredientes(100, 1480, juevesIngredientes, titlePaint5, canvas5);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Miercoles").child("C_Cena").exists()){
+                        String juevesCalorias = snapshot.child("users").child(userID).child("recetas").child("Miercoles").child("C_Cena").child("f_calorias").getValue().toString();
+                        titlePaint5.setTextAlign(Paint.Align.LEFT);
+                        titlePaint5.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint5.setTextSize(20);
+                        titlePaint5.setColor(Color.rgb(0,0,0));
+                        canvas5.drawText("Contenido calórico aproximado: " + juevesCalorias, 100, 1660, titlePaint5);
+                    }
+                    /* ---------------- */
+
+                    /* LOGO PARTE DE ABAJO DEL PDF */
+                    canvas5.drawBitmap(scaledbmp, 515, 1800, myPaint5);
+                    /* --------------------------- */
+
+                    document.finishPage(page5);
+
+                    /* INICIO DE SEXTA PAGINA (VIERNES) */
+
+
+
+                    PdfDocument.PageInfo pageInfo6 = new PdfDocument.PageInfo.Builder(1200, 2010, 1).create();
+                    PdfDocument.Page page6 = document.startPage(pageInfo6);
+
+                    Canvas canvas6 = page6.getCanvas();
+                    Paint myPaint6 = new Paint();
+                    Paint titlePaint6 = new Paint();
+
+                    /* DATOS DEL NUTRIOLOGO */
+                    titlePaint6.setTextAlign(Paint.Align.LEFT);
+                    titlePaint6.setTextSize(20);
+                    titlePaint6.setColor(Color.rgb(110, 184, 245));
+                    canvas6.drawText("Dr.: " + nombre_nutri_pdf, 50, 75, titlePaint6);
+
+                    titlePaint6.setTextAlign(Paint.Align.LEFT);
+                    titlePaint6.setTextSize(20);
+                    titlePaint6.setColor(Color.rgb(110, 184, 245));
+                    canvas6.drawText(correo_nutri_pdf, 50, 110, titlePaint6);
+                    /* -------------------- */
+
+                    /* ALIMENTOS VIERNES */
+                    titlePaint6.setTextAlign(Paint.Align.CENTER);
+                    titlePaint6.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint6.setTextSize(45);
+                    titlePaint6.setColor(Color.rgb(0,0,0));
+                    canvas6.drawText("Viernes", pageWidth/2, 260, titlePaint6);
+
+                    titlePaint6.setStyle(Paint.Style.STROKE);
+                    titlePaint6.setStrokeWidth(2);
+
+                    // Tablas Desayuno, comida y cena
+                    canvas6.drawRect(60, 380, 1140, 780, titlePaint6);
+                    canvas6.drawLine(60, 440, 1140, 440, titlePaint6);
+
+                    canvas6.drawRect(60, 830, 1140, 1230, titlePaint6);
+                    canvas6.drawLine(60, 890, 1140, 890, titlePaint6);
+
+                    canvas6.drawRect(60, 1280, 1140, 1680, titlePaint6);
+                    canvas6.drawLine(60, 1340, 1140, 1340, titlePaint6);
+
+                    titlePaint6.setStrokeWidth(0);
+                    titlePaint6.setStyle(Paint.Style.FILL);
+
+                    //Desayuno
+                    titlePaint6.setTextAlign(Paint.Align.CENTER);
+                    titlePaint6.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint6.setTextSize(30);
+                    titlePaint6.setColor(Color.rgb(0,0,0));
+                    canvas6.drawText("Tipo de alimento: Desayuno", pageWidth/2, 420, titlePaint6);
+
+                    //Jueves d_NOMBRE Firebase
+                    if(snapshot.child("users").child(userID).child("recetas").child("Viernes").child("A_Desayuno").exists()){
+                        String viernesDesayuno = snapshot.child("users").child(userID).child("recetas").child("Viernes").child("A_Desayuno").child("f_nombrecomida").getValue().toString();
+                        titlePaint6.setTextAlign(Paint.Align.LEFT);
+                        titlePaint6.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint6.setTextSize(25);
+                        titlePaint6.setColor(Color.rgb(0,0,0));
+                        canvas6.drawText("Nombre: " + viernesDesayuno, 100, 500, titlePaint6);
+                    } else {
+                        titlePaint6.setTextAlign(Paint.Align.LEFT);
+                        titlePaint6.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint6.setTextSize(25);
+                        titlePaint6.setColor(Color.rgb(0,0,0));
+                        canvas6.drawText("Nombre: Sin desayuno", 280, 500, titlePaint6);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Viernes").child("A_Desayuno").exists()){
+                        String viernesIngredientes = snapshot.child("users").child(userID).child("recetas").child("Viernes").child("A_Desayuno").child("f_ingredientes").getValue().toString();
+
+                        titlePaint6.setTextAlign(Paint.Align.LEFT);
+                        titlePaint6.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint6.setTextSize(25);
+                        titlePaint6.setColor(Color.rgb(0,0,0));
+                        canvas6.drawText("Ingredientes:", 100, 560, titlePaint4);
+
+                        imprimirIngredientes(100, 590, viernesIngredientes, titlePaint6, canvas6);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Viernes").child("A_Desayuno").exists()){
+                        String viernesCalorias = snapshot.child("users").child(userID).child("recetas").child("Viernes").child("A_Desayuno").child("f_calorias").getValue().toString();
+                        titlePaint6.setTextAlign(Paint.Align.LEFT);
+                        titlePaint6.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint6.setTextSize(20);
+                        titlePaint6.setColor(Color.rgb(0,0,0));
+                        canvas6.drawText("Contenido calórico aproximado: " + viernesCalorias, 100, 760, titlePaint6);
+                    }
+
+                    //Comida
+                    titlePaint6.setTextAlign(Paint.Align.CENTER);
+                    titlePaint6.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint6.setTextSize(30);
+                    titlePaint6.setColor(Color.rgb(0,0,0));
+                    canvas6.drawText("Tipo de alimento: Comida", pageWidth/2, 870, titlePaint6);
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Viernes").child("B_Comida").exists()){
+                        String viernesComida = snapshot.child("users").child(userID).child("recetas").child("Viernes").child("B_Comida").child("f_nombrecomida").getValue().toString();
+                        titlePaint6.setTextAlign(Paint.Align.LEFT);
+                        titlePaint6.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint6.setTextSize(25);
+                        titlePaint6.setColor(Color.rgb(0,0,0));
+                        canvas6.drawText("Nombre: " + viernesComida, 100, 950, titlePaint6);
+                    } else {
+                        titlePaint6.setTextAlign(Paint.Align.LEFT);
+                        titlePaint6.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint6.setTextSize(25);
+                        titlePaint6.setColor(Color.rgb(0,0,0));
+                        canvas6.drawText("Nombre: Sin comida", 280, 950, titlePaint6);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Viernes").child("B_Comida").exists()){
+                        String viernesIngredientes = snapshot.child("users").child(userID).child("recetas").child("Viernes").child("B_Comida").child("f_ingredientes").getValue().toString();
+
+                        titlePaint6.setTextAlign(Paint.Align.LEFT);
+                        titlePaint6.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint6.setTextSize(25);
+                        titlePaint6.setColor(Color.rgb(0,0,0));
+                        canvas6.drawText("Ingredientes:", 100, 1010, titlePaint6);
+
+                        imprimirIngredientes(100, 1040, viernesIngredientes, titlePaint6, canvas6);
+
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Viernes").child("B_Comida").exists()){
+                        String viernesCalorias = snapshot.child("users").child(userID).child("recetas").child("Viernes").child("B_Comida").child("f_calorias").getValue().toString();
+                        titlePaint6.setTextAlign(Paint.Align.LEFT);
+                        titlePaint6.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint6.setTextSize(20);
+                        titlePaint6.setColor(Color.rgb(0,0,0));
+                        canvas6.drawText("Contenido calórico aproximado: " + viernesCalorias, 100, 1210, titlePaint6);
+                    }
+
+                    //Cena
+                    titlePaint6.setTextAlign(Paint.Align.CENTER);
+                    titlePaint6.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint6.setTextSize(30);
+                    titlePaint6.setColor(Color.rgb(0,0,0));
+                    canvas6.drawText("Tipo de alimento: Cena", pageWidth/2, 1320, titlePaint5);
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Viernes").child("C_Cena").exists()){
+                        String viernesCena = snapshot.child("users").child(userID).child("recetas").child("Viernes").child("C_Cena").child("f_nombrecomida").getValue().toString();
+                        titlePaint6.setTextAlign(Paint.Align.LEFT);
+                        titlePaint6.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint6.setTextSize(25);
+                        titlePaint6.setColor(Color.rgb(0,0,0));
+                        canvas6.drawText("Nombre: " + viernesCena, 100, 1400, titlePaint6);
+                    } else {
+                        titlePaint6.setTextAlign(Paint.Align.LEFT);
+                        titlePaint6.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint6.setTextSize(25);
+                        titlePaint6.setColor(Color.rgb(0,0,0));
+                        canvas6.drawText("Nombre de comida: Sin cena", 280, 1400, titlePaint6);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Viernes").child("C_Cena").exists()){
+                        String viernesIngredientes = snapshot.child("users").child(userID).child("recetas").child("Viernes").child("C_Cena").child("f_ingredientes").getValue().toString();
+
+                        titlePaint6.setTextAlign(Paint.Align.LEFT);
+                        titlePaint6.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint6.setTextSize(25);
+                        titlePaint6.setColor(Color.rgb(0,0,0));
+                        canvas6.drawText("Ingredientes:", 100, 1450, titlePaint6);
+
+                        imprimirIngredientes(100, 1480, viernesIngredientes, titlePaint6, canvas6);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Viernes").child("C_Cena").exists()){
+                        String viernesCalorias = snapshot.child("users").child(userID).child("recetas").child("Viernes").child("C_Cena").child("f_calorias").getValue().toString();
+                        titlePaint6.setTextAlign(Paint.Align.LEFT);
+                        titlePaint6.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint6.setTextSize(20);
+                        titlePaint6.setColor(Color.rgb(0,0,0));
+                        canvas6.drawText("Contenido calórico aproximado: " + viernesCalorias, 100, 1660, titlePaint6);
+                    }
+                    /* ---------------- */
+
+                    /* LOGO PARTE DE ABAJO DEL PDF */
+                    canvas6.drawBitmap(scaledbmp, 515, 1800, myPaint6);
+                    /* --------------------------- */
+
+                    document.finishPage(page6);
+
+
+
+                    /* INICIO DE SEPTIMA PAGINA (SABADO) */
+
+                    PdfDocument.PageInfo pageInfo7 = new PdfDocument.PageInfo.Builder(1200, 2010, 1).create();
+                    PdfDocument.Page page7 = document.startPage(pageInfo7);
+
+                    Canvas canvas7 = page7.getCanvas();
+                    Paint myPaint7 = new Paint();
+                    Paint titlePaint7 = new Paint();
+
+                    /* DATOS DEL NUTRIOLOGO */
+                    titlePaint7.setTextAlign(Paint.Align.LEFT);
+                    titlePaint7.setTextSize(20);
+                    titlePaint7.setColor(Color.rgb(110, 184, 245));
+                    canvas7.drawText("Dr.: " + nombre_nutri_pdf, 50, 75, titlePaint7);
+
+                    titlePaint7.setTextAlign(Paint.Align.LEFT);
+                    titlePaint7.setTextSize(20);
+                    titlePaint7.setColor(Color.rgb(110, 184, 245));
+                    canvas7.drawText(correo_nutri_pdf, 50, 110, titlePaint7);
+                    /* -------------------- */
+
+                    /* ALIMENTOS SABADO */
+                    titlePaint7.setTextAlign(Paint.Align.CENTER);
+                    titlePaint7.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint7.setTextSize(45);
+                    titlePaint7.setColor(Color.rgb(0,0,0));
+                    canvas7.drawText("Sabado", pageWidth/2, 260, titlePaint7);
+
+                    titlePaint7.setStyle(Paint.Style.STROKE);
+                    titlePaint7.setStrokeWidth(2);
+
+                    // Tablas Desayuno, comida y cena
+                    canvas7.drawRect(60, 380, 1140, 780, titlePaint7);
+                    canvas7.drawLine(60, 440, 1140, 440, titlePaint7);
+
+                    canvas7.drawRect(60, 830, 1140, 1230, titlePaint7);
+                    canvas7.drawLine(60, 890, 1140, 890, titlePaint7);
+
+                    canvas7.drawRect(60, 1280, 1140, 1680, titlePaint7);
+                    canvas7.drawLine(60, 1340, 1140, 1340, titlePaint7);
+
+                    titlePaint7.setStrokeWidth(0);
+                    titlePaint7.setStyle(Paint.Style.FILL);
+
+                    //Desayuno
+                    titlePaint7.setTextAlign(Paint.Align.CENTER);
+                    titlePaint7.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint7.setTextSize(30);
+                    titlePaint7.setColor(Color.rgb(0,0,0));
+                    canvas7.drawText("Tipo de alimento: Desayuno", pageWidth/2, 420, titlePaint7);
+
+                    //Jueves d_NOMBRE Firebase
+                    if(snapshot.child("users").child(userID).child("recetas").child("Sabado").child("A_Desayuno").exists()){
+                        String sabadoDesayuno = snapshot.child("users").child(userID).child("recetas").child("Sabado").child("A_Desayuno").child("f_nombrecomida").getValue().toString();
+                        titlePaint7.setTextAlign(Paint.Align.LEFT);
+                        titlePaint7.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint7.setTextSize(25);
+                        titlePaint7.setColor(Color.rgb(0,0,0));
+                        canvas7.drawText("Nombre: " + sabadoDesayuno, 100, 500, titlePaint7);
+                    } else {
+                        titlePaint7.setTextAlign(Paint.Align.LEFT);
+                        titlePaint7.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint7.setTextSize(25);
+                        titlePaint7.setColor(Color.rgb(0,0,0));
+                        canvas7.drawText("Nombre: Sin desayuno", 280, 500, titlePaint7);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Sabado").child("A_Desayuno").exists()){
+                        String sabadoIngredientes = snapshot.child("users").child(userID).child("recetas").child("Sabado").child("A_Desayuno").child("f_ingredientes").getValue().toString();
+
+                        titlePaint7.setTextAlign(Paint.Align.LEFT);
+                        titlePaint7.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint7.setTextSize(25);
+                        titlePaint7.setColor(Color.rgb(0,0,0));
+                        canvas7.drawText("Ingredientes:", 100, 560, titlePaint4);
+
+                        imprimirIngredientes(100, 590, sabadoIngredientes, titlePaint7, canvas7);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Sabado").child("A_Desayuno").exists()){
+                        String sabadoCalorias = snapshot.child("users").child(userID).child("recetas").child("Sabado").child("A_Desayuno").child("f_calorias").getValue().toString();
+                        titlePaint7.setTextAlign(Paint.Align.LEFT);
+                        titlePaint7.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint7.setTextSize(20);
+                        titlePaint7.setColor(Color.rgb(0,0,0));
+                        canvas7.drawText("Contenido calórico aproximado: " + sabadoCalorias, 100, 760, titlePaint6);
+                    }
+
+                    //Comida
+                    titlePaint7.setTextAlign(Paint.Align.CENTER);
+                    titlePaint7.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint7.setTextSize(30);
+                    titlePaint7.setColor(Color.rgb(0,0,0));
+                    canvas7.drawText("Tipo de alimento: Comida", pageWidth/2, 870, titlePaint7);
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Sabado").child("B_Comida").exists()){
+                        String sabadoComida = snapshot.child("users").child(userID).child("recetas").child("Sabado").child("B_Comida").child("f_nombrecomida").getValue().toString();
+                        titlePaint7.setTextAlign(Paint.Align.LEFT);
+                        titlePaint7.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint7.setTextSize(25);
+                        titlePaint7.setColor(Color.rgb(0,0,0));
+                        canvas7.drawText("Nombre: " + sabadoComida, 100, 950, titlePaint7);
+                    } else {
+                        titlePaint7.setTextAlign(Paint.Align.LEFT);
+                        titlePaint7.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint7.setTextSize(25);
+                        titlePaint7.setColor(Color.rgb(0,0,0));
+                        canvas7.drawText("Nombre: Sin comida", 280, 950, titlePaint7);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Sabado").child("B_Comida").exists()){
+                        String sabadoIngredientes = snapshot.child("users").child(userID).child("recetas").child("Sabado").child("B_Comida").child("f_ingredientes").getValue().toString();
+
+                        titlePaint7.setTextAlign(Paint.Align.LEFT);
+                        titlePaint7.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint7.setTextSize(25);
+                        titlePaint7.setColor(Color.rgb(0,0,0));
+                        canvas7.drawText("Ingredientes:", 100, 1010, titlePaint7);
+
+                        imprimirIngredientes(100, 1040, sabadoIngredientes, titlePaint7, canvas7);
+
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Sabado").child("B_Comida").exists()){
+                        String sabadoCalorias = snapshot.child("users").child(userID).child("recetas").child("Sabado").child("B_Comida").child("f_calorias").getValue().toString();
+                        titlePaint7.setTextAlign(Paint.Align.LEFT);
+                        titlePaint7.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint7.setTextSize(20);
+                        titlePaint7.setColor(Color.rgb(0,0,0));
+                        canvas7.drawText("Contenido calórico aproximado: " + sabadoCalorias, 100, 1210, titlePaint7);
+                    }
+
+                    //Cena
+                    titlePaint7.setTextAlign(Paint.Align.CENTER);
+                    titlePaint7.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint7.setTextSize(30);
+                    titlePaint7.setColor(Color.rgb(0,0,0));
+                    canvas7.drawText("Tipo de alimento: Cena", pageWidth/2, 1320, titlePaint7);
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Sabado").child("C_Cena").exists()){
+                        String sabadoCena = snapshot.child("users").child(userID).child("recetas").child("Sabado").child("C_Cena").child("f_nombrecomida").getValue().toString();
+                        titlePaint7.setTextAlign(Paint.Align.LEFT);
+                        titlePaint7.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint7.setTextSize(25);
+                        titlePaint7.setColor(Color.rgb(0,0,0));
+                        canvas7.drawText("Nombre: " + sabadoCena, 100, 1400, titlePaint7);
+                    } else {
+                        titlePaint7.setTextAlign(Paint.Align.LEFT);
+                        titlePaint7.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint7.setTextSize(25);
+                        titlePaint7.setColor(Color.rgb(0,0,0));
+                        canvas7.drawText("Nombre de comida: Sin cena", 280, 1400, titlePaint7);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Sabado").child("C_Cena").exists()){
+                        String sabadoIngredientes = snapshot.child("users").child(userID).child("recetas").child("Sabado").child("C_Cena").child("f_ingredientes").getValue().toString();
+
+                        titlePaint7.setTextAlign(Paint.Align.LEFT);
+                        titlePaint7.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint7.setTextSize(25);
+                        titlePaint7.setColor(Color.rgb(0,0,0));
+                        canvas7.drawText("Ingredientes:", 100, 1450, titlePaint7);
+
+                        imprimirIngredientes(100, 1480, sabadoIngredientes, titlePaint7, canvas7);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Sabado").child("C_Cena").exists()){
+                        String sabadoCalorias = snapshot.child("users").child(userID).child("recetas").child("Sabado").child("C_Cena").child("f_calorias").getValue().toString();
+                        titlePaint7.setTextAlign(Paint.Align.LEFT);
+                        titlePaint7.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint7.setTextSize(20);
+                        titlePaint7.setColor(Color.rgb(0,0,0));
+                        canvas7.drawText("Contenido calórico aproximado: " + sabadoCalorias, 100, 1660, titlePaint7);
+                    }
+                    /* ---------------- */
+
+                    /* LOGO PARTE DE ABAJO DEL PDF */
+                    canvas7.drawBitmap(scaledbmp, 515, 1800, myPaint7);
+                    /* --------------------------- */
+
+                    document.finishPage(page7);
+
+
+                    /* INICIO DE OCTAVA PAGINA (DOMINGO) */
+
+                    PdfDocument.PageInfo pageInfo8 = new PdfDocument.PageInfo.Builder(1200, 2010, 1).create();
+                    PdfDocument.Page page8 = document.startPage(pageInfo8);
+
+                    Canvas canvas8 = page8.getCanvas();
+                    Paint myPaint8 = new Paint();
+                    Paint titlePaint8 = new Paint();
+
+                    /* DATOS DEL NUTRIOLOGO */
+                    titlePaint8.setTextAlign(Paint.Align.LEFT);
+                    titlePaint8.setTextSize(20);
+                    titlePaint8.setColor(Color.rgb(110, 184, 245));
+                    canvas8.drawText("Dr.: " + nombre_nutri_pdf, 50, 75, titlePaint8);
+
+                    titlePaint8.setTextAlign(Paint.Align.LEFT);
+                    titlePaint8.setTextSize(20);
+                    titlePaint8.setColor(Color.rgb(110, 184, 245));
+                    canvas8.drawText(correo_nutri_pdf, 50, 110, titlePaint8);
+                    /* -------------------- */
+
+                    /* ALIMENTOS DOMINGO */
+                    titlePaint8.setTextAlign(Paint.Align.CENTER);
+                    titlePaint8.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint8.setTextSize(45);
+                    titlePaint8.setColor(Color.rgb(0,0,0));
+                    canvas8.drawText("Sabado", pageWidth/2, 260, titlePaint8);
+
+                    titlePaint8.setStyle(Paint.Style.STROKE);
+                    titlePaint8.setStrokeWidth(2);
+
+                    // Tablas Desayuno, comida y cena
+                    canvas8.drawRect(60, 380, 1140, 780, titlePaint8);
+                    canvas8.drawLine(60, 440, 1140, 440, titlePaint8);
+
+                    canvas8.drawRect(60, 830, 1140, 1230, titlePaint8);
+                    canvas8.drawLine(60, 890, 1140, 890, titlePaint8);
+
+                    canvas8.drawRect(60, 1280, 1140, 1680, titlePaint8);
+                    canvas8.drawLine(60, 1340, 1140, 1340, titlePaint8);
+
+                    titlePaint8.setStrokeWidth(0);
+                    titlePaint8.setStyle(Paint.Style.FILL);
+
+                    //Desayuno
+                    titlePaint8.setTextAlign(Paint.Align.CENTER);
+                    titlePaint8.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint8.setTextSize(30);
+                    titlePaint8.setColor(Color.rgb(0,0,0));
+                    canvas8.drawText("Tipo de alimento: Desayuno", pageWidth/2, 420, titlePaint8);
+
+                    //Jueves d_NOMBRE Firebase
+                    if(snapshot.child("users").child(userID).child("recetas").child("Domingo").child("A_Desayuno").exists()){
+                        String domingoDesayuno = snapshot.child("users").child(userID).child("recetas").child("Domingo").child("A_Desayuno").child("f_nombrecomida").getValue().toString();
+                        titlePaint8.setTextAlign(Paint.Align.LEFT);
+                        titlePaint8.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint8.setTextSize(25);
+                        titlePaint8.setColor(Color.rgb(0,0,0));
+                        canvas8.drawText("Nombre: " + domingoDesayuno, 100, 500, titlePaint8);
+                    } else {
+                        titlePaint8.setTextAlign(Paint.Align.LEFT);
+                        titlePaint8.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint8.setTextSize(25);
+                        titlePaint8.setColor(Color.rgb(0,0,0));
+                        canvas8.drawText("Nombre: Sin desayuno", 280, 500, titlePaint8);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Domingo").child("A_Desayuno").exists()){
+                        String domingoIngredientes = snapshot.child("users").child(userID).child("recetas").child("Domingo").child("A_Desayuno").child("f_ingredientes").getValue().toString();
+
+                        titlePaint8.setTextAlign(Paint.Align.LEFT);
+                        titlePaint8.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint8.setTextSize(25);
+                        titlePaint8.setColor(Color.rgb(0,0,0));
+                        canvas8.drawText("Ingredientes:", 100, 560, titlePaint4);
+
+                        imprimirIngredientes(100, 590, domingoIngredientes, titlePaint8, canvas8);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Domingo").child("A_Desayuno").exists()){
+                        String domingoCalorias = snapshot.child("users").child(userID).child("recetas").child("Domingo").child("A_Desayuno").child("f_calorias").getValue().toString();
+                        titlePaint8.setTextAlign(Paint.Align.LEFT);
+                        titlePaint8.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint8.setTextSize(20);
+                        titlePaint8.setColor(Color.rgb(0,0,0));
+                        canvas8.drawText("Contenido calórico aproximado: " + domingoCalorias, 100, 760, titlePaint6);
+                    }
+
+                    //Comida
+                    titlePaint8.setTextAlign(Paint.Align.CENTER);
+                    titlePaint8.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint8.setTextSize(30);
+                    titlePaint8.setColor(Color.rgb(0,0,0));
+                    canvas8.drawText("Tipo de alimento: Comida", pageWidth/2, 870, titlePaint8);
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Domingo").child("B_Comida").exists()){
+                        String domingoComida = snapshot.child("users").child(userID).child("recetas").child("Domingo").child("B_Comida").child("f_nombrecomida").getValue().toString();
+                        titlePaint8.setTextAlign(Paint.Align.LEFT);
+                        titlePaint8.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint8.setTextSize(25);
+                        titlePaint8.setColor(Color.rgb(0,0,0));
+                        canvas8.drawText("Nombre: " + domingoComida, 100, 950, titlePaint8);
+                    } else {
+                        titlePaint8.setTextAlign(Paint.Align.LEFT);
+                        titlePaint8.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint8.setTextSize(25);
+                        titlePaint8.setColor(Color.rgb(0,0,0));
+                        canvas8.drawText("Nombre: Sin comida", 280, 950, titlePaint8);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Domingo").child("B_Comida").exists()){
+                        String domingoIngredientes = snapshot.child("users").child(userID).child("recetas").child("Domingo").child("B_Comida").child("f_ingredientes").getValue().toString();
+
+                        titlePaint8.setTextAlign(Paint.Align.LEFT);
+                        titlePaint8.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint8.setTextSize(25);
+                        titlePaint8.setColor(Color.rgb(0,0,0));
+                        canvas8.drawText("Ingredientes:", 100, 1010, titlePaint8);
+
+                        imprimirIngredientes(100, 1040, domingoIngredientes, titlePaint8, canvas8);
+
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Domingo").child("B_Comida").exists()){
+                        String domingoCalorias = snapshot.child("users").child(userID).child("recetas").child("Domingo").child("B_Comida").child("f_calorias").getValue().toString();
+                        titlePaint8.setTextAlign(Paint.Align.LEFT);
+                        titlePaint8.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint8.setTextSize(20);
+                        titlePaint8.setColor(Color.rgb(0,0,0));
+                        canvas8.drawText("Contenido calórico aproximado: " + domingoCalorias, 100, 1210, titlePaint8);
+                    }
+
+                    //Cena
+                    titlePaint8.setTextAlign(Paint.Align.CENTER);
+                    titlePaint8.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    titlePaint8.setTextSize(30);
+                    titlePaint8.setColor(Color.rgb(0,0,0));
+                    canvas8.drawText("Tipo de alimento: Cena", pageWidth/2, 1320, titlePaint8);
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Domingo").child("C_Cena").exists()){
+                        String domingoCena = snapshot.child("users").child(userID).child("recetas").child("Domingo").child("C_Cena").child("f_nombrecomida").getValue().toString();
+                        titlePaint8.setTextAlign(Paint.Align.LEFT);
+                        titlePaint8.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint8.setTextSize(25);
+                        titlePaint8.setColor(Color.rgb(0,0,0));
+                        canvas8.drawText("Nombre: " + domingoCena, 100, 1400, titlePaint8);
+                    } else {
+                        titlePaint8.setTextAlign(Paint.Align.LEFT);
+                        titlePaint8.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint8.setTextSize(25);
+                        titlePaint8.setColor(Color.rgb(0,0,0));
+                        canvas8.drawText("Nombre de comida: Sin cena", 280, 1400, titlePaint8);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Domingo").child("C_Cena").exists()){
+                        String domingoIngredientes = snapshot.child("users").child(userID).child("recetas").child("Domingo").child("C_Cena").child("f_ingredientes").getValue().toString();
+
+                        titlePaint8.setTextAlign(Paint.Align.LEFT);
+                        titlePaint8.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint8.setTextSize(25);
+                        titlePaint8.setColor(Color.rgb(0,0,0));
+                        canvas8.drawText("Ingredientes:", 100, 1450, titlePaint8);
+
+                        imprimirIngredientes(100, 1480, domingoIngredientes, titlePaint8, canvas8);
+                    }
+
+                    if(snapshot.child("users").child(userID).child("recetas").child("Domingo").child("C_Cena").exists()){
+                        String domingoCalorias = snapshot.child("users").child(userID).child("recetas").child("Domingo").child("C_Cena").child("f_calorias").getValue().toString();
+                        titlePaint8.setTextAlign(Paint.Align.LEFT);
+                        titlePaint8.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        titlePaint8.setTextSize(20);
+                        titlePaint8.setColor(Color.rgb(0,0,0));
+                        canvas8.drawText("Contenido calórico aproximado: " + domingoCalorias, 100, 1660, titlePaint8);
+                    }
+                    /* ---------------- */
+
+                    /* LOGO PARTE DE ABAJO DEL PDF */
+                    canvas8.drawBitmap(scaledbmp, 515, 1800, myPaint8);
+                    /* --------------------------- */
+
+                    document.finishPage(page8);
                     try {
                         document.writeTo(outputStream);
                     } catch (IOException e) {
