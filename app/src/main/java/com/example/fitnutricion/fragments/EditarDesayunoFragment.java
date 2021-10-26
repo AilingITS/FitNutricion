@@ -230,7 +230,7 @@ public class EditarDesayunoFragment extends Fragment {
         String nombre = editar_paciente_nombre.getText().toString();
         String ingredientes = editar_Ingredientes.getText().toString();
         String calorias = editar_calorias.getText().toString();
-        infoMap.put("f_nombrecomdia", nombre);
+        infoMap.put("f_nombrecomida", nombre);
         infoMap.put("f_ingredientes", ingredientes);
         infoMap.put("f_calorias", calorias);
 
