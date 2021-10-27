@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.fitnutricion.R;
+import com.example.fitnutricion.firebase.Comida;
 import com.example.fitnutricion.firebase.Desayuno;
 import com.example.fitnutricion.firebase.comidaAdapter;
 import com.example.fitnutricion.firebase.desayunoAdapter;
@@ -45,8 +46,8 @@ public class ComidaFragment extends Fragment {
 
     RecyclerView recyclerView;
     DatabaseReference dbRef;
-    desayunoAdapter myAdapter;
-    ArrayList<Desayuno> list;
+    comidaAdapter myAdapter;
+    ArrayList<Comida> list;
 
     Button btn_agregarComida;
 
@@ -95,7 +96,7 @@ public class ComidaFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         list = new ArrayList<>();
-        myAdapter = new desayunoAdapter(getContext(), vista, list);
+        myAdapter = new comidaAdapter(getContext(), list);
         recyclerView.setAdapter(myAdapter);
 
         btn_agregarComida.setOnClickListener(new View.OnClickListener() {
@@ -110,7 +111,7 @@ public class ComidaFragment extends Fragment {
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
 
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    Desayuno foods = dataSnapshot.getValue(Desayuno.class);
+                    Comida foods = dataSnapshot.getValue(Comida.class);
                     list.add(foods);
                 }
                 myAdapter.notifyDataSetChanged();

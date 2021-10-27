@@ -202,7 +202,7 @@ public class HomeFragment extends Fragment {
 
     private void createPDF() throws IOException {
 
-        dbRef_pdf.addValueEventListener(new ValueEventListener() {
+        dbRef_pdf.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
@@ -338,7 +338,7 @@ public class HomeFragment extends Fragment {
                         canvas.drawText("Sin comida", 220, 915, titlePaint);
                     }
 
-                    if(snapshot.child("users").child(userID).child("recetas").child("Lunes").child("B_Comida").exists()){
+                    if(snapshot.child("users").child(userID).child("recetas").child("Lunes").child("C_Cena").exists()){
                         String lunesC = snapshot.child("users").child(userID).child("recetas").child("Lunes").child("C_Cena").child("f_nombrecomida").getValue().toString();
                         titlePaint.setTextAlign(Paint.Align.CENTER);
                         titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
@@ -389,7 +389,7 @@ public class HomeFragment extends Fragment {
                         canvas.drawText("Sin comida", 600, 915, titlePaint);
                     }
 
-                    if(snapshot.child("users").child(userID).child("recetas").child("Martes").child("B_Comida").exists()){
+                    if(snapshot.child("users").child(userID).child("recetas").child("Martes").child("C_Cena").exists()){
                         String lunesC = snapshot.child("users").child(userID).child("recetas").child("Martes").child("C_Cena").child("f_nombrecomida").getValue().toString();
                         titlePaint.setTextAlign(Paint.Align.CENTER);
                         titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
@@ -440,7 +440,7 @@ public class HomeFragment extends Fragment {
                         canvas.drawText("Sin comida", 980, 915, titlePaint);
                     }
 
-                    if(snapshot.child("users").child(userID).child("recetas").child("Miercoles").child("B_Comida").exists()){
+                    if(snapshot.child("users").child(userID).child("recetas").child("Miercoles").child("C_Cena").exists()){
                         String lunesC = snapshot.child("users").child(userID).child("recetas").child("Miercoles").child("C_Cena").child("f_nombrecomida").getValue().toString();
                         titlePaint.setTextAlign(Paint.Align.CENTER);
                         titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
@@ -491,7 +491,7 @@ public class HomeFragment extends Fragment {
                         canvas.drawText("Sin comida", 220, 1165, titlePaint);
                     }
 
-                    if(snapshot.child("users").child(userID).child("recetas").child("Jueves").child("B_Comida").exists()){
+                    if(snapshot.child("users").child(userID).child("recetas").child("Jueves").child("C_Cena").exists()){
                         String lunesC = snapshot.child("users").child(userID).child("recetas").child("Jueves").child("C_Cena").child("f_nombrecomida").getValue().toString();
                         titlePaint.setTextAlign(Paint.Align.CENTER);
                         titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
@@ -542,7 +542,7 @@ public class HomeFragment extends Fragment {
                         canvas.drawText("Sin comida", 600, 1165, titlePaint);
                     }
 
-                    if(snapshot.child("users").child(userID).child("recetas").child("Viernes").child("B_Comida").exists()){
+                    if(snapshot.child("users").child(userID).child("recetas").child("Viernes").child("C_Cena").exists()){
                         String lunesC = snapshot.child("users").child(userID).child("recetas").child("Viernes").child("C_Cena").child("f_nombrecomida").getValue().toString();
                         titlePaint.setTextAlign(Paint.Align.CENTER);
                         titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
@@ -593,7 +593,7 @@ public class HomeFragment extends Fragment {
                         canvas.drawText("Sin comida", 980, 1165, titlePaint);
                     }
 
-                    if(snapshot.child("users").child(userID).child("recetas").child("Sabado").child("B_Comida").exists()){
+                    if(snapshot.child("users").child(userID).child("recetas").child("Sabado").child("C_Cena").exists()){
                         String lunesC = snapshot.child("users").child(userID).child("recetas").child("Sabado").child("C_Cena").child("f_nombrecomida").getValue().toString();
                         titlePaint.setTextAlign(Paint.Align.CENTER);
                         titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
@@ -644,7 +644,7 @@ public class HomeFragment extends Fragment {
                         canvas.drawText("Sin comida", 220, 1415, titlePaint);
                     }
 
-                    if(snapshot.child("users").child(userID).child("recetas").child("Domingo").child("B_Comida").exists()){
+                    if(snapshot.child("users").child(userID).child("recetas").child("Domingo").child("C_Cena").exists()){
                         String lunesC = snapshot.child("users").child(userID).child("recetas").child("Domingo").child("C_Cena").child("f_nombrecomida").getValue().toString();
                         titlePaint.setTextAlign(Paint.Align.CENTER);
                         titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));

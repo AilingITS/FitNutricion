@@ -31,16 +31,14 @@ import java.util.ArrayList;
 public class desayunoAdapter extends RecyclerView.Adapter<desayunoAdapter.foodsHolder> {
 
     Context context;
-    View view;
     ArrayList<Desayuno> list;
 
     String userID;
     FirebaseAuth mAuth;
     DatabaseReference dbRef;
 
-    public desayunoAdapter(Context context, View view, ArrayList<Desayuno> list) {
+    public desayunoAdapter(Context context, ArrayList<Desayuno> list) {
         this.context = context;
-        this.view = view;
         this.list = list;
     }
 
@@ -81,7 +79,7 @@ public class desayunoAdapter extends RecyclerView.Adapter<desayunoAdapter.foodsH
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if(opciones[which] == "Editar"){
-                            AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                            AppCompatActivity activity = (AppCompatActivity) context;
                             Fragment myFragment = new EditarDesayunoFragment(foods.getP_ID());
                             activity.getSupportFragmentManager().beginTransaction().replace(R.id.body_container, myFragment).addToBackStack(null).commit();
                         }
