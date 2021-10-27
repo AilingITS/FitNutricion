@@ -16,7 +16,7 @@
 
     <!-- MENU -->
     <string name="home_text">Inicio</string>
-    <string name="recetas_text">Recetas</string>
+    <string name="recetas_text">Agregar alimentos</string>
     <string name="pacientes_home">Seleccione al paciente:</string>
     <string name="setting_text">Configuración</string>
 
