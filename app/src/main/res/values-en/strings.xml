@@ -90,6 +90,9 @@
     <string name="home_generar_pdf">Make PDF</string>
     <string name="home_eliminar_receta">Delete recipe</string>
     <string name="home_visualizar">Visualize PDF</string>
+    <string name="añadirDesayunoReceta">Add a Breakfast to a recipe</string>
+    <string name="añadirComidaReceta">Add a Meal to a recipe</string>
+    <string name="añadirCenaReceta">Add a Dinner to a recipe</string>
 
     <!-- ITEM LIST COMIDAS -->
     <string name="desaYUNO_item_list">Breakfasts</string>

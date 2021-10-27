@@ -59,6 +59,11 @@
     <string name="comidaDesayuno">Desayuno</string>
     <string name="comidaComida">Comida</string>
     <string name="comidaCena">Cena</string>
+    <string name="añadirDesayunoReceta">Añadir Desayuno a receta</string>
+    <string name="añadirComidaReceta">Añadir Comida a receta</string>
+    <string name="añadirCenaReceta">Añadir Cena a receta</string>
+
+
 
     <!-- DESAYUNO -->
     <string name="desayuno_text">Desayunos</string>
