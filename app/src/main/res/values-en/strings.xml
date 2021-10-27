@@ -24,7 +24,7 @@
     <!-- SETTINGS -->
     <string name="cerrarSesion">Sign off</string>
     <string name="themeMode">DARK THEME</string>
-    <string name="cambiarIdioma">Change language</string>
+    <string name="cambiarIdioma">CHANGE LANGUAGE</string>
 
     <!-- PROFILE -->
     <string name="profile_text">Personal information</string>
@@ -35,7 +35,7 @@
     <string name="Celular_text">Phone number</string>
     <string name="actualizar_text">Update data</string>
     <string name="actualizarpass_text">Update password</string>
-    <string name="modificardatos_text">Modify profile</string>
+    <string name="modificardatos_text">MODIFY PROFILE</string>
 
     <!-- PACIENTE -->
     <string name="pacientes_text">Patients</string>
@@ -99,13 +99,13 @@
     <string name="item_list_Agregar">Add a recipe</string>
     <string name="item_list_dia">Day</string>
     <string-array name="item_list_semana">
-        <item>Monday</item>
-        <item>Tuesday</item>
-        <item>Wednesday</item>
-        <item>Thursday</item>
-        <item>Friday</item>
-        <item>Saturday</item>
-        <item>Sunday</item>
+        <item>Lunes</item>
+        <item>Martes</item>
+        <item>Miercoles</item>
+        <item>Jueves</item>
+        <item>Viernes</item>
+        <item>Sabado</item>
+        <item>Domingo</item>
     </string-array>
 
     <!-- ITEM LIST agregar comida -->
