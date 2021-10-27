@@ -97,7 +97,7 @@ public class CenaFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         list = new ArrayList<>();
-        myAdapter = new cenaAdapter(getContext(),list);
+        myAdapter = new cenaAdapter(getContext(), list);
         recyclerView.setAdapter(myAdapter);
 
         btn_agregarCena.setOnClickListener(new View.OnClickListener() {
