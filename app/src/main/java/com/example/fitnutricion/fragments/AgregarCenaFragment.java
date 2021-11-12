@@ -116,7 +116,7 @@ public class AgregarCenaFragment extends Fragment {
         btn_añadirCena.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createComida();
+                ValidateProductData();
             }
         });
 
@@ -130,16 +130,69 @@ public class AgregarCenaFragment extends Fragment {
         return vista;
     }
 
-    private void replaceFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.body_container,fragment);
-        fragmentTransaction.commit();
+    private void ValidateProductData() {
+        //Obtenemos los datos que ingreso el usuario
+        String nombre = cena_nombreComida.getText().toString();
+        String ingredientes = cena_ingredientes.getText().toString();
+        String calorias = cena_calorias.getText().toString();
+
+        //Condiciones para verificar que los datos esten correctos
+        if (ImageUri == null) { //En caso que el usuario modifico datos pero no su imagen se llama a la sig función solo para actualizar datos
+            SaveInfoToDatabasewithoutImage();
+        } else if (TextUtils.isEmpty(nombre)){
+            cena_nombreComida.setError("Ingrese el nombre de la cena");
+            cena_nombreComida.requestFocus();
+        } else if (TextUtils.isEmpty(ingredientes)) {
+            cena_ingredientes.setError("Ingrese los ingredientes de la cena");
+            cena_ingredientes.requestFocus();
+        }else if(TextUtils.isEmpty(calorias)){
+            cena_calorias.setError("Ingrese las calorias de la cena");
+            cena_calorias.requestFocus();
+        }else {
+            Calendar calendar = Calendar.getInstance();
+            //SimpleDateFormat currentDate = new SimpleDateFormat(" dd MM, yyyy");
+            SimpleDateFormat currentDate = new SimpleDateFormat("MM dd, yyyy");
+            saveCurrentDate = currentDate.format(calendar.getTime());
+            SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss");
+            saveCurrentTime = currentTime.format(calendar.getTime());
+            comidaID = saveCurrentDate + saveCurrentTime;
+
+            StorageReference fileRef = ImagesRef.child(comidaID + ".jpg");
+            final UploadTask uploadTask = fileRef.putFile(ImageUri);
+
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull @NotNull Exception e) {
+                    String message = e.toString();
+                    Toast.makeText(getActivity(), R.string.stringError + message, Toast.LENGTH_SHORT).show();
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                        @Override
+                        public Task<Uri> then(@NonNull @NotNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                            if (!task.isSuccessful()) {
+                                throw task.getException();
+                            }
+                            downloadImageUrl = fileRef.getDownloadUrl().toString();
+                            return fileRef.getDownloadUrl();
+                        }
+                    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull @NotNull Task<Uri> task) {
+                            if (task.isSuccessful()) {
+                                downloadImageUrl = task.getResult().toString();
+                                SaveInfoToDatabase(); //Función para actualizar datos e imagen de perfil
+                            }
+                        }
+                    });
+                }
+            });
+        }
     }
 
-    public void createComida(){
-        userID = mAuth.getCurrentUser().getUid();
-
+    private void SaveInfoToDatabasewithoutImage () {
         Calendar calendar = Calendar.getInstance();
         //SimpleDateFormat currentDate = new SimpleDateFormat(" dd MM, yyyy");
         SimpleDateFormat currentDate = new SimpleDateFormat("MM dd, yyyy");
@@ -147,39 +200,44 @@ public class AgregarCenaFragment extends Fragment {
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss");
         saveCurrentTime = currentTime.format(calendar.getTime());
         comidaID = saveCurrentDate + saveCurrentTime;
+        //Obtenemos los datos que ingreso el usuario
+        String nombre = cena_nombreComida.getText().toString();
+        String ingredientes = cena_ingredientes.getText().toString();
+        String calorias = cena_calorias.getText().toString();
 
-        StorageReference fileRef = ImagesRef.child(userID).child(comidaID + ".jpg");
-        final UploadTask uploadTask = fileRef.putFile(ImageUri);
+        //Condiciones para verificar que los datos esten correctos
+        if (TextUtils.isEmpty(nombre)){
+            cena_nombreComida.setError("Ingrese el nombre de la cena");
+            cena_nombreComida.requestFocus();
+        } else if(TextUtils.isEmpty(ingredientes)){
+            cena_ingredientes.setError("Ingrese los ingredientes de la cena");
+            cena_ingredientes.requestFocus();
+        } else if(TextUtils.isEmpty(calorias)){
+            cena_calorias.setError("Ingrese las calorias de la cena");
+            cena_calorias.requestFocus();
+        } else {
+            //Map para registrar a un usuario con sus datos
+            Map<String, Object> comida = new HashMap<>();
+            comida.put("p_ID", comidaID);
+            comida.put("f_tipo", "Cena");
+            comida.put("f_nombrecomida", nombre);
+            comida.put("f_ingredientes", ingredientes);
+            comida.put("f_calorias", calorias);
 
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull @NotNull Exception e) {
-                String message = e.toString();
-                Toast.makeText(getActivity(), R.string.stringError + message, Toast.LENGTH_SHORT).show();
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                    @Override
-                    public Task<Uri> then(@NonNull @NotNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                        if (!task.isSuccessful()){
-                            throw task.getException();
-                        }
-                        downloadImageUrl = fileRef.getDownloadUrl().toString();
-                        return fileRef.getDownloadUrl();
+            dbRef.child(comidaID).updateChildren(comida).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull @NotNull Task<Void> task) {
+                    if(task.isSuccessful()){
+                        Toast.makeText(getActivity(), R.string.stringCambiosGuardadosCorrectamente, Toast.LENGTH_SHORT).show();
+                        replaceFragment(new CenaFragment());
+                    } else {
+                        String message = task.getException().toString();
+                        Toast.makeText(getActivity(), R.string.stringError + message, Toast.LENGTH_SHORT).show();
                     }
-                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                    @Override
-                    public void onComplete(@NonNull @NotNull Task<Uri> task) {
-                        if(task.isSuccessful()){
-                            downloadImageUrl = task.getResult().toString();
-                            SaveInfoToDatabase(); //Función para actualizar datos e imagen de perfil
-                        }
-                    }
-                });
-            }
-        });
+                }
+            });
+        }
+
     }
 
     //Guardar información de perfil con imagen de perfil
@@ -191,23 +249,15 @@ public class AgregarCenaFragment extends Fragment {
 
         //Condiciones para verificar que los datos esten correctos
         if (TextUtils.isEmpty(nombre)){
-            cena_nombreComida.setError("Ingrese el nombre de la comida");
+            cena_nombreComida.setError("Ingrese el nombre de la cena");
             cena_nombreComida.requestFocus();
         } else if(TextUtils.isEmpty(ingredientes)){
-            cena_ingredientes.setError("Ingrese los ingredientes de la comida");
+            cena_ingredientes.setError("Ingrese los ingredientes de la cena");
             cena_ingredientes.requestFocus();
-        } else if(TextUtils.isEmpty(ingredientes)){
-            cena_calorias.setError("Ingrese las calorias de la comida");
+        } else if(TextUtils.isEmpty(calorias)){
+            cena_calorias.setError("Ingrese las calorias de la cena");
             cena_calorias.requestFocus();
-        }else {
-            Calendar calendar = Calendar.getInstance();
-            //SimpleDateFormat currentDate = new SimpleDateFormat(" dd MM, yyyy");
-            SimpleDateFormat currentDate = new SimpleDateFormat("MM dd, yyyy");
-            saveCurrentDate = currentDate.format(calendar.getTime());
-            SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss");
-            saveCurrentTime = currentTime.format(calendar.getTime());
-            comidaID = saveCurrentDate + saveCurrentTime;
-
+        } else {
             //Map para registrar a un usuario con sus datos
             Map<String, Object> comida = new HashMap<>();
             comida.put("p_ID", comidaID);
@@ -248,5 +298,11 @@ public class AgregarCenaFragment extends Fragment {
             ImageUri = data.getData();
             btn_agregar_comida.setImageURI(ImageUri);
         }
+    }
+    private void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.body_container,fragment);
+        fragmentTransaction.commit();
     }
 }
