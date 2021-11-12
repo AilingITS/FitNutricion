@@ -168,10 +168,18 @@ public class ProfileFragment extends Fragment {
         if(ImageUri == null){ //En caso que el usuario modifico datos pero no su imagen se llama a la sig función solo para actualizar datos
             SaveInfoToDatabasewithoutImage();
         } else if (TextUtils.isEmpty(usuario)){
-            Toast.makeText(getActivity(), R.string.stringIngreseUnUsuario, Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(mail)){
-            Toast.makeText(getActivity(), R.string.stringIngreseUnCorreo, Toast.LENGTH_SHORT).show();
-        } else { //Si el usuario si agrego una imagen de perfil entra en este else
+            perfil_usuario.setError("Ingrese un nombre de usuario");
+            perfil_usuario.requestFocus();
+        } else if (TextUtils.isEmpty(mail)) {
+            perfil_mail.setError("Ingrese un correo electronico");
+            perfil_mail.requestFocus();
+        }else if(!mail.contains("@")){
+            perfil_mail.setError("Ingrese un correo electronico valido");
+            perfil_mail.requestFocus();
+        } else if(!mail.contains(".com")){
+            perfil_mail.setError("Ingrese un correo electronico valido");
+            perfil_mail.requestFocus();
+        }else { //Si el usuario si agrego una imagen de perfil entra en este else
             userID = mAuth.getCurrentUser().getUid();
             StorageReference fileRef = ImagesRef.child(userID + ".jpg");
             final UploadTask uploadTask = fileRef.putFile(ImageUri);
@@ -216,19 +224,34 @@ public class ProfileFragment extends Fragment {
         infoMap.put("Nombre", usuario);
         infoMap.put("Correo", mail);
 
-        userID = mAuth.getCurrentUser().getUid();
-        dbRef.child("users").child(userID).updateChildren(infoMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull @NotNull Task<Void> task) {
-                if(task.isSuccessful()){
-                    Toast.makeText(getActivity(), R.string.stringCambiosGuardadosCorrectamente, Toast.LENGTH_SHORT).show();
-                    replaceFragment(new SettingsFragment());
-                } else {
-                    String message = task.getException().toString();
-                    Toast.makeText(getActivity(), R.string.stringError + message, Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(usuario)){
+            perfil_usuario.setError("Ingrese un nombre de usuario");
+            perfil_usuario.requestFocus();
+        } else if (TextUtils.isEmpty(mail)){
+            perfil_mail.setError("Ingrese un correo electronico");
+            perfil_mail.requestFocus();
+        }else if(!mail.contains("@")){
+            perfil_mail.setError("Ingrese un correo electronico valido");
+            perfil_mail.requestFocus();
+        } else if(!mail.contains(".com")){
+            perfil_mail.setError("Ingrese un correo electronico valido");
+            perfil_mail.requestFocus();
+        }else {
+
+            userID = mAuth.getCurrentUser().getUid();
+            dbRef.child("users").child(userID).updateChildren(infoMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull @NotNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(getActivity(), R.string.stringCambiosGuardadosCorrectamente, Toast.LENGTH_SHORT).show();
+                        replaceFragment(new SettingsFragment());
+                    } else {
+                        String message = task.getException().toString();
+                        Toast.makeText(getActivity(), R.string.stringError + message, Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     //Guardar información de perfil con imagen de perfil
@@ -240,19 +263,34 @@ public class ProfileFragment extends Fragment {
         infoMap.put("Correo", mail);
         infoMap.put("image", downloadImageUrl);
 
-        userID = mAuth.getCurrentUser().getUid();
-        dbRef.child("users").child(userID).updateChildren(infoMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull @NotNull Task<Void> task) {
-                if(task.isSuccessful()){
-                    Toast.makeText(getActivity(), R.string.stringCambiosGuardadosCorrectamente, Toast.LENGTH_SHORT).show();
-                    replaceFragment(new SettingsFragment());
-                } else {
-                    String message = task.getException().toString();
-                    Toast.makeText(getActivity(), R.string.stringError + message, Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(usuario)){
+            perfil_usuario.setError("Ingrese un nombre de usuario");
+            perfil_usuario.requestFocus();
+        } else if (TextUtils.isEmpty(mail)){
+            perfil_mail.setError("Ingrese un correo electronico");
+            perfil_mail.requestFocus();
+        }else if(!mail.contains("@")){
+            perfil_mail.setError("Ingrese un correo electronico valido");
+            perfil_mail.requestFocus();
+        } else if(!mail.contains(".com")){
+        perfil_mail.setError("Ingrese un correo electronico valido");
+        perfil_mail.requestFocus();
+    }else {
+
+            userID = mAuth.getCurrentUser().getUid();
+            dbRef.child("users").child(userID).updateChildren(infoMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull @NotNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(getActivity(), R.string.stringCambiosGuardadosCorrectamente, Toast.LENGTH_SHORT).show();
+                        replaceFragment(new SettingsFragment());
+                    } else {
+                        String message = task.getException().toString();
+                        Toast.makeText(getActivity(), R.string.stringError + message, Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     //Función para abrir la galeria cuando da clic en la imagen
