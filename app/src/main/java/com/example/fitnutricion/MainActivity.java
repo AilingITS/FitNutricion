@@ -22,12 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // checar condicion night mode en settings
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
-            setTheme(R.style.ThemeDark_FitNutricion);
-        } else {
-            setTheme(R.style.ThemeLight_FitNutricion);
-        }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

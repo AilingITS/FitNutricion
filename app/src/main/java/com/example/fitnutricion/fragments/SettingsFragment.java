@@ -7,15 +7,18 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
@@ -27,6 +30,15 @@ import com.example.fitnutricion.Language.LocaleHelper;
 import com.example.fitnutricion.LoginActivity;
 import com.example.fitnutricion.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.mahfa.dnswitch.DayNightSwitch;
+import com.squareup.picasso.Picasso;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
 
@@ -37,12 +49,22 @@ public class SettingsFragment extends Fragment{
     private String mParam2;
 
     View vista;
-    TextView settings;
+    TextView settings, perfil_usuario;
     Button btncerrarSesion, btn_modificar_datos, btn_cambiar_idioma;
-    SwitchCompat settings_theme_night;
-    int lang_selected;
 
+    private ImageView fotoperfil;
+    private static final int GalleryPick = 1;
+    private static final int RESULT_OK = -1;
+    private Uri ImageUri;
+    private String downloadImageUrl;
+
+    private DatabaseReference dbRef;
+    private FirebaseDatabase firebaseDatabase;
     private FirebaseAuth mAuth;
+    private String userID;
+
+    //SwitchCompat settings_theme_night;
+    int lang_selected;
 
     Context context;
     Resources resources;
@@ -62,12 +84,6 @@ public class SettingsFragment extends Fragment{
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        // checar condicion night mode en settings
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
-            getActivity().setTheme(R.style.ThemeDark_FitNutricion);
-        } else {
-            getActivity().setTheme(R.style.ThemeLight_FitNutricion);
-        }
 
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
@@ -103,16 +119,44 @@ public class SettingsFragment extends Fragment{
 
         settings = (TextView) vista.findViewById(R.id.settings);
 
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        dbRef = firebaseDatabase.getReference();
+        mAuth = FirebaseAuth.getInstance();
+
         btncerrarSesion = (Button) vista.findViewById(R.id.btncerrarSesion);
         btn_modificar_datos = (Button) vista.findViewById(R.id.btn_modificar_datos);
-        btn_cambiar_idioma = (Button) vista.findViewById(R.id.btn_cambiar_idioma);
-        settings_theme_night = (SwitchCompat) vista.findViewById(R.id.settings_theme_night);
 
-        if(loadState() == true){
+        perfil_usuario = vista.findViewById(R.id.perfil_usuario);
+        fotoperfil = vista.findViewById(R.id.fotoperfil);
+
+        dbRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    userID = mAuth.getCurrentUser().getUid();
+
+                    if(snapshot.child("users").child(userID).child("image").exists()){
+                        String image = snapshot.child("users").child(userID).child("image").getValue().toString();
+                        Picasso.get().load(image).into(fotoperfil);
+                    }
+
+                    String usuario = snapshot.child("users").child(userID).child("Nombre").getValue().toString();
+                    perfil_usuario.setText(usuario);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+            }
+        });
+
+        //btn_cambiar_idioma = (Button) vista.findViewById(R.id.btn_cambiar_idioma);
+        //settings_theme_night = (SwitchCompat) vista.findViewById(R.id.settings_theme_night);
+
+        /*if(loadState() == true){
             settings_theme_night.setChecked(true);
-        }
+        }*/
 
-        settings_theme_night.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        /*settings_theme_night.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
@@ -123,7 +167,7 @@ public class SettingsFragment extends Fragment{
                     saveState(false);
                 }
             }
-        });
+        });*/
 
         btncerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,7 +187,7 @@ public class SettingsFragment extends Fragment{
             }
         });
 
-        btn_cambiar_idioma.setOnClickListener(new View.OnClickListener() {
+        /*btn_cambiar_idioma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String[] Language ={"Español", "English", "German"};
@@ -187,7 +231,7 @@ public class SettingsFragment extends Fragment{
                 });
                 builder.create().show();
             }
-        });
+        });*/
 
         return vista;
     }
@@ -200,7 +244,7 @@ public class SettingsFragment extends Fragment{
         fragmentTransaction.commit();
     }
 
-    private void saveState(Boolean state){
+    /*private void saveState(Boolean state){
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("ABHOPositive", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("NightMode", state);
@@ -215,5 +259,5 @@ public class SettingsFragment extends Fragment{
 
     void setString(){
         settings.setText(resources.getString(R.string.setting_text));
-    }
+    }*/
 }

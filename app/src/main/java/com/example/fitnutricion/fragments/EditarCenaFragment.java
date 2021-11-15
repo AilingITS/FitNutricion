@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.fitnutricion.R;
+import com.example.fitnutricion.fragments.comidasRecetas.CenaFragment;
 import com.example.fitnutricion.fragments.comidasRecetas.DesayunoFragment;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -237,7 +238,7 @@ public class EditarCenaFragment extends Fragment {
             public void onComplete(@NonNull @NotNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(getActivity(), R.string.stringCambiosGuardadosCorrectamente, Toast.LENGTH_SHORT).show();
-                    replaceFragment(new DesayunoFragment());
+                    replaceFragment(new CenaFragment());
                 } else {
                     String message = task.getException().toString();
                     Toast.makeText(getActivity(), R.string.stringError + message, Toast.LENGTH_SHORT).show();
@@ -276,7 +277,7 @@ public class EditarCenaFragment extends Fragment {
                 public void onComplete(@NonNull @NotNull Task<Void> task) {
                     if (task.isSuccessful()) {
                         Toast.makeText(getActivity(),R.string.stringCambiosGuardadosCorrectamente, Toast.LENGTH_SHORT).show();
-                        replaceFragment(new DesayunoFragment());
+                        replaceFragment(new CenaFragment());
                     } else {
                         String message = task.getException().toString();
                         Toast.makeText(getActivity(), R.string.stringError + message, Toast.LENGTH_SHORT).show();

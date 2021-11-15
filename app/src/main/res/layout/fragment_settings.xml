@@ -31,12 +31,42 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/fotoperfil"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:src="@drawable/ic_perfil_usuario"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/settings" />
+
+        <TextView
+            android:id="@+id/perfil_usuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="32dp"
+            android:text="@string/nombre_text"
+            android:textAlignment="center"
+            android:textColor="?attr/text_color"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fotoperfil" />
+
         <Button
             android:id="@+id/btn_modificar_datos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
             android:paddingLeft="20dp"
             android:background="@drawable/config_modificar_perfil_btn"
@@ -48,12 +78,12 @@
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/settings"
+            app:layout_constraintTop_toBottomOf="@+id/perfil_usuario"
             android:textAppearance="?android:textAppearanceMedium"
             android:textAlignment="textStart"
             tools:visibility="visible" />
 
-        <TextView
+        <!--<TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -108,7 +138,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.438"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_modificar_datos" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_modificar_datos" />-->
 
         <Button
             android:id="@+id/btncerrarSesion"

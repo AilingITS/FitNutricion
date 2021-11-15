@@ -51,7 +51,8 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/pacienteList"
                     android:layout_width="match_parent"
-                    android:layout_height="497dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="72dp"
                     android:layout_marginTop="16dp"
                     tools:layout_editor_absoluteX="0dp" />
 
