@@ -64,7 +64,7 @@ public class HomeFragment extends Fragment {
     private String userID;
     private FirebaseAuth mAuth;
 
-    String pacienteID;
+    String pacienteID = "";
     private Spinner spinnerPacientes;
     Button btn_crear_pdf, desayunoHome, comidaHome, comidaCena, btn_eliminar_receta, btn_receta;
     Bitmap bmp, scaledbmp;
@@ -75,6 +75,11 @@ public class HomeFragment extends Fragment {
     DatabaseReference dbRef_eliminarReceta;
     DatabaseReference dbRef_recetas;
     private FirebaseDatabase firebaseDatabase_pdf;
+
+    String nombre_p_pdf = "";
+    String Correo_p_pdf = "";
+    String Edad_p_pdf = "";
+    String Sexo_p_pdf = "";
 
     public HomeFragment() {
         // Required empty public constructor
@@ -224,10 +229,17 @@ public class HomeFragment extends Fragment {
                     String correo_nutri_pdf = snapshot.child("users").child(userID).child("Correo").getValue().toString();
 
                     /* DATOS DEL PACIENTE - PDF */
-                    String nombre_p_pdf = snapshot.child("users").child(userID).child("pacientes").child(pacienteID).child("p_Nombre").getValue().toString();
-                    String Correo_p_pdf = snapshot.child("users").child(userID).child("pacientes").child(pacienteID).child("p_Correo").getValue().toString();
-                    String Edad_p_pdf = snapshot.child("users").child(userID).child("pacientes").child(pacienteID).child("p_Edad").getValue().toString();
-                    String Sexo_p_pdf = snapshot.child("users").child(userID).child("pacientes").child(pacienteID).child("p_Sexo").getValue().toString();
+                    if(snapshot.child("users").child(userID).child("pacientes").child(pacienteID).exists()) {
+                        nombre_p_pdf = snapshot.child("users").child(userID).child("pacientes").child(pacienteID).child("p_Nombre").getValue().toString();
+                        Correo_p_pdf = snapshot.child("users").child(userID).child("pacientes").child(pacienteID).child("p_Correo").getValue().toString();
+                        Edad_p_pdf = snapshot.child("users").child(userID).child("pacientes").child(pacienteID).child("p_Edad").getValue().toString();
+                        Sexo_p_pdf = snapshot.child("users").child(userID).child("pacientes").child(pacienteID).child("p_Sexo").getValue().toString();
+                    } else {
+                        nombre_p_pdf = "Sin paciente";
+                        Correo_p_pdf = "Sin paciente";
+                        Edad_p_pdf = "Sin paciente";
+                        Sexo_p_pdf = "Sin paciente";
+                    }
 
                     String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
                     File file = new File(pdfPath, "FitNutricion " + nombrepdfFecha + " " + nombrepdfHora + ".pdf");
